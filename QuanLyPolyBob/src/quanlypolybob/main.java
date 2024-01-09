@@ -208,6 +208,11 @@ public class main extends javax.swing.JFrame {
         );
 
         pnNhanVien.setBackground(new java.awt.Color(51, 102, 255));
+        pnNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnNhanVienMouseClicked(evt);
+            }
+        });
 
         lblNhanVien.setFont(new java.awt.Font("Arial", 1, 25)); // NOI18N
         lblNhanVien.setForeground(new java.awt.Color(255, 255, 255));
@@ -478,6 +483,28 @@ public class main extends javax.swing.JFrame {
         resetColor(lblSanPham);
         showPanel(new KhachHang());
     }//GEN-LAST:event_pnKhachHangMouseClicked
+
+    private void pnNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnNhanVienMouseClicked
+        // TODO add your handling code here:
+                setColorJpanel(pnNhanVien);
+        resetColorJpane(pnBanHang);
+        resetColorJpane(pnKhuyenMai);
+        resetColorJpane(pnHoaDon);
+        resetColorJpane(pnKhachHang);
+        resetColorJpane(pnTrangChu);
+        resetColorJpane(pnThongKe);
+        resetColorJpane(pnSanPham);
+        
+        setColor(lblNhanVien);
+        resetColor(lblHoaDon);
+        resetColor(lblBanHang);
+        resetColor(lblKhachHang);
+        resetColor(lblTrangChu);
+        resetColor(lblThongke);
+        resetColor(lblKhuyenMai);
+        resetColor(lblSanPham);
+        showPanel(new NhanVien());
+    }//GEN-LAST:event_pnNhanVienMouseClicked
 
     /**
      * @param args the command line arguments
