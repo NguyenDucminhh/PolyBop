@@ -4,13 +4,19 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
 <<<<<<< HEAD
-            <file>file:/C:/Users/Windows/Desktop/PolyBop/QuanLyPolyBob/src/quanlypolybob/QuanLyPolyBob.java</file>
+<<<<<<< HEAD
+            <file>file:/D:/Dự%20án%201/PolyBop/QuanLyPolyBob/src/quanlypolybob/HoaDonJPanel.java</file>
+            <file>file:/D:/Dự%20án%201/PolyBop/QuanLyPolyBob/src/quanlypolybob/BanHangJPanel.java</file>
+=======
+            <file>file:/C:/Users/Windows/Desktop/PolyBop/QuanLyPolyBob/src/quanlypolybob/QuanLySanPhamJPanel.java</file>
             <file>file:/C:/Users/Windows/Desktop/PolyBop/QuanLyPolyBob/src/quanlypolybob/main.java</file>
             <file>file:/C:/Users/Windows/Desktop/PolyBop/QuanLyPolyBob/src/quanlypolybob/TrangChuJPanel.java</file>
+>>>>>>> d1631877436d9bdbc52b5663f4dddb93f9c5d490
 =======
-            <file>file:/C:/Users/KIPOSTEST/Desktop/Polybop/PolyBop/QuanLyPolyBob/src/quanlypolybob/BanHangJPanel.java</file>
-            <file>file:/C:/Users/KIPOSTEST/Desktop/Polybop/PolyBop/QuanLyPolyBob/src/quanlypolybob/HoaDonJPanel.java</file>
->>>>>>> 212c5ddf93a8ba3ab0fd692a7d6fd200360c6ece
+            <file>file:/C:/Users/Windows/Desktop/PolyBop/QuanLyPolyBob/src/quanlypolybob/QuanLySanPhamJPanel.java</file>
+            <file>file:/C:/Users/Windows/Desktop/PolyBop/QuanLyPolyBob/src/quanlypolybob/main.java</file>
+            <file>file:/C:/Users/Windows/Desktop/PolyBop/QuanLyPolyBob/src/quanlypolybob/TrangChuJPanel.java</file>
+>>>>>>> d1631877436d9bdbc52b5663f4dddb93f9c5d490
         </group>
     </open-files>
 </project-private>
