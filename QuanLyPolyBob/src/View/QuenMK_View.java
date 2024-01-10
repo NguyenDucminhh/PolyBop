@@ -7,6 +7,7 @@ package View;
 import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,7 +22,7 @@ public class QuenMK_View extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        
+
     }
 
     /**
@@ -35,7 +36,7 @@ public class QuenMK_View extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lbl_Email = new javax.swing.JLabel();
         txt_Email = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txt_maOTP = new javax.swing.JTextField();
@@ -54,10 +55,15 @@ public class QuenMK_View extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 153, 153));
         jLabel3.setText("QUÊN MẬT KHẨU");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("Email");
+        lbl_Email.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lbl_Email.setText("Email");
 
         txt_Email.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        txt_Email.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txt_EmailMouseClicked(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Nhập OTP");
@@ -94,6 +100,11 @@ public class QuenMK_View extends javax.swing.JFrame {
         jButton3.setText("Đổi Mật Khẩu");
         jButton3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
         jButton3.setBorderPainted(false);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         lbl_ThongBaoTimeOTP.setForeground(new java.awt.Color(255, 51, 51));
 
@@ -110,7 +121,7 @@ public class QuenMK_View extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_Email, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)
+                            .addComponent(lbl_Email)
                             .addComponent(jLabel5)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(txt_maOTP, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -130,7 +141,7 @@ public class QuenMK_View extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
+                .addComponent(lbl_Email)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_Email, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -163,7 +174,7 @@ public class QuenMK_View extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -171,6 +182,16 @@ public class QuenMK_View extends javax.swing.JFrame {
         // lấy mã 
         this.clickHover();
     }//GEN-LAST:event_btn_getMaActionPerformed
+
+    private void txt_EmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_EmailMouseClicked
+        // reset error 
+        this.resetError();
+    }//GEN-LAST:event_txt_EmailMouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // nút đổi mật khẩu 
+        this.doiMatKhau();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -212,35 +233,65 @@ public class QuenMK_View extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lbl_Email;
     private javax.swing.JLabel lbl_ThongBaoTimeOTP;
     private javax.swing.JTextField txt_Email;
     private javax.swing.JTextField txt_maOTP;
     // End of variables declaration//GEN-END:variables
 
     private void clickHover() {
-        btn_getMa.setBackground(Color.red);
-        btn_getMa.setEnabled(false);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for (int i = 5; i >= 0; i--) {
-                    try {
-                        Thread.sleep(1000);
-                        lbl_ThongBaoTimeOTP.setText("Gửi lại mã sau "+String.valueOf(i));
-                        if (i == 0) {
-                            btn_getMa.setEnabled(true);
-                            lbl_ThongBaoTimeOTP.setText("");
-                            btn_getMa.setBackground(Color.ORANGE);
+        // Nhập email 
+        if (txt_Email.getText().isBlank()) {
+            txt_Email.setBackground(Color.red);
+            lbl_Email.setText("Vui lòng nhập email");
+            lbl_Email.setForeground(Color.red);
+        } else {
+            btn_getMa.setBackground(Color.red);
+            btn_getMa.setEnabled(false);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    for (int i = 5; i >= 0; i--) {
+                        try {
+                            Thread.sleep(1000);
+                            lbl_ThongBaoTimeOTP.setText("Gửi lại mã sau " + String.valueOf(i));
+                            if (i == 0) {
+                                btn_getMa.setEnabled(true);
+                                lbl_ThongBaoTimeOTP.setText("");
+                                btn_getMa.setBackground(Color.ORANGE);
+                            }
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(QuenMK_View.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(QuenMK_View.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
+            }).start();
+        }
+
+    }
+
+    // Xóa thông báo lỗi 
+    private void resetError() {
+        txt_Email.setBackground(Color.WHITE);
+        lbl_Email.setText("Email");
+        lbl_Email.setForeground(Color.BLACK);
+    }
+    // check vadidate trống thông tin 
+    boolean checkTrongTT(){
+            if (txt_Email.getText().isBlank() || txt_maOTP.getText().isBlank()) {
+                JOptionPane.showMessageDialog(this,"Vui lòng nhập đủ thông tin ");
+                return false; 
             }
-        }).start();        
-        
+            else return true; 
+    }
+    // Nhập đúng thông tin 
+    void doiMatKhau(){
+        if (checkTrongTT() == true) {
+            DoiMK_View dmk = new DoiMK_View(); 
+            dmk.show();
+            this.dispose();
+        }
     }
 }

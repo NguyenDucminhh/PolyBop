@@ -4,6 +4,8 @@
  */
 package View;
 
+import Service.TaiKhoanDao;
+import Model.TaiKhoan; 
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
@@ -15,6 +17,8 @@ import javax.swing.border.MatteBorder;
  */
 public class LoginView extends javax.swing.JFrame {
 
+    TaiKhoanDao service = new TaiKhoanDao(); 
+    
     /**
      * Creates new form LoginView
      */
@@ -254,9 +258,7 @@ public class LoginView extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // Login 
-        if (CheckData() == true) {
-            JOptionPane.showMessageDialog(this, "Đăng nhập thành công");
-        }
+        this.checkAccount();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txt_EmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_EmailMouseClicked
@@ -349,6 +351,42 @@ public class LoginView extends javax.swing.JFrame {
         txt_Pass.setBackground(Color.WHITE);
         lbl_Pass.setText("Password");
         lbl_Pass.setForeground(Color.BLACK);
+    }
+
+    private void checkAccount() {
+        if (CheckData() == true) {
+            String email = txt_Email.getText().trim(); 
+            String matKhau = txt_Pass.getText().trim(); 
+            int check = 0 ; 
+            for (TaiKhoan x : service.getTaiKhoanNV() ) {
+                // Đăng nhập thành công 
+                if (email.equalsIgnoreCase(x.getEmail()) && matKhau.equalsIgnoreCase(x.getMatKhau())) {
+                    // Check trạng thái tài khoản 
+                    for (TaiKhoan tt : service.getChucVu(email)) {
+                        // Tài khoản không hoạt động 
+                        if(tt.getTrangThaiNV() == 0 ){
+                            JOptionPane.showMessageDialog(this,"Tài khoản không còn hoạt dộng");
+                        }
+                        // Tài khoản còn hoạt động
+                        else {
+                            // check chức vụ 
+                            if (tt.getChucVuNV() == 0) {
+                                JOptionPane.showMessageDialog(this,"Đăng nhập thành công dưới quyền quản lý");
+                            }
+                            else {
+                                JOptionPane.showMessageDialog(this,"Đăng nhập thành công dưới quyền nhân viên");
+                            }
+                            
+                        }
+                    }
+                    check = 1 ; 
+                }
+            }
+            // đăng nhập thất bại 
+            if (check == 0) {
+                JOptionPane.showMessageDialog(this,"Tài khoản hoặc mật khẩu chưa chính xác !");
+            }
+        }
     }
 
 }
