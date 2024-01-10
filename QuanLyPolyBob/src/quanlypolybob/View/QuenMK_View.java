@@ -21,6 +21,7 @@ public class QuenMK_View extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        
     }
 
     /**
@@ -162,7 +163,7 @@ public class QuenMK_View extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
+        
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -221,15 +222,17 @@ public class QuenMK_View extends javax.swing.JFrame {
 
     private void clickHover() {
         btn_getMa.setBackground(Color.red);
+        btn_getMa.setEnabled(false);
         new Thread(new Runnable() {
             @Override
             public void run() {
-                for (int i = 1; i <= 5; i++) {
+                for (int i = 5; i >= 0; i--) {
                     try {
                         Thread.sleep(1000);
-                        lbl_ThongBaoTimeOTP.setText(String.valueOf(i));
-                        if (i==5) {
-                            lbl_ThongBaoTimeOTP.setText("Gửi lại mã ?");
+                        lbl_ThongBaoTimeOTP.setText("Gửi lại mã sau "+String.valueOf(i));
+                        if (i == 0) {
+                            btn_getMa.setEnabled(true);
+                            lbl_ThongBaoTimeOTP.setText("");
                             btn_getMa.setBackground(Color.ORANGE);
                         }
                     } catch (InterruptedException ex) {
@@ -237,7 +240,7 @@ public class QuenMK_View extends javax.swing.JFrame {
                     }
                 }
             }
-        }).start(); 
+        }).start();        
         
     }
 }
