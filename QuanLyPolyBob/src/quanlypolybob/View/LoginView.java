@@ -2,7 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package View;
+package quanlypolybob.View;
+
+import View.QuenMK_View;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -54,7 +57,7 @@ public class LoginView extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(0, 153, 153));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Wallet-icon.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quanlypolybob/Icons/Wallet-icon.png"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Showcard Gothic", 1, 30)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -109,6 +112,11 @@ public class LoginView extends javax.swing.JFrame {
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -218,7 +226,7 @@ public class LoginView extends javax.swing.JFrame {
 
     private void jLabel57MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel57MouseClicked
         // quên mật khẩu 
-        QuenMK_View qmk = new QuenMK_View(); 
+        QuenMK_View qmk = new QuenMK_View();
         qmk.show();
     }//GEN-LAST:event_jLabel57MouseClicked
 
@@ -231,6 +239,13 @@ public class LoginView extends javax.swing.JFrame {
         // TODO add your handling code here:
          
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // Login 
+        if (CheckData()==true) {
+            JOptionPane.showMessageDialog(this,"Đăng nhập thành công");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -283,4 +298,17 @@ public class LoginView extends javax.swing.JFrame {
     private javax.swing.JTextField txt_Email;
     private javax.swing.JPasswordField txt_Pass;
     // End of variables declaration//GEN-END:variables
+
+    // Chức năng 
+    boolean CheckData(){
+        if (txt_Email.getText().isBlank() || txt_Pass.getText().isBlank()) {
+            if (txt_Email.getText().isBlank()) {
+                
+            }
+            JOptionPane.showMessageDialog(this,"Vui lòng điền đầy đủ thông tin !");
+            return false; 
+        }
+        else return true; 
+    }
+    
 }
