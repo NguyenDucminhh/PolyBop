@@ -503,7 +503,7 @@ public class main extends javax.swing.JFrame {
         resetColor(lblThongke);
         resetColor(lblKhuyenMai);
         resetColor(lblSanPham);
-        showPanel(new NhanVien());
+//        showPanel(new NhanVien());
     }//GEN-LAST:event_pnNhanVienMouseClicked
 
     /**
