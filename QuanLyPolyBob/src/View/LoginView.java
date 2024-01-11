@@ -4,12 +4,21 @@
  */
 package View;
 
+import Service.TaiKhoanDao;
+import Model.TaiKhoan; 
+import java.awt.Color;
+import javax.swing.JOptionPane;
+import javax.swing.border.Border;
+import javax.swing.border.MatteBorder;
+
 /**
  *
  * @author Admin
  */
 public class LoginView extends javax.swing.JFrame {
 
+    TaiKhoanDao service = new TaiKhoanDao(); 
+    
     /**
      * Creates new form LoginView
      */
@@ -35,9 +44,9 @@ public class LoginView extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lbl_Email = new javax.swing.JLabel();
         txt_Email = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        lbl_Pass = new javax.swing.JLabel();
         txt_Pass = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -54,7 +63,7 @@ public class LoginView extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(0, 153, 153));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Wallet-icon.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Wallet-icon.png"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Showcard Gothic", 1, 30)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -90,15 +99,25 @@ public class LoginView extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 153, 153));
         jLabel3.setText("LOGIN");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("Email");
+        lbl_Email.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lbl_Email.setText("Email");
 
         txt_Email.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        txt_Email.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txt_EmailMouseClicked(evt);
+            }
+        });
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel5.setText("Password");
+        lbl_Pass.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lbl_Pass.setText("Password");
 
         txt_Pass.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        txt_Pass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txt_PassMouseClicked(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(0, 153, 153));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -109,6 +128,11 @@ public class LoginView extends javax.swing.JFrame {
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -148,10 +172,10 @@ public class LoginView extends javax.swing.JFrame {
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel4Layout.createSequentialGroup()
                             .addGap(26, 26, 26)
-                            .addComponent(jLabel4))
+                            .addComponent(lbl_Email))
                         .addGroup(jPanel4Layout.createSequentialGroup()
                             .addGap(26, 26, 26)
-                            .addComponent(jLabel5))
+                            .addComponent(lbl_Pass))
                         .addGroup(jPanel4Layout.createSequentialGroup()
                             .addGap(26, 26, 26)
                             .addComponent(txt_Email, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -166,20 +190,20 @@ public class LoginView extends javax.swing.JFrame {
                 .addGap(57, 57, 57)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addComponent(txt_Email, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbl_Email)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt_Email, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(jLabel5)
-                .addGap(26, 26, 26)
-                .addComponent(txt_Pass, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbl_Pass)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txt_Pass, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel57)
                 .addGap(31, 31, 31)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -218,7 +242,7 @@ public class LoginView extends javax.swing.JFrame {
 
     private void jLabel57MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel57MouseClicked
         // quên mật khẩu 
-        QuenMK_View qmk = new QuenMK_View(); 
+        QuenMK_View qmk = new QuenMK_View();
         qmk.show();
     }//GEN-LAST:event_jLabel57MouseClicked
 
@@ -229,8 +253,23 @@ public class LoginView extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-         
+
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // Login 
+        this.checkAccount();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txt_EmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_EmailMouseClicked
+        // Reset error 
+        this.ResetError();
+    }//GEN-LAST:event_txt_EmailMouseClicked
+
+    private void txt_PassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_PassMouseClicked
+        // Reset error 
+        this.ResetError();
+    }//GEN-LAST:event_txt_PassMouseClicked
 
     /**
      * @param args the command line arguments
@@ -273,14 +312,81 @@ public class LoginView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel57;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel lbl_Email;
+    private javax.swing.JLabel lbl_Pass;
     private javax.swing.JTextField txt_Email;
     private javax.swing.JPasswordField txt_Pass;
     // End of variables declaration//GEN-END:variables
+
+    // Chức năng 
+    boolean CheckData() {
+        if (txt_Email.getText().isBlank() || txt_Pass.getText().isBlank()) {
+            if (txt_Email.getText().isBlank()) {
+                txt_Email.setBackground(Color.red);
+                lbl_Email.setText("Vui lòng nhập email");
+                lbl_Email.setForeground(Color.red);
+            }
+            if (txt_Pass.getText().isBlank()) {
+                txt_Pass.setBackground(Color.red);
+                lbl_Pass.setText("Vui lòng nhập mật khẩu");
+                lbl_Pass.setForeground(Color.red);
+            }
+            JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin !");
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    // reset báo lỗi form 
+    void ResetError() {
+        txt_Email.setBackground(Color.WHITE);
+        lbl_Email.setText("Email");
+        lbl_Email.setForeground(Color.BLACK);
+        txt_Pass.setBackground(Color.WHITE);
+        lbl_Pass.setText("Password");
+        lbl_Pass.setForeground(Color.BLACK);
+    }
+
+    private void checkAccount() {
+        if (CheckData() == true) {
+            String email = txt_Email.getText().trim(); 
+            String matKhau = txt_Pass.getText().trim(); 
+            int check = 0 ; 
+            for (TaiKhoan x : service.getTaiKhoanNV() ) {
+                // Đăng nhập thành công 
+                if (email.equalsIgnoreCase(x.getEmail()) && matKhau.equalsIgnoreCase(x.getMatKhau())) {
+                    // Check trạng thái tài khoản 
+                    for (TaiKhoan tt : service.getChucVu(email)) {
+                        // Tài khoản không hoạt động 
+                        if(tt.getTrangThaiNV() == 0 ){
+                            JOptionPane.showMessageDialog(this,"Tài khoản không còn hoạt dộng");
+                        }
+                        // Tài khoản còn hoạt động
+                        else {
+                            // check chức vụ 
+                            if (tt.getChucVuNV() == 0) {
+                                JOptionPane.showMessageDialog(this,"Đăng nhập thành công dưới quyền quản lý");
+                            }
+                            else {
+                                JOptionPane.showMessageDialog(this,"Đăng nhập thành công dưới quyền nhân viên");
+                            }
+                            
+                        }
+                    }
+                    check = 1 ; 
+                }
+            }
+            // đăng nhập thất bại 
+            if (check == 0) {
+                JOptionPane.showMessageDialog(this,"Tài khoản hoặc mật khẩu chưa chính xác !");
+            }
+        }
+    }
+
 }
