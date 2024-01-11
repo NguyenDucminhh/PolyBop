@@ -4,8 +4,8 @@
  */
 package quanlypolybob.Dao;
 
+import Model.Vi;
 import java.util.List;
-import quanlypolybob.Model.Vi;
 
 /**
  *

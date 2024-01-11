@@ -4,9 +4,9 @@
  */
 package quanlypolybob.Dao;
 
+import Model.Vi;
 import java.util.ArrayList;
 import java.util.List;
-import quanlypolybob.Model.Vi;
 import java.sql.ResultSet;
 import quanlypolybob.Hepper.JDBCHeper;
 /**
