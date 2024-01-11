@@ -4,14 +4,17 @@
  */
 package quanlypolybob.Dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import quanlypolybob.Model.Vi;
-
+import java.sql.ResultSet;
+import quanlypolybob.Hepper.JDBCHeper;
 /**
  *
  * @author Windows
  */
 public class ViDao implements InterfaceVi{
+    String selectAll = "select * from Vi";
 
     @Override
     public void insert(Vi sp) {
@@ -40,7 +43,19 @@ public class ViDao implements InterfaceVi{
 
     @Override
     public List<Vi> selectBySQL(String sql, Object... args) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<Vi> list_vi = new ArrayList<>();
+        try {
+            ResultSet rs = JDBCHeper.query(sql, args);
+            while (rs.next()) {
+                Vi sp = new Vi();
+                sp.setIdVi(0);
+                
+            }
+        } catch (Exception e) {
+        }
+        return list_vi;
     }
-    
+//    public List<Vi> selectAll(){
+//        return 
+//    }
 }
