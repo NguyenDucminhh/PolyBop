@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import quanlypolybob.Hepper.JDBCHeper;
 
 /**
  *
@@ -46,7 +47,7 @@ public class TaiKhoanDao implements InterfaceTaiKhoan {
                 + "	  ,[ChucVu]\n"
                 + "      ,[TrangThai]\n"
                 + "  FROM [dbo].[NhanVien] where Email = ?";
-        try (Connection con = DBconnect.getConnection(); PreparedStatement ps = con.prepareCall(sql)) {
+        try (Connection con = JDBCHeper.getStmt(sql, args); PreparedStatement ps = con.prepareCall(sql)) {
             ps.setString(1,email);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
