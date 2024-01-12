@@ -5,8 +5,10 @@
 package View;
 
 import Model.TaiKhoan;
-import Service.TaiKhoanDao; 
+import Service.SendMail;
+import Service.TaiKhoanDao;
 import java.awt.Color;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -20,8 +22,10 @@ public class QuenMK_View extends javax.swing.JFrame {
     /**
      * Creates new form QuenMK_View
      */
-    TaiKhoanDao service = new TaiKhoanDao(); 
-    
+    TaiKhoanDao service = new TaiKhoanDao();
+    SendMail sendMail = new SendMail();
+    String code;
+
     public QuenMK_View() {
         initComponents();
         setLocationRelativeTo(null);
@@ -73,6 +77,7 @@ public class QuenMK_View extends javax.swing.JFrame {
         jLabel5.setText("Nhập OTP");
 
         txt_maOTP.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        txt_maOTP.setEnabled(false);
 
         btn_getMa.setBackground(new java.awt.Color(255, 153, 51));
         btn_getMa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -255,27 +260,32 @@ public class QuenMK_View extends javax.swing.JFrame {
             this.checkAccount();
         }
     }
-    private void labelGuiOTP(){
-            btn_getMa.setBackground(Color.red);
-            btn_getMa.setEnabled(false);
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    for (int i = 5; i >= 0; i--) {
-                        try {
-                            Thread.sleep(1000);
-                            lbl_ThongBaoTimeOTP.setText("Gửi lại mã sau " + String.valueOf(i));
-                            if (i == 0) {
-                                btn_getMa.setEnabled(true);
-                                lbl_ThongBaoTimeOTP.setText("");
-                                btn_getMa.setBackground(Color.ORANGE);
-                            }
-                        } catch (InterruptedException ex) {
-                            Logger.getLogger(QuenMK_View.class.getName()).log(Level.SEVERE, null, ex);
+
+    private void labelGuiOTP() {
+        btn_getMa.setBackground(Color.red);
+        btn_getMa.setEnabled(false);
+        txt_maOTP.setEnabled(true);
+        txt_maOTP.setText("");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 5; i >= 0; i--) {
+                    try {
+                        Thread.sleep(1000);
+                        lbl_ThongBaoTimeOTP.setText("Nhận mã mới sau " + String.valueOf(i));
+                        if (i == 0) {
+                            btn_getMa.setEnabled(true);
+                            lbl_ThongBaoTimeOTP.setText("");
+                            btn_getMa.setBackground(Color.ORANGE);
+                            code = randum();
+                            sendMail.send(txt_Email.getText(), code);
                         }
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(QuenMK_View.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
-            }).start();
+            }
+        }).start();
     }
 
     // Xóa thông báo lỗi 
@@ -284,57 +294,81 @@ public class QuenMK_View extends javax.swing.JFrame {
         lbl_Email.setText("Email");
         lbl_Email.setForeground(Color.BLACK);
     }
+
     // check vadidate trống thông tin 
-    boolean checkTrongTT(){
-            if (txt_Email.getText().isBlank() || txt_maOTP.getText().isBlank()) {
-                JOptionPane.showMessageDialog(this,"Vui lòng nhập đủ thông tin ");
-                return false; 
-            }
-            else return true; 
+    boolean checkTrongTT() {
+        if (txt_Email.getText().isBlank() || txt_maOTP.getText().isBlank()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đủ thông tin ");
+            return false;
+        } else {
+            return true;
+        }
     }
+
     // Vadidate trống thông tin email 
-    boolean checkTrongTTemail(){
-            if (txt_Email.getText().isBlank()) {
-                JOptionPane.showMessageDialog(this,"Vui lòng nhập email ");
-                return false; 
-            }
-            else return true; 
+    boolean checkTrongTTemail() {
+        if (txt_Email.getText().isBlank()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập email ");
+            return false;
+        } else {
+            return true;
+        }
     }
+
     // Check email có tồn tại trên hệ thông hoặc đã khóa 
-        private void checkAccount() {
-        if (checkTrongTTemail()== true) {
-            String email = txt_Email.getText().trim();  
-            int check = 0 ; 
-            for (TaiKhoan x : service.getTaiKhoanNV() ) {
+    private void checkAccount() {
+        if (checkTrongTTemail() == true) {
+            String email = txt_Email.getText().trim();
+            int check = 0;
+            for (TaiKhoan x : service.getTaiKhoanNV()) {
                 // Đăng nhập thành công 
                 if (email.equalsIgnoreCase(x.getEmail())) {
                     // Check trạng thái tài khoản 
                     for (TaiKhoan tt : service.getChucVu(email)) {
                         // Tài khoản không hoạt động 
-                        if(tt.getTrangThaiNV() == 0 ){
-                            JOptionPane.showMessageDialog(this,"Tài khoản không còn hoạt dộng");
-                        }
-                        // Tài khoản còn hoạt động
+                        if (tt.getTrangThaiNV() == 0) {
+                            JOptionPane.showMessageDialog(this, "Tài khoản không còn hoạt dộng");
+                        } // Tài khoản còn hoạt động
                         else {
                             // Gửi thông báo TOP 
                             this.labelGuiOTP();
                         }
                     }
-                    check = 1 ; 
+                    check = 1;
                 }
             }
             // đăng nhập thất bại 
             if (check == 0) {
-                JOptionPane.showMessageDialog(this,"Tài khoản không tồn tại trên hệ thống !");
+                JOptionPane.showMessageDialog(this, "Tài khoản không tồn tại trên hệ thống !");
             }
         }
     }
+
+    // Tạo số ngẫu nhiên 
+    public String randum() {
+        Random rd = new Random();
+        int numberCode = rd.nextInt(1000) + 1000;
+        return String.valueOf(numberCode);
+    }
+
+    // Check OTP 
+    boolean checkOTP() {
+        if (txt_maOTP.getText().trim().equalsIgnoreCase(code)) {
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(this, "ERROR : Mã OTP Không chính xác \n Vui Lòng Kiểm Tra Và Nhập Lại Mã OTP ");
+            return false;
+        }
+    }
+
     // Nhập đúng thông tin 
-    void doiMatKhau(){
+    void doiMatKhau() {
         if (checkTrongTT() == true) {
-            DoiMK_View dmk = new DoiMK_View(); 
-            dmk.show();
-            this.dispose();
+            if (checkOTP() == true) {
+                DoiMK_View dmk = new DoiMK_View(txt_Email.getText());
+                dmk.setVisible(true);
+                this.dispose();
+            }
         }
     }
 }

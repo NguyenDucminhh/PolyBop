@@ -14,4 +14,5 @@ import Model.TaiKhoan;
 public interface InterfaceTaiKhoan {
     List<TaiKhoan> getTaiKhoanNV(); 
     List<TaiKhoan> getChucVu(String email); 
+    String updateTaiKhoan(String email,String mk); 
 }
