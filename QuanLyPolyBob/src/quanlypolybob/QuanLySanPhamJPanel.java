@@ -44,7 +44,7 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
         modelCH = (DefaultTableModel) tblSanPham1.getModel();
         filltotablech();
 //        modelHH = (DefaultTableModel) tblSanPham2.getModel();
-        filltotablehh();
+//        filltotablehh();
     }
 
     private void init() {

@@ -28,10 +28,10 @@ public class BanHangJPanel extends javax.swing.JPanel {
      * Creates new form BanHangJPanel
      */
     public BanHangJPanel() {
-        filltableSanPham();
-        filltoComboboxLSP();
+//        filltableSanPham();
+//        filltoComboboxLSP();
         initComponents();
-        getDateNow();
+//        getDateNow();
     }
   
     public void getDateNow() {
@@ -40,35 +40,35 @@ public class BanHangJPanel extends javax.swing.JPanel {
         lblNgay.setText(nowDay);
     }
 
-    public void filltableSanPham() {
-        DefaultTableModel model = (DefaultTableModel) tblSanPham.getModel();
-        model.setRowCount(0);
-        try {
-            ThuongHieu thuonghieu = (ThuongHieu) cbbLoaiVi.getSelectedItem();
-            //List<Vi> list = ViDao.selectByKeyword(txtTimKiem.getText());
-            List<Vi> list = DaoVi.selectByKeyword(txtTimKiem.getText());
-                for(Vi spVi : list){
-                    model.addRow(new Object[]{
-                        spVi.getIdVi(),spVi.getIdThuongHieu(),spVi.getKieuDang(),spVi.getKieuDang(),spVi.getTenVi()
-                    });
-                }
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    public void filltableSanPham() {
+//        DefaultTableModel model = (DefaultTableModel) tblSanPham.getModel();
+//        model.setRowCount(0);
+//        try {
+//            ThuongHieu thuonghieu = (ThuongHieu) cbbLoaiVi.getSelectedItem();
+//            //List<Vi> list = ViDao.selectByKeyword(txtTimKiem.getText());
+//            List<Vi> list = DaoVi.selectByKeyword(txtTimKiem.getText());
+//                for(Vi spVi : list){
+//                    model.addRow(new Object[]{
+//                        spVi.getIdVi(),spVi.getIdThuongHieu(),spVi.getKieuDang(),spVi.getKieuDang(),spVi.getTenVi()
+//                    });
+//                }
+//            
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
-    public void filltoComboboxLSP() {
-        DefaultComboBoxModel<LoaiVi> modelcb = (DefaultComboBoxModel) cbbLoaiVi.getModel();
-        modelcb.removeAllElements();
-        List<LoaiVi> list = DaoLoaiVi.selectAll();
-        if (list != null) {
-            for (LoaiVi loaivi : list) {
-                modelcb.addElement(loaivi);
-            }
-        }
-        filltableSanPham();
-    }
+//    public void filltoComboboxLSP() {
+//        DefaultComboBoxModel<LoaiVi> modelcb = (DefaultComboBoxModel) cbbLoaiVi.getModel();
+//        modelcb.removeAllElements();
+//        List<LoaiVi> list = DaoLoaiVi.selectAll();
+//        if (list != null) {
+//            for (LoaiVi loaivi : list) {
+//                modelcb.addElement(loaivi);
+//            }
+//        }
+//        filltableSanPham();
+//    }
 
     /*public void filltoTableHDCT() {
         DefaultTableModel model = (DefaultTableModel) tblHoadonchitiet.getModel();
