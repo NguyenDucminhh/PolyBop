@@ -4,7 +4,7 @@
  */
 package quanlypolybob;
 
-import Helper.MsgBox;
+
 import java.io.File;
 import Helper.Ximages;
 import Model.ThuongHieu;
@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import quanlypolybob.Dao.ThuongHieuDao;
 import quanlypolybob.Dao.ViDao;
+import quanlypolybob.Hepper.MsgBox;
 
 /**
  *
