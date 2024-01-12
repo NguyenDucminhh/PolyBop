@@ -4,6 +4,8 @@
  */
 package View;
 
+import Model.TaiKhoan;
+import Service.TaiKhoanDao; 
 import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,6 +20,8 @@ public class QuenMK_View extends javax.swing.JFrame {
     /**
      * Creates new form QuenMK_View
      */
+    TaiKhoanDao service = new TaiKhoanDao(); 
+    
     public QuenMK_View() {
         initComponents();
         setLocationRelativeTo(null);
@@ -248,7 +252,7 @@ public class QuenMK_View extends javax.swing.JFrame {
             lbl_Email.setText("Vui lòng nhập email");
             lbl_Email.setForeground(Color.red);
         } else {
-            this.labelGuiOTP();
+            this.checkAccount();
         }
     }
     private void labelGuiOTP(){
@@ -288,8 +292,43 @@ public class QuenMK_View extends javax.swing.JFrame {
             }
             else return true; 
     }
+    // Vadidate trống thông tin email 
+    boolean checkTrongTTemail(){
+            if (txt_Email.getText().isBlank()) {
+                JOptionPane.showMessageDialog(this,"Vui lòng nhập email ");
+                return false; 
+            }
+            else return true; 
+    }
     // Check email có tồn tại trên hệ thông hoặc đã khóa 
-    
+        private void checkAccount() {
+        if (checkTrongTTemail()== true) {
+            String email = txt_Email.getText().trim();  
+            int check = 0 ; 
+            for (TaiKhoan x : service.getTaiKhoanNV() ) {
+                // Đăng nhập thành công 
+                if (email.equalsIgnoreCase(x.getEmail())) {
+                    // Check trạng thái tài khoản 
+                    for (TaiKhoan tt : service.getChucVu(email)) {
+                        // Tài khoản không hoạt động 
+                        if(tt.getTrangThaiNV() == 0 ){
+                            JOptionPane.showMessageDialog(this,"Tài khoản không còn hoạt dộng");
+                        }
+                        // Tài khoản còn hoạt động
+                        else {
+                            // Gửi thông báo TOP 
+                            this.labelGuiOTP();
+                        }
+                    }
+                    check = 1 ; 
+                }
+            }
+            // đăng nhập thất bại 
+            if (check == 0) {
+                JOptionPane.showMessageDialog(this,"Tài khoản không tồn tại trên hệ thống !");
+            }
+        }
+    }
     // Nhập đúng thông tin 
     void doiMatKhau(){
         if (checkTrongTT() == true) {
