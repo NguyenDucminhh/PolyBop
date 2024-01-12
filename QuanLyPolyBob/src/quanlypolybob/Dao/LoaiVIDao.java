@@ -4,25 +4,25 @@
  */
 package quanlypolybob.Dao;
 
-import Model.Vi;
-import java.util.ArrayList;
+import Model.LoaiVi;
 import java.util.List;
-import java.sql.ResultSet;
-import quanlypolybob.Hepper.JDBCHeper;
+
 /**
  *
- * @author Windows
+ * @author Admin
  */
-public class ViDao implements InterfaceVi{
-    String selectAll = "select * from Vi";
+public class LoaiVIDao implements InterfaceLoaiVi{
+
+    public LoaiVIDao() {
+    }
 
     @Override
-    public void insert(Vi sp) {
+    public void insert(LoaiVi sp) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void update(Vi sp) {
+    public void update(LoaiVi sp) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -32,34 +32,18 @@ public class ViDao implements InterfaceVi{
     }
 
     @Override
-    public List<Vi> selectAll() {
+    public LoaiVi selectID(Integer id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Vi selectID(Integer id) {
+    public List<LoaiVi> selectAll() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-   public List<Vi> selectByKeyword(String keyword) {
-        String sql = "SELECT * FROM dbo.Vi WHERE TenVi LIKE ? AND IdVi = ? AND Trangthai = 1 ";
-        return selectBySQL(sql, "%" + keyword + "%");
     }
 
     @Override
-    public List<Vi> selectBySQL(String sql, Object... args) {
-        List<Vi> list_vi = new ArrayList<>();
-        try {
-            ResultSet rs = JDBCHeper.query(sql, args);
-            while (rs.next()) {
-                Vi sp = new Vi();
-                sp.setIdVi(0);
-                
-            }
-        } catch (Exception e) {
-        }
-        return list_vi;
+    public List<LoaiVi> selectBySQL(String sql, Object... args) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-//    public List<Vi> selectAll(){
-//        return 
-//    }
+    
 }
