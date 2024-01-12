@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="library1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/QuanLyPolyBob/library/jcommon-1.0.23.jar!/" />
+      <root url="jar://$PROJECT_DIR$/QuanLyPolyBob/library/itextpdf-5.5.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/QuanLyPolyBob/library/poi-5.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/QuanLyPolyBob/library/curvesapi-1.06.jar!/" />
+      <root url="jar://$PROJECT_DIR$/QuanLyPolyBob/library/xmlbeans-4.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/QuanLyPolyBob/library/javax.mail-1.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/QuanLyPolyBob/library/activation-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/QuanLyPolyBob/library/jcalendar-1.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

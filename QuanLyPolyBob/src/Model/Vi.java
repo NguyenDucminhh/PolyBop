@@ -12,72 +12,76 @@ package Model;
  */
 public class Vi {
 
-    private int idVi;
-    private int idThuongHieu;
-    private String kieuDang;
-    private String tenVi;
-    private String urlAnh;
-    private boolean trangThai;
+    private int IDVi;
+    private int ID_ThuongHieu;
+    private String KieuDang;
+    private String TenVi;
+    private String Url_Anh;
+    private boolean TrangThai;
 
     public Vi() {
     }
 
-    public Vi(int idVi, int idThuongHieu, String kieuDang, String tenVi, String urlAnh, boolean trangThai) {
-        this.idVi = idVi;
-        this.idThuongHieu = idThuongHieu;
-        this.kieuDang = kieuDang;
-        this.tenVi = tenVi;
-        this.urlAnh = urlAnh;
-        this.trangThai = trangThai;
+    public Vi(int IDVi, int ID_ThuongHieu, String KieuDang, String TenVi, String Url_Anh, boolean TrangThai) {
+        this.IDVi = IDVi;
+        this.ID_ThuongHieu = ID_ThuongHieu;
+        this.KieuDang = KieuDang;
+        this.TenVi = TenVi;
+        this.Url_Anh = Url_Anh;
+        this.TrangThai = TrangThai;
     }
 
-    public int getIdVi() {
-        return idVi;
+    public int getIDVi() {
+        return IDVi;
     }
 
-    public void setIdVi(int idVi) {
-        this.idVi = idVi;
+    public void setIDVi(int IDVi) {
+        this.IDVi = IDVi;
     }
 
-    public int getIdThuongHieu() {
-        return idThuongHieu;
+    public int getID_ThuongHieu() {
+        return ID_ThuongHieu;
     }
 
-    public void setIdThuongHieu(int idThuongHieu) {
-        this.idThuongHieu = idThuongHieu;
+    public void setID_ThuongHieu(int ID_ThuongHieu) {
+        this.ID_ThuongHieu = ID_ThuongHieu;
     }
 
     public String getKieuDang() {
-        return kieuDang;
+        return KieuDang;
     }
 
-    public void setKieuDang(String kieuDang) {
-        this.kieuDang = kieuDang;
+    public void setKieuDang(String KieuDang) {
+        this.KieuDang = KieuDang;
     }
 
     public String getTenVi() {
-        return tenVi;
+        return TenVi;
     }
 
-    public void setTenVi(String tenVi) {
-        this.tenVi = tenVi;
+    public void setTenVi(String TenVi) {
+        this.TenVi = TenVi;
     }
 
-    public String getUrlAnh() {
-        return urlAnh;
+    public String getUrl_Anh() {
+        return Url_Anh;
     }
 
-    public void setUrlAnh(String urlAnh) {
-        this.urlAnh = urlAnh;
+    public void setUrl_Anh(String Url_Anh) {
+        this.Url_Anh = Url_Anh;
     }
 
     public boolean isTrangThai() {
-        return trangThai;
+        return TrangThai;
     }
 
-    public void setTrangThai(boolean trangThai) {
-        this.trangThai = trangThai;
+    public void setTrangThai(boolean TrangThai) {
+        this.TrangThai = TrangThai;
     }
+
+
+
+  
     
     
 

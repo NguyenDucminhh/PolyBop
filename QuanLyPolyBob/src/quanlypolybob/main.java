@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package quanlypolybob;
+
 import View.LoginView;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
@@ -23,12 +24,12 @@ public class main extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
 //        new LoginView().setVisible(false);
-        
+
         setExtendedState(this.MAXIMIZED_BOTH);
         setColor(lblTrangChu);
         setColorJpanel(pnTrangChu);
         showPanel(new TrangChuJPanel());
-        
+
     }
 
     /**
@@ -397,17 +398,17 @@ public class main extends javax.swing.JFrame {
 
     private void lblSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSanPhamMouseClicked
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_lblSanPhamMouseClicked
 
     private void lblTrangChuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTrangChuMouseClicked
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_lblTrangChuMouseClicked
 
     private void pnTrangChuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnTrangChuMouseClicked
         // TODO add your handling code here:
-                setColorJpanel(pnTrangChu);
+        setColorJpanel(pnTrangChu);
         resetColorJpane(pnBanHang);
         resetColorJpane(pnKhuyenMai);
         resetColorJpane(pnHoaDon);
@@ -415,7 +416,7 @@ public class main extends javax.swing.JFrame {
         resetColorJpane(pnSanPham);
         resetColorJpane(pnThongKe);
         resetColorJpane(pnKhachHang);
-        
+
         setColor(lblTrangChu);
         resetColor(lblHoaDon);
         resetColor(lblBanHang);
@@ -429,7 +430,7 @@ public class main extends javax.swing.JFrame {
 
     private void pnSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnSanPhamMouseClicked
         // TODO add your handling code here:
-                   setColorJpanel(pnSanPham);
+        setColorJpanel(pnSanPham);                                                                                                  
         resetColorJpane(pnBanHang);
         resetColorJpane(pnKhuyenMai);
         resetColorJpane(pnHoaDon);
@@ -437,7 +438,7 @@ public class main extends javax.swing.JFrame {
         resetColorJpane(pnTrangChu);
         resetColorJpane(pnThongKe);
         resetColorJpane(pnKhachHang);
-        
+
         setColor(lblSanPham);
         resetColor(lblHoaDon);
         resetColor(lblBanHang);
@@ -455,7 +456,7 @@ public class main extends javax.swing.JFrame {
 
     private void pnKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnKhachHangMouseClicked
         // TODO add your handling code here:
-                           setColorJpanel(pnKhachHang);
+        setColorJpanel(pnKhachHang);
         resetColorJpane(pnBanHang);
         resetColorJpane(pnKhuyenMai);
         resetColorJpane(pnHoaDon);
@@ -463,7 +464,7 @@ public class main extends javax.swing.JFrame {
         resetColorJpane(pnTrangChu);
         resetColorJpane(pnThongKe);
         resetColorJpane(pnSanPham);
-        
+
         setColor(lblKhachHang);
         resetColor(lblHoaDon);
         resetColor(lblBanHang);
@@ -477,7 +478,7 @@ public class main extends javax.swing.JFrame {
 
     private void pnNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnNhanVienMouseClicked
         // TODO add your handling code here:
-                setColorJpanel(pnNhanVien);
+        setColorJpanel(pnNhanVien);
         resetColorJpane(pnBanHang);
         resetColorJpane(pnKhuyenMai);
         resetColorJpane(pnHoaDon);
@@ -485,7 +486,7 @@ public class main extends javax.swing.JFrame {
         resetColorJpane(pnTrangChu);
         resetColorJpane(pnThongKe);
         resetColorJpane(pnSanPham);
-        
+
         setColor(lblNhanVien);
         resetColor(lblHoaDon);
         resetColor(lblBanHang);
@@ -499,7 +500,7 @@ public class main extends javax.swing.JFrame {
 
     private void pnKhuyenMaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnKhuyenMaiMouseClicked
         // TODO add your handling code here:
-                   setColorJpanel(pnKhuyenMai);
+        setColorJpanel(pnKhuyenMai);
         resetColorJpane(pnBanHang);
         resetColorJpane(pnNhanVien);
         resetColorJpane(pnHoaDon);
@@ -507,7 +508,7 @@ public class main extends javax.swing.JFrame {
         resetColorJpane(pnTrangChu);
         resetColorJpane(pnThongKe);
         resetColorJpane(pnSanPham);
-        
+
         setColor(lblKhuyenMai);
         resetColor(lblHoaDon);
         resetColor(lblBanHang);
@@ -521,7 +522,7 @@ public class main extends javax.swing.JFrame {
 
     private void pnThongKeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnThongKeMouseClicked
         // TODO add your handling code here:
-                           setColorJpanel(pnThongKe);
+        setColorJpanel(pnThongKe);
         resetColorJpane(pnBanHang);
         resetColorJpane(pnNhanVien);
         resetColorJpane(pnHoaDon);
@@ -529,7 +530,7 @@ public class main extends javax.swing.JFrame {
         resetColorJpane(pnTrangChu);
         resetColorJpane(pnKhuyenMai);
         resetColorJpane(pnSanPham);
-        
+
         setColor(lblThongke);
         resetColor(lblHoaDon);
         resetColor(lblBanHang);
@@ -543,7 +544,7 @@ public class main extends javax.swing.JFrame {
 
     private void pnBanHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnBanHangMouseClicked
         // TODO add your handling code here:
-                                   setColorJpanel(pnBanHang);
+        setColorJpanel(pnBanHang);
         resetColorJpane(pnThongKe);
         resetColorJpane(pnNhanVien);
         resetColorJpane(pnHoaDon);
@@ -551,7 +552,7 @@ public class main extends javax.swing.JFrame {
         resetColorJpane(pnTrangChu);
         resetColorJpane(pnKhuyenMai);
         resetColorJpane(pnSanPham);
-        
+
         setColor(lblBanHang);
         resetColor(lblHoaDon);
         resetColor(lblThongke);
@@ -573,7 +574,7 @@ public class main extends javax.swing.JFrame {
         resetColorJpane(pnTrangChu);
         resetColorJpane(pnKhuyenMai);
         resetColorJpane(pnSanPham);
-        
+
         setColor(lblHoaDon);
         resetColor(lblBanHang);
         resetColor(lblThongke);
@@ -583,7 +584,7 @@ public class main extends javax.swing.JFrame {
         resetColor(lblNhanVien);
         resetColor(lblSanPham);
         showPanel(new HoaDonJPanel());
-                                       
+
     }//GEN-LAST:event_pnHoaDonMouseClicked
 
     /**
@@ -654,12 +655,15 @@ public class main extends javax.swing.JFrame {
         pnscrene.add(panel);
         pnscrene.validate();
     }
-     public void setColorJpanel(JPanel pane){
+
+    public void setColorJpanel(JPanel pane) {
         pane.setBackground(new java.awt.Color(55, 148, 254));
     }
-    public void resetColorJpane(JPanel pane){
+
+    public void resetColorJpane(JPanel pane) {
         pane.setBackground(new java.awt.Color(41, 93, 157));
     }
+
     public void setColor(JLabel label) {
         label.setForeground(Color.black);
     }
