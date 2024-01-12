@@ -248,6 +248,10 @@ public class QuenMK_View extends javax.swing.JFrame {
             lbl_Email.setText("Vui lòng nhập email");
             lbl_Email.setForeground(Color.red);
         } else {
+            this.labelGuiOTP();
+        }
+    }
+    private void labelGuiOTP(){
             btn_getMa.setBackground(Color.red);
             btn_getMa.setEnabled(false);
             new Thread(new Runnable() {
@@ -268,8 +272,6 @@ public class QuenMK_View extends javax.swing.JFrame {
                     }
                 }
             }).start();
-        }
-
     }
 
     // Xóa thông báo lỗi 
@@ -286,6 +288,8 @@ public class QuenMK_View extends javax.swing.JFrame {
             }
             else return true; 
     }
+    // Check email có tồn tại trên hệ thông hoặc đã khóa 
+    
     // Nhập đúng thông tin 
     void doiMatKhau(){
         if (checkTrongTT() == true) {

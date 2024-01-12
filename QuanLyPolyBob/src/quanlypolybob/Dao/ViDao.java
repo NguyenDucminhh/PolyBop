@@ -52,6 +52,10 @@ public class ViDao implements InterfaceVi {
         }
         return list.get(0);
     }
+   public List<Vi> selectByKeyword(String keyword) {
+        String sql = "SELECT * FROM dbo.Vi WHERE TenVi LIKE ? AND IdVi = ? AND Trangthai = 1 ";
+        return selectBySQL(sql, "%" + keyword + "%");
+    }
 
     @Override
     public List<Vi> selectBySQL(String sql, Object... args) {
