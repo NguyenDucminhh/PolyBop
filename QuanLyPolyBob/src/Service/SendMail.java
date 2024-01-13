@@ -24,7 +24,7 @@ public class SendMail {
             props.put("mail.smtp.auth", "true");
             props.put("mail.smtp.starttls.enable", "true");
             // Email gửi 
-            String username = "polybop@hotmail.com";
+            String username = "polybop1@hotmail.com";
             String password = "12345678@aa";
             Session s = Session.getInstance(props,
                     new javax.mail.Authenticator() {

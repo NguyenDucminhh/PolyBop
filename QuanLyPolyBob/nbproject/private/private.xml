@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Windows/Desktop/PolyBop/QuanLyPolyBob/src/quanlypolybob/QuanLySanPhamJPanel.java</file>
-            <file>file:/C:/Users/Windows/Desktop/PolyBop/QuanLyPolyBob/src/quanlypolybob/Hepper/JDBCHeper.java</file>
-            <file>file:/C:/Users/Windows/Desktop/PolyBop/QuanLyPolyBob/src/quanlypolybob/Dao/ViDao.java</file>
-            <file>file:/C:/Users/Windows/Desktop/PolyBop/QuanLyPolyBob/src/quanlypolybob/main.java</file>
-            <file>file:/C:/Users/Windows/Desktop/PolyBop/QuanLyPolyBob/src/quanlypolybob/Dao/InterfaceVi.java</file>
-            <file>file:/C:/Users/Windows/Desktop/PolyBop/QuanLyPolyBob/src/Service/ViService.java</file>
+            <file>file:/D:/FPT_Polytechnic_K18.3/Du_An_1_1/PolyBop/QuanLyPolyBob/src/View/LoginView.java</file>
+            <file>file:/D:/FPT_Polytechnic_K18.3/Du_An_1_1/PolyBop/QuanLyPolyBob/src/View/QuenMK_View.java</file>
+            <file>file:/D:/FPT_Polytechnic_K18.3/Du_An_1_1/PolyBop/QuanLyPolyBob/src/Repository/DBconnect.java</file>
+            <file>file:/D:/FPT_Polytechnic_K18.3/Du_An_1_1/PolyBop/QuanLyPolyBob/src/Service/TaiKhoanDao.java</file>
         </group>
     </open-files>
 </project-private>
