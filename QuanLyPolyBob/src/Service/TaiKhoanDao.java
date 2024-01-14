@@ -11,7 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import quanlypolybob.Hepper.JDBCHeper;
 
 /**
  *
@@ -48,7 +47,7 @@ public class TaiKhoanDao implements InterfaceTaiKhoan {
                 + "      ,[TrangThai]\n"
                 + "  FROM [dbo].[NhanVien] where Email = ?";
         try (Connection con = DBconnect.getConnection(); PreparedStatement ps = con.prepareCall(sql)) {
-            ps.setString(1, email);
+            ps.setString(1,email);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 TaiKhoan tk = new TaiKhoan(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getInt(4));
@@ -58,22 +57,6 @@ public class TaiKhoanDao implements InterfaceTaiKhoan {
             e.printStackTrace();
         }
         return listChucVu;
-    }
-
-    @Override
-    public String updateTaiKhoan(String email,String mk) {
-        String sql = "UPDATE NhanVien \n"
-                + "SET MatKhau = ? \n"
-                + "WHERE Email = ? "; 
-        try(Connection con = DBconnect.getConnection() ; PreparedStatement ps = con.prepareCall(sql)) {
-            ps.setString(1,mk);
-            ps.setString(2,email);
-            ps.executeUpdate(); 
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "Đổi mật khẩu thành công " ; 
     }
 
 }

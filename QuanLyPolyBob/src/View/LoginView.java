@@ -370,7 +370,7 @@ public class LoginView extends javax.swing.JFrame {
                         // Tài khoản còn hoạt động
                         else {
                             // check chức vụ 
-                            if (tt.getChucVuNV() == 1) {
+                            if (tt.getChucVuNV() == 0) {
                                 JOptionPane.showMessageDialog(this,"Đăng nhập thành công dưới quyền quản lý");
                             }
                             else {
