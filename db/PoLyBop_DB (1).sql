@@ -45,7 +45,8 @@ CREATE TABLE [Vi] (
     FOREIGN KEY ([ID_ThuongHieu])
       REFERENCES [ThuongHieu]([IDThuongHieu])
 );
-
+SET IDENTITY_INSERT Vi on
+SET IDENTITY_INSERT Vi off
 CREATE TABLE [MauSac] (
   [IDMauSac] INT IDENTITY,
   [TenMauSac] Nvarchar(50),
@@ -184,6 +185,11 @@ CREATE TABLE [ChiTietGioHang] (
     FOREIGN KEY ([ID_ChiTietVi])
       REFERENCES [ChiTietVi]([IDChiTietVi])
 );
+select * from Vi
+
+-- Truy Vấn CSDL bang Sản Phẩm
+Update Vi set   KieuDang =1, ID_ThuongHieu= 1, Url_Anh = null, TrangThai=1 where TenVi =
+Update Vi set TenVi = ? , KieuDang =1, ID_ThuongHieu= 1, Url_Anh = null, TrangThai=1 where IDVi =?
 -- Thêm dữ liệu vào bảng ChatLieu
 INSERT INTO ChatLieu (TenChatLieu, TrangThai)
 VALUES 
@@ -279,11 +285,11 @@ VALUES
 -- Thêm dữ liệu chi tiết vào bảng Vi
 INSERT INTO Vi (ID_ThuongHieu, KieuDang, TenVi, Url_Anh, TrangThai)
 VALUES 
-  (1, N'Bifold', N'Premium Leather', 'bifold.jpg', 1),
-  (2, N'Trifold', N'Sporty RFID-Blocking', 'trifold.jpg', 1),
+  (1, N'Bifold', N'Premium Leather', 'bifold.jpg', 0),
+  (2, N'Trifold', N'Sporty RFID-Blocking', 'trifold.jpg', 0),
   (3, N'Slim', N'Elegant Slim RFID', 'minimalist.jpg', 1),
-  (1, N'Bifold', N'Modern Slim Bifold', 'pocket.jpg', 1),
-  (2, N'Trifold', N'Adventure-Ready', 'trifold.jpg', 1),
+  (1, N'Bifold', N'Modern Slim Bifold', 'pocket.jpg', 0),
+  (2, N'Trifold', N'Adventure-Ready', 'trifold.jpg', 0),
   (3, N'Slim', N'Luxury Metal RFID', 'rfid.jpg', 1),
   (4, N'Card Holder', N'Sleek Business', 'holder.jpg', 1),
   (5, N'Zip-Around', N'Fashionable Zip-Around', 'strap.jpg', 1),
@@ -292,7 +298,7 @@ VALUES
   (5, N'Zip-Around', N'Trendy Zip-Around', 'print.jpg', 1),
   (6, N'Clutch', N'Vintage Velvet', 'embellishments.jpg', 1),
   (7, N'Coin Purse', N'Adorable Animal', 'purse.jpg', 1),
-  (8, N'Wristlet', N'Stylish Wristlet', 'wristlet.jpg', 1),
+  (8, N'Wristlet', N'Stylish Wristlet', 'wristlet.jpg', 0),
   (9, N'Phone Wallet', N'Smartphone', 'wallet.jpg', 1),
   (7, N'Coin Purse', N'Cute Emoji', 'purse.jpg', 1),
   (8, N'Wristlet', N'Metallic Wristlet', 'wristlet.jpg', 1),
@@ -507,6 +513,7 @@ VALUES
   (10, 8, 2, 1),
   (10, 9, 1, 1);
 
+  select max(cast(substring(IDVi,3,LEN(IDVi))as int)) from  Vi
 
 
-
+  select * from Vi
