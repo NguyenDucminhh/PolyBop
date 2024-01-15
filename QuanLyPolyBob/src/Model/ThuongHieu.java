@@ -12,17 +12,28 @@ package Model;
  */
 public class ThuongHieu {
     private int idThuongHieu;
+    private String Ma_ThuongHieu;
     private String tenThuongHieu;
     private boolean trangThai;
 
     public ThuongHieu() {
     }
 
-    public ThuongHieu(int idThuongHieu, String tenThuongHieu, boolean trangThai) {
+    public ThuongHieu(int idThuongHieu, String Ma_ThuongHieu, String tenThuongHieu, boolean trangThai) {
         this.idThuongHieu = idThuongHieu;
+        this.Ma_ThuongHieu = Ma_ThuongHieu;
         this.tenThuongHieu = tenThuongHieu;
         this.trangThai = trangThai;
     }
+
+    public String getMa_ThuongHieu() {
+        return Ma_ThuongHieu;
+    }
+
+    public void setMa_ThuongHieu(String Ma_ThuongHieu) {
+        this.Ma_ThuongHieu = Ma_ThuongHieu;
+    }
+
 
     public int getIdThuongHieu() {
         return idThuongHieu;

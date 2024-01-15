@@ -4,7 +4,6 @@
  */
 package quanlypolybob;
 
-
 import java.io.File;
 import Helper.Ximages;
 import Model.ThuongHieu;
@@ -17,7 +16,9 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import quanlypolybob.Dao.ThuongHieuDao;
 import quanlypolybob.Dao.ViDao;
 import quanlypolybob.Hepper.MsgBox;
@@ -42,7 +43,7 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
     public QuanLySanPhamJPanel() {
         initComponents();
         init();
-        modelCH = (DefaultTableModel) tblSanPham1.getModel();
+        modelCH = (DefaultTableModel) tblSanPham4.getModel();
         filltotablech();
 //        modelHH = (DefaultTableModel) tblSanPham2.getModel();
 //        filltotablehh();
@@ -83,11 +84,14 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
         btnLammoi = new javax.swing.JButton();
         btnThem = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel8 = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        tblSanPham1 = new javax.swing.JTable();
+        jPanel11 = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tblSanPham4 = new javax.swing.JTable();
         jButton5 = new javax.swing.JButton();
         txtTenVi = new javax.swing.JTextField();
+        txtMaVi = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        btnThem1 = new javax.swing.JButton();
 
         jPanel1.setLayout(null);
 
@@ -127,15 +131,15 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
             }
         });
         jPanel1.add(txtKieuDang);
-        txtKieuDang.setBounds(350, 110, 222, 30);
+        txtKieuDang.setBounds(350, 180, 222, 30);
 
         jLabel1.setText("Tên Ví");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(350, 10, 60, 16);
+        jLabel1.setBounds(350, 90, 60, 16);
 
         jLabel2.setText("Kiểu Dáng");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(350, 80, 70, 16);
+        jLabel2.setBounds(350, 160, 70, 16);
 
         cbxThuongHieu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,7 +147,7 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
             }
         });
         jPanel1.add(cbxThuongHieu);
-        cbxThuongHieu.setBounds(650, 29, 228, 29);
+        cbxThuongHieu.setBounds(650, 30, 228, 29);
 
         jLabel3.setText("Thương Hiệu");
         jPanel1.add(jLabel3);
@@ -210,18 +214,38 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
         jPanel4.getAccessibleContext().setAccessibleName("Tìm kiếm(Tên )");
 
         jButton1.setText("|<");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1);
         jButton1.setBounds(572, 343, 72, 36);
 
         jButton2.setText("<<");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2);
         jButton2.setBounds(650, 343, 72, 36);
 
         jButton3.setText(">>");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton3);
         jButton3.setBounds(740, 343, 72, 36);
 
         jButton4.setText(">|");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton4);
         jButton4.setBounds(830, 343, 72, 36);
 
@@ -255,47 +279,47 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnThem);
-        btnThem.setBounds(949, 28, 100, 38);
+        btnThem.setBounds(950, 30, 100, 38);
 
-        tblSanPham1.setModel(new javax.swing.table.DefaultTableModel(
+        tblSanPham4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Tên Ví", "Thương Hiệu", "Kiểu Dáng", "Trạng Thái"
+                "Mã Ví", "Tên Ví", "Thương Hiệu", "Kiểu Dáng", "Trạng Thái"
             }
         ));
-        tblSanPham1.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblSanPham4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblSanPham1MouseClicked(evt);
             }
         });
-        jScrollPane4.setViewportView(tblSanPham1);
+        jScrollPane7.setViewportView(tblSanPham4);
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1038, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 1038, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("", jPanel8);
+        jTabbedPane1.addTab("", jPanel11);
 
         jPanel1.add(jTabbedPane1);
-        jTabbedPane1.setBounds(-1, 389, 1050, 270);
+        jTabbedPane1.setBounds(-1, 389, 1050, 320);
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/plus.png"))); // NOI18N
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -313,7 +337,34 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
             }
         });
         jPanel1.add(txtTenVi);
-        txtTenVi.setBounds(350, 30, 222, 30);
+        txtTenVi.setBounds(350, 110, 222, 30);
+
+        txtMaVi.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtMaVi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaViActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtMaVi);
+        txtMaVi.setBounds(350, 30, 222, 30);
+
+        jLabel5.setText("Mã Ví");
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(350, 10, 30, 16);
+
+        btnThem1.setText("Chi Tiết Sản Phẩm");
+        btnThem1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnThem1MouseClicked(evt);
+            }
+        });
+        btnThem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThem1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnThem1);
+        btnThem1.setBounds(900, 230, 150, 38);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -351,7 +402,7 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
 
     private void txtTimKiemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKiemKeyReleased
         // TODO add your handling code here:
-
+        search();
     }//GEN-LAST:event_txtTimKiemKeyReleased
 
     private void txtTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimKiemActionPerformed
@@ -360,6 +411,8 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        new ThuongHieuJDiaLog(null, true).setVisible(true);
+        fillcomboboxThuonghieu();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
@@ -380,11 +433,6 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnThemMouseClicked
 
-    private void btnLammoiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLammoiMouseClicked
-        // TODO add your handling code here:
-        clearForm();
-    }//GEN-LAST:event_btnLammoiMouseClicked
-
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
         this.insert();
@@ -395,20 +443,79 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
         update();
     }//GEN-LAST:event_btnSuaActionPerformed
 
+    private void txtMaViActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaViActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMaViActionPerformed
+
     private void tblSanPham1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPham1MouseClicked
         // TODO add your handling code here:
         try {
-            row = tblSanPham1.getSelectedRow();
+            row = tblSanPham4.getSelectedRow();
             edit();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_tblSanPham1MouseClicked
 
+    private void btnThem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThem1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnThem1MouseClicked
+
+    private void btnThem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnThem1ActionPerformed
+
+    private void btnLammoiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLammoiMouseClicked
+        // TODO add your handling code here:
+clearForm();
+    }//GEN-LAST:event_btnLammoiMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+                row = 0;
+        if (jTabbedPane1.getSelectedIndex() == 0) {
+            tblSanPham4.setRowSelectionInterval(row, row);
+            edit();
+        } 
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        if (jTabbedPane1.getSelectedIndex() == 0) {
+            if (row > 0) {
+                row--;
+                tblSanPham4.setRowSelectionInterval(row, row);
+                edit();
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        if (jTabbedPane1.getSelectedIndex() == 0) {
+            if (row < tblSanPham4.getRowCount() - 1) {
+                row++;
+                tblSanPham4.setRowSelectionInterval(row, row);
+                edit();
+            }
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        if (jTabbedPane1.getSelectedIndex() == 0) {
+            row = tblSanPham4.getRowCount() - 1;
+
+            tblSanPham4.setRowSelectionInterval(row, row);
+            edit();
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLammoi;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
+    private javax.swing.JButton btnThem1;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbxThuongHieu;
     private javax.swing.JButton jButton1;
@@ -420,17 +527,19 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblHinh;
     private javax.swing.JRadioButton rdo;
     private javax.swing.JRadioButton rdo1;
-    private javax.swing.JTable tblSanPham1;
+    private javax.swing.JTable tblSanPham4;
     private javax.swing.JTextField txtKieuDang;
+    private javax.swing.JTextField txtMaVi;
     private javax.swing.JTextField txtTenVi;
     private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
@@ -442,6 +551,7 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
             for (Vi x : list) {
                 modelCH.addRow(new Object[]{
                     //                    x.getIDVi(),
+                    x.getMa_Vi(),
                     x.getTenVi(),
                     dao_th.selectNameByID(x.getID_ThuongHieu()),
                     x.getKieuDang(),
@@ -460,6 +570,7 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
             for (Vi x : list) {
                 modelHH.addRow(new Object[]{
                     //                    x.getIDVi(),
+                    x.getMa_Vi(),
                     x.getTenVi(),
                     dao_th.selectNameByID(x.getID_ThuongHieu()),
                     x.getKieuDang(),
@@ -499,6 +610,7 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
     private Vi getInformation() {
         Vi sp = new Vi();
 //        sp.setIDVi(Integer.parseInt(txtMaVi.getText()));
+        sp.setMa_Vi(txtMaVi.getText());
         sp.setTenVi(txtTenVi.getText());
         sp.setKieuDang(txtKieuDang.getText());
         sp.setID_ThuongHieu(dao_th.selectIdByName(cbxThuongHieu.getSelectedItem() + ""));
@@ -511,13 +623,14 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
     }
 
     private void setForm(Vi sp) {
-        String thuonghieu = tblSanPham1.getValueAt(row, 1).toString();
+        String thuonghieu = tblSanPham4.getValueAt(row, 1).toString();
         for (int i = 0; i < list_TH.size(); i++) {
             if (thuonghieu.equals(list_TH.get(i).getTenThuongHieu())) {
                 cbxThuongHieu.setSelectedIndex(i);
             }
         }
 //        txtMaVi.setText(sp.getIDVi() + "");
+        txtMaVi.setText(sp.getMa_Vi());
         txtTenVi.setText(sp.getTenVi());
         txtKieuDang.setText(sp.getKieuDang());
 //        cboLoaidouong.setSelectedItem(tblSanPhansd.getValueAt(row, 2).toString());
@@ -535,7 +648,7 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
     private void updateStatus() {
         boolean edit = (row >= 0);
         boolean fist = (row == 0);
-        boolean last = (row == tblSanPham1.getRowCount() - 1);
+        boolean last = (row == tblSanPham4.getRowCount() - 1);
         ////
 //        txtMaVi.setEditable(!edit);
         btnThem.setEnabled(!edit);
@@ -551,7 +664,7 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
     private void updateStatus2() {
         boolean edit = (row >= 0);
         boolean fist = (row == 0);
-        boolean last = (row == tblSanPham1.getRowCount() - 1);
+        boolean last = (row == tblSanPham4.getRowCount() - 1);
         ////
 //        txtMaSP.setEditable(!edit);
         btnThem.setEnabled(!edit);
@@ -571,7 +684,7 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
 //    }
 
     private void edit() {
-        String masp = tblSanPham1.getValueAt(row, 0).toString();
+        String masp = tblSanPham4.getValueAt(row, 0).toString();
         Vi sp = dao_vi.selectID1(masp);
         setForm(sp);
         updateStatus();
@@ -592,11 +705,12 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
 
     private void clearForm() {
 //        txtMaVi.setText("");
+        txtMaVi.setText("");
         txtTenVi.setText("");
         txtKieuDang.setText("");
         lblHinh.setIcon(null);
         row = -1;
-//        identityMasp2();
+        identityMasp2();
         if (jTabbedPane1.getSelectedIndex() == 0) {
             updateStatus();
         }
@@ -604,38 +718,38 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
 
     private void identityMasp2() {
         if (dao_vi.selectAlll().isEmpty()) {
-            txtTenVi.setText("01");
+            txtMaVi.setText("V001");
         } else {
-            txtTenVi.setText("" + (dao_vi.select_Max_id_java() + 1));
+            txtMaVi.setText("V0" + (dao_vi.select_Max_id_java() + 1));
         }
     }
 
     private void insert() {
-//        if (Checknull()) {
-//            return;
-//        }  else if (CheckSPInuput()) {
-//            return;
-//        } else {
-        try {
-            if (MsgBox.confirm(this, "Bạn có muốn thêm sản phẩm này ?")) {
-                //SanPham sp = getInformation();
-                service.insert(getInformation());
-                if (jTabbedPane1.getSelectedIndex() == 0) {
-                    filltotablech();
-                    jTabbedPane1.setSelectedIndex(0);
-                } else {
-                    filltotablehh();
-                    jTabbedPane1.setSelectedIndex(1);
+        if (Checknull()) {
+            return;
+        } else if (CheckSPInuput()) {
+            return;
+        } else {
+            try {
+                if (MsgBox.confirm(this, "Bạn có muốn thêm sản phẩm này ?")) {
+                    //SanPham sp = getInformation();
+                    service.insert(getInformation());
+                    if (jTabbedPane1.getSelectedIndex() == 0) {
+                        filltotablech();
+                        jTabbedPane1.setSelectedIndex(0);
+                    } else {
+                        filltotablehh();
+                        jTabbedPane1.setSelectedIndex(1);
+                    }
+                    clearForm();
+                    JOptionPane.showMessageDialog(this, "Đã thêm");
                 }
-                clearForm();
-                JOptionPane.showMessageDialog(this, "Đã thêm");
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Ops! Lỗi truy vấn dữ liệu rồi!");
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Ops! Lỗi truy vấn dữ liệu rồi!");
         }
-//        }
-//       
+
     }
 
     private void delete() {
@@ -682,42 +796,76 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
 
 //        }
     }
-//      private boolean Checknull() {
-//        if (txtTenSP.getText().equals("")) {
-//            JOptionPane.showMessageDialog(this, "Vui lòng nhập tên sản phẩm!");
-//            txtTenSP.requestFocus();
-//
-//            return true;
-//        }
-//        List<SanPham> list = DAOSP.selectALLL();
-//        String id = txtMaSP.getText();
-//        String tensp = txtTenSP.getText();
-//        for (int i = 0; i < list.size(); i++) {
-//            if (id.equalsIgnoreCase(list.get(i).getId_sp())) {
-//                JOptionPane.showMessageDialog(this, "Trùng khóa chính");
-//                txtMaSP.requestFocus();
-//                return true;
-//            } else if (tensp.equalsIgnoreCase(list.get(i).getTen_sp())) {
-//                JOptionPane.showMessageDialog(this, "Tên sản phẩm đã tồn tại");
-//                txtTenSP.requestFocus();
-//                return true;
-//            }
-//        }
-//        if (txtGia.getText().equals("")) {
-//            JOptionPane.showMessageDialog(this, "Vui lòng nhập giá sản phẩm!");
-//            txtGia.requestFocus();
-//            return true;
-//        } else if (lblHinh.getIcon() == null) {
-//            JOptionPane.showMessageDialog(this, "Vui lòng chọn hình sản phẩm!");
-//            return true;
-//        } else if (txtMaSP.getText().length() < 3) {
-//            JOptionPane.showMessageDialog(this, "Mã sản phẩm phải trên 2 kí tự");
-//            return true;
-//        } else if (txtTenSP.getText().length() < 5) {
-//            JOptionPane.showMessageDialog(this, "Tên sản phẩm phải trên 5 kí tự");
-//            return true;
-//        }
-//        return false;
-//
-//    }
+
+    private boolean Checknull() {
+        if (txtMaVi.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập mã sản phẩm!");
+            txtMaVi.requestFocus();
+
+            return true;
+        }
+        if (txtTenVi.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập tên sản phẩm!");
+            txtTenVi.requestFocus();
+
+            return true;
+        }
+        if (txtKieuDang.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập kiểu dáng sản phẩm!");
+            txtKieuDang.requestFocus();
+
+            return true;
+        }
+        List<Vi> list = dao_vi.selectAlll();
+        String id = txtMaVi.getText();
+        String tensp = txtTenVi.getText();
+        for (int i = 0; i < list.size(); i++) {
+            if (id.equalsIgnoreCase(list.get(i).getMa_Vi())) {
+                JOptionPane.showMessageDialog(this, "Trùng khóa chính");
+                txtMaVi.requestFocus();
+                return true;
+            } else if (tensp.equalsIgnoreCase(list.get(i).getTenVi())) {
+                JOptionPane.showMessageDialog(this, "Tên sản phẩm đã tồn tại");
+                txtTenVi.requestFocus();
+                return true;
+            }
+        }
+        if (lblHinh.getIcon() == null) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn hình sản phẩm!");
+            return true;
+        } else if (txtMaVi.getText().length() < 3) {
+            JOptionPane.showMessageDialog(this, "Mã sản phẩm phải trên 2 kí tự");
+            return true;
+        } else if (txtTenVi.getText().length() < 5) {
+            JOptionPane.showMessageDialog(this, "Tên sản phẩm phải trên 5 kí tự");
+            return true;
+        }
+        return false;
+
+    }
+
+    private boolean CheckSPInuput() {
+
+        modelCH.setRowCount(0);
+        try {
+            List<Vi> list = dao_vi.Select_ByName(txtTenVi.getText());
+            for (int i = 0; i < list.size(); i++) {
+                modelCH.addRow(new Object[]{list.get(i).getMa_Vi(), list.get(i).getTenVi(),
+                    dao_th.selectNameByID(list.get(i).getID_ThuongHieu()),
+                    list.get(i).isTrangThai() ? "Còn Hàng" : "Không còn hàng"});
+            }
+        } catch (Exception e) {
+        }
+        return false;
+    }
+
+    private void search() {
+        if (jTabbedPane1.getSelectedIndex() == 0) {
+            String timkiem = txtTimKiem.getText();
+            TableRowSorter<DefaultTableModel> sanpham = new TableRowSorter<>(modelCH);
+            tblSanPham4.setRowSorter(sanpham);
+            sanpham.setRowFilter(javax.swing.RowFilter.regexFilter(timkiem));
+            jTabbedPane1.setSelectedIndex(0);
+        }
+    }
 }

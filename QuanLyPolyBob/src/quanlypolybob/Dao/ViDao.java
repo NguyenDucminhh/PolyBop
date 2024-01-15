@@ -19,19 +19,19 @@ public class ViDao implements InterfaceVi {
     String selectAll = "select * from Vi";
     String select_Trangthai2 = "SELECT * FROM Vi WHERE Trangthai = 0";
     String selectID1 = "select * from Vi where IDVi= ?";
-    String selectID = "select * from Vi where TenVi= ?";
-    String insert = "INSERT INTO Vi (TenVi,KieuDang,ID_ThuongHieu, Url_Anh, TrangThai) VALUES (?,?,?,?,?)";
-    String update = "Update Vi set KieuDang =?, ID_ThuongHieu=?, Url_Anh =?, TrangThai=? where TenVi =?";
+    String selectID = "select * from Vi where Ma_Vi= ?";
+    String insert = "INSERT INTO Vi (Ma_Vi,TenVi,KieuDang,ID_ThuongHieu, Url_Anh, TrangThai) VALUES (?,?,?,?,?,?)";
+    String update = "Update Vi set TenVi=?, KieuDang =?, ID_ThuongHieu=?, Url_Anh =?, TrangThai=? where Ma_Vi =?";
     String delete = "delete from SanPham where ID_Sanpham = ?";
 
     @Override
     public void insert(Vi sp) {
-        JDBCHeper.update(insert, sp.getTenVi(), sp.getKieuDang(), sp.getID_ThuongHieu(), sp.getUrl_Anh(), sp.isTrangThai());
+        JDBCHeper.update(insert,sp.getMa_Vi(), sp.getTenVi(), sp.getKieuDang(), sp.getID_ThuongHieu(), sp.getUrl_Anh(), sp.isTrangThai());
     }
 
     @Override
     public void update(Vi sp) {
-        JDBCHeper.update(update,  sp.getKieuDang(), sp.getID_ThuongHieu(), sp.getUrl_Anh(), sp.isTrangThai(),sp.getTenVi());
+        JDBCHeper.update(update, sp.getTenVi(), sp.getKieuDang(), sp.getID_ThuongHieu(), sp.getUrl_Anh(), sp.isTrangThai(),sp.getMa_Vi());
     }
 
     @Override
@@ -66,6 +66,7 @@ public class ViDao implements InterfaceVi {
                 Vi sp = new Vi();
                 sp.setIDVi(rs.getInt("IdVi"));
                 sp.setID_ThuongHieu(rs.getInt("ID_ThuongHieu"));
+                sp.setMa_Vi(rs.getString("Ma_Vi"));
                 sp.setTenVi(rs.getString("tenVi"));
                 sp.setKieuDang(rs.getString("kieuDang"));
                 sp.setTrangThai(rs.getBoolean("trangThai"));
@@ -94,10 +95,13 @@ public class ViDao implements InterfaceVi {
         }
         return list.get(0);
     }
-
+    public List<Vi> Select_ByName(String name) {  // tìm theo tên sản phẩm
+        String Select_ByName = "select  *  from Vi where TenVi like ?";
+        return selectBySQL(Select_ByName, "%" + name + "%");
+    }
     public int select_Max_id_java() {
         try {
-            String sql = "select max(cast(substring(IDVi,3,LEN(IDVi))as int)) from  Vi ";
+            String sql = "select max(cast(substring(Ma_Vi,3,LEN(IDVi))as int)) from  Vi ";
             ResultSet rs = JDBCHeper.query(sql);
             while (rs.next()) {
                 return rs.getInt(1);

@@ -273,7 +273,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
 
         lblNgay.setText("jLabel8");
 
-        cbbLoaiVi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbbLoaiVi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4xdư", "ve", "fvdve", "vev" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

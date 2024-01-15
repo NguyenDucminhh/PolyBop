@@ -14,6 +14,7 @@ public class Vi {
 
     private int IDVi;
     private int ID_ThuongHieu;
+    private String Ma_Vi;
     private String KieuDang;
     private String TenVi;
     private String Url_Anh;
@@ -22,9 +23,10 @@ public class Vi {
     public Vi() {
     }
 
-    public Vi(int IDVi, int ID_ThuongHieu, String KieuDang, String TenVi, String Url_Anh, boolean TrangThai) {
+    public Vi(int IDVi, int ID_ThuongHieu, String Ma_Vi, String KieuDang, String TenVi, String Url_Anh, boolean TrangThai) {
         this.IDVi = IDVi;
         this.ID_ThuongHieu = ID_ThuongHieu;
+        this.Ma_Vi = Ma_Vi;
         this.KieuDang = KieuDang;
         this.TenVi = TenVi;
         this.Url_Anh = Url_Anh;
@@ -45,6 +47,14 @@ public class Vi {
 
     public void setID_ThuongHieu(int ID_ThuongHieu) {
         this.ID_ThuongHieu = ID_ThuongHieu;
+    }
+
+    public String getMa_Vi() {
+        return Ma_Vi;
+    }
+
+    public void setMa_Vi(String Ma_Vi) {
+        this.Ma_Vi = Ma_Vi;
     }
 
     public String getKieuDang() {
@@ -79,10 +89,5 @@ public class Vi {
         this.TrangThai = TrangThai;
     }
 
-
-
-  
-    
-    
 
 }
