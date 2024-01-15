@@ -13,6 +13,7 @@ package Model;
 public class Vi {
 
     private int idVi;
+    private String maVi;
     private int idThuongHieu;
     private String kieuDang;
     private String tenVi;
@@ -22,13 +23,22 @@ public class Vi {
     public Vi() {
     }
 
-    public Vi(int idVi, int idThuongHieu, String kieuDang, String tenVi, String urlAnh, boolean trangThai) {
+    public Vi(int idVi, String maVi,int idThuongHieu, String kieuDang, String tenVi, String urlAnh, boolean trangThai) {
         this.idVi = idVi;
+        this.maVi = maVi;
         this.idThuongHieu = idThuongHieu;
         this.kieuDang = kieuDang;
         this.tenVi = tenVi;
         this.urlAnh = urlAnh;
         this.trangThai = trangThai;
+    }
+
+    public String getMaVi() {
+        return maVi;
+    }
+
+    public void setMaVi(String maVi) {
+        this.maVi = maVi;
     }
 
     public int getIdVi() {
