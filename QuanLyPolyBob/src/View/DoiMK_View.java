@@ -4,6 +4,9 @@
  */
 package View;
 
+import Service.TaiKhoanDao;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Admin
@@ -13,10 +16,22 @@ public class DoiMK_View extends javax.swing.JFrame {
     /**
      * Creates new form DoiMK_View
      */
-    public DoiMK_View() {
+    private String daTaEmail;
+    TaiKhoanDao service = new TaiKhoanDao(); 
+    
+    public DoiMK_View(String data) {
         initComponents();
+        this.daTaEmail = data;
+        this.txt_Email.setText(data);
+        System.out.println(data);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        
+    }
+
+    private DoiMK_View() {
+//        initComponents();
+//        // txt_PassNew.;
     }
 
     /**
@@ -170,7 +185,7 @@ public class DoiMK_View extends javax.swing.JFrame {
 
     private void txt_PassNewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_PassNewMouseClicked
         // Reset error
-        this.ResetError();
+        this.resetError();
     }//GEN-LAST:event_txt_PassNewMouseClicked
 
     private void txt_PassConfirmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_PassConfirmMouseClicked
@@ -178,7 +193,11 @@ public class DoiMK_View extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_PassConfirmMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
+        // Xác nhận đổi mật khẩu 
+        if (checkTT() == true) {
+            JOptionPane.showMessageDialog(this,service.updateTaiKhoan(txt_Email.getText(),txt_PassConfirm.getText()));
+            this.dispose();
+        }
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -236,10 +255,19 @@ public class DoiMK_View extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void resetError() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
     }
 
-    private void ResetError() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    // check thông tin 
+    boolean checkTT(){
+        if (txt_PassNew.getText().isBlank() || txt_PassConfirm.getText().isBlank()) {
+            JOptionPane.showMessageDialog(this,"Vui lòng nhập đủ thông tin ");
+            return false; 
+        }
+        else if (!txt_PassNew.getText().equalsIgnoreCase(txt_PassConfirm.getText())) {
+            JOptionPane.showMessageDialog(this,"Mật khẩu xác nhận không giống ! ");
+            return false ; 
+        }
+        else return true ; 
     }
 }
