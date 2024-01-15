@@ -12,15 +12,6 @@ package Model;
  */
 public class Vi {
 
-<<<<<<< HEAD
-    private int idVi;
-    private String maVi;
-    private int idThuongHieu;
-    private String kieuDang;
-    private String tenVi;
-    private String urlAnh;
-    private boolean trangThai;
-=======
     private int IDVi;
     private int ID_ThuongHieu;
     private String Ma_Vi;
@@ -28,33 +19,10 @@ public class Vi {
     private String TenVi;
     private String Url_Anh;
     private boolean TrangThai;
->>>>>>> b2043a7f54899556a0d1efb01953773863924340
 
     public Vi() {
     }
 
-<<<<<<< HEAD
-    public Vi(int idVi, String maVi,int idThuongHieu, String kieuDang, String tenVi, String urlAnh, boolean trangThai) {
-        this.idVi = idVi;
-        this.maVi = maVi;
-        this.idThuongHieu = idThuongHieu;
-        this.kieuDang = kieuDang;
-        this.tenVi = tenVi;
-        this.urlAnh = urlAnh;
-        this.trangThai = trangThai;
-    }
-
-    public String getMaVi() {
-        return maVi;
-    }
-
-    public void setMaVi(String maVi) {
-        this.maVi = maVi;
-    }
-
-    public int getIdVi() {
-        return idVi;
-=======
     public Vi(int IDVi, int ID_ThuongHieu, String Ma_Vi, String KieuDang, String TenVi, String Url_Anh, boolean TrangThai) {
         this.IDVi = IDVi;
         this.ID_ThuongHieu = ID_ThuongHieu;
@@ -67,7 +35,6 @@ public class Vi {
 
     public int getIDVi() {
         return IDVi;
->>>>>>> b2043a7f54899556a0d1efb01953773863924340
     }
 
     public void setIDVi(int IDVi) {
