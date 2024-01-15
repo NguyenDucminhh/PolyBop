@@ -592,7 +592,7 @@ clearForm();
     }
 
     private void chooseImages() {
-        JFileChooser file = new JFileChooser("C:\\Users\\Windows\\Desktop\\PolyBop\\QuanLyPolyBob");
+        JFileChooser file = new JFileChooser("C:\\Users\\Windows\\Desktop\\PolyBop\\QuanLyPolyBob\\src\\icon");
         if (file.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File filechoser = file.getSelectedFile();
             Ximages.save(filechoser);
@@ -623,7 +623,7 @@ clearForm();
     }
 
     private void setForm(Vi sp) {
-        String thuonghieu = tblSanPham4.getValueAt(row, 1).toString();
+        String thuonghieu = tblSanPham4.getValueAt(row, 2).toString();
         for (int i = 0; i < list_TH.size(); i++) {
             if (thuonghieu.equals(list_TH.get(i).getTenThuongHieu())) {
                 cbxThuongHieu.setSelectedIndex(i);
