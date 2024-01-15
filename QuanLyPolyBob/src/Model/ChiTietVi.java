@@ -5,14 +5,18 @@
 package Model;
 
 import java.util.Date;
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> b2043a7f54899556a0d1efb01953773863924340
 
 /**
  *
  * @author Windows
  */
 public class ChiTietVi {
+<<<<<<< HEAD
    private int idChiTietVi;
    private int ID_Vi;
    private int ID_MauSac;
@@ -27,18 +31,41 @@ public class ChiTietVi {
    private Double GiaBan;
    private Date NgayNhap;
    private Boolean TrangThai;
+=======
+
+    private int idChiTietVi;
+    private int ID_MauSac;
+    private int ID_ChatLieu;
+    private int ID_XuatXu;
+    private int ID_LoaiVi;
+    private String KhoaVi;
+    private String SoNganDungThe;
+    private int SoLuong;
+    private Double GiaNhap;
+    private Double GiaBan;
+    private Date NgayNhap;
+    private Boolean TrangThai;
+>>>>>>> b2043a7f54899556a0d1efb01953773863924340
 
     public ChiTietVi() {
     }
 
+<<<<<<< HEAD
     public ChiTietVi(int idChiTietVi, int ID_Vi, int ID_MauSac, int ID_ChatLieu, int ID_XuatXu, int ID_LoaiVi, String Ma_ChiTietVi, String KhoaVi, String SoNganDungThe, int SoLuong, Double GiaNhap, Double GiaBan, Date NgayNhap, Boolean TrangThai) {
         this.idChiTietVi = idChiTietVi;
         this.ID_Vi = ID_Vi;
+=======
+    public ChiTietVi(int idChiTietVi, int ID_MauSac, int ID_ChatLieu, int ID_XuatXu, int ID_LoaiVi, String KhoaVi, String SoNganDungThe, int SoLuong, Double GiaNhap, Double GiaBan, Date NgayNhap, Boolean TrangThai) {
+        this.idChiTietVi = idChiTietVi;
+>>>>>>> b2043a7f54899556a0d1efb01953773863924340
         this.ID_MauSac = ID_MauSac;
         this.ID_ChatLieu = ID_ChatLieu;
         this.ID_XuatXu = ID_XuatXu;
         this.ID_LoaiVi = ID_LoaiVi;
+<<<<<<< HEAD
         this.Ma_ChiTietVi = Ma_ChiTietVi;
+=======
+>>>>>>> b2043a7f54899556a0d1efb01953773863924340
         this.KhoaVi = KhoaVi;
         this.SoNganDungThe = SoNganDungThe;
         this.SoLuong = SoLuong;
@@ -56,6 +83,7 @@ public class ChiTietVi {
         this.idChiTietVi = idChiTietVi;
     }
 
+<<<<<<< HEAD
     public int getID_Vi() {
         return ID_Vi;
     }
@@ -64,6 +92,8 @@ public class ChiTietVi {
         this.ID_Vi = ID_Vi;
     }
 
+=======
+>>>>>>> b2043a7f54899556a0d1efb01953773863924340
     public int getID_MauSac() {
         return ID_MauSac;
     }
@@ -96,6 +126,7 @@ public class ChiTietVi {
         this.ID_LoaiVi = ID_LoaiVi;
     }
 
+<<<<<<< HEAD
     public String getMa_ChiTietVi() {
         return Ma_ChiTietVi;
     }
@@ -104,6 +135,8 @@ public class ChiTietVi {
         this.Ma_ChiTietVi = Ma_ChiTietVi;
     }
 
+=======
+>>>>>>> b2043a7f54899556a0d1efb01953773863924340
     public String getKhoaVi() {
         return KhoaVi;
     }
@@ -159,6 +192,10 @@ public class ChiTietVi {
     public void setTrangThai(Boolean TrangThai) {
         this.TrangThai = TrangThai;
     }
+<<<<<<< HEAD
    
    
+=======
+
+>>>>>>> b2043a7f54899556a0d1efb01953773863924340
 }
