@@ -11,17 +11,20 @@ package Model;
  */
 public class XuatXu {
     private int idXuatXu;
+    private String Ma_XuatXu;
     private String tenXuatXu;
     private boolean trangThai;
 
     public XuatXu() {
     }
 
-    public XuatXu(int idXuatXu, String tenXuatXu, boolean trangThai) {
+    public XuatXu(int idXuatXu, String Ma_XuatXu, String tenXuatXu, boolean trangThai) {
         this.idXuatXu = idXuatXu;
+        this.Ma_XuatXu = Ma_XuatXu;
         this.tenXuatXu = tenXuatXu;
         this.trangThai = trangThai;
     }
+
 
     public int getIdXuatXu() {
         return idXuatXu;
@@ -45,6 +48,14 @@ public class XuatXu {
 
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
+    }
+
+    public String getMa_XuatXu() {
+        return Ma_XuatXu;
+    }
+
+    public void setMa_XuatXu(String Ma_XuatXu) {
+        this.Ma_XuatXu = Ma_XuatXu;
     }
     
 }

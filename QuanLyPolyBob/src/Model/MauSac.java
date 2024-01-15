@@ -12,17 +12,21 @@ package Model;
  */
 public class MauSac {
     private int idMauSac;
+    private String Ma_MauSac;
     private String tenMauSac;
     private boolean trangThai;
 
     public MauSac() {
     }
 
-    public MauSac(int idMauSac, String tenMauSac, boolean trangThai) {
+    public MauSac(int idMauSac, String Ma_MauSac, String tenMauSac, boolean trangThai) {
         this.idMauSac = idMauSac;
+        this.Ma_MauSac = Ma_MauSac;
         this.tenMauSac = tenMauSac;
         this.trangThai = trangThai;
     }
+
+    
 
     public int getIdMauSac() {
         return idMauSac;
@@ -46,6 +50,14 @@ public class MauSac {
 
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
+    }
+
+    public String getMa_MauSac() {
+        return Ma_MauSac;
+    }
+
+    public void setMa_MauSac(String Ma_MauSac) {
+        this.Ma_MauSac = Ma_MauSac;
     }
 
    

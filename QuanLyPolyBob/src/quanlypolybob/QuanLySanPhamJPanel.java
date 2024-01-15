@@ -463,6 +463,7 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
 
     private void btnThem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem1ActionPerformed
         // TODO add your handling code here:
+        new ChiTietViJDiaLog(null, true).setVisible(true);
     }//GEN-LAST:event_btnThem1ActionPerformed
 
     private void btnLammoiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLammoiMouseClicked

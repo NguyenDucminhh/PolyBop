@@ -11,17 +11,21 @@ package Model;
  */
 public class LoaiVi {
     private int idLoaiVi;
+    private String Ma_LoaiVi;
     private String tenLoaiVi;
     private boolean trangThai;
 
     public LoaiVi() {
     }
 
-    public LoaiVi(int idLoaiVi, String tenLoaiVi, boolean trangThai) {
+    public LoaiVi(int idLoaiVi, String Ma_LoaiVi, String tenLoaiVi, boolean trangThai) {
         this.idLoaiVi = idLoaiVi;
+        this.Ma_LoaiVi = Ma_LoaiVi;
         this.tenLoaiVi = tenLoaiVi;
         this.trangThai = trangThai;
     }
+
+   
 
     public int getIdLoaiVi() {
         return idLoaiVi;
@@ -45,6 +49,14 @@ public class LoaiVi {
 
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
+    }
+
+    public String getMa_LoaiVi() {
+        return Ma_LoaiVi;
+    }
+
+    public void setMa_LoaiVi(String Ma_LoaiVi) {
+        this.Ma_LoaiVi = Ma_LoaiVi;
     }
 
     
