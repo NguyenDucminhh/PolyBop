@@ -463,6 +463,7 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
 
     private void btnThem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem1ActionPerformed
         // TODO add your handling code here:
+        new ChiTietViJDiaLog(null, true).setVisible(true);
     }//GEN-LAST:event_btnThem1ActionPerformed
 
     private void btnLammoiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLammoiMouseClicked
@@ -592,7 +593,7 @@ clearForm();
     }
 
     private void chooseImages() {
-        JFileChooser file = new JFileChooser("C:\\Users\\Windows\\Desktop\\PolyBop\\QuanLyPolyBob");
+        JFileChooser file = new JFileChooser("C:\\Users\\Windows\\Desktop\\PolyBop\\QuanLyPolyBob\\src\\icon");
         if (file.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File filechoser = file.getSelectedFile();
             Ximages.save(filechoser);
@@ -623,7 +624,7 @@ clearForm();
     }
 
     private void setForm(Vi sp) {
-        String thuonghieu = tblSanPham4.getValueAt(row, 1).toString();
+        String thuonghieu = tblSanPham4.getValueAt(row, 2).toString();
         for (int i = 0; i < list_TH.size(); i++) {
             if (thuonghieu.equals(list_TH.get(i).getTenThuongHieu())) {
                 cbxThuongHieu.setSelectedIndex(i);

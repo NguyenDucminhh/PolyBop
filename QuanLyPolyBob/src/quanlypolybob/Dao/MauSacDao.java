@@ -4,28 +4,25 @@
  */
 package quanlypolybob.Dao;
 
-import Model.LoaiVi;
-import java.util.List;
+import Model.MauSac;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 import quanlypolybob.Hepper.JDBCHeper;
 
 /**
  *
- * @author Admin
+ * @author Windows
  */
-public class LoaiVIDao implements InterfaceLoaiVi {
-
-    public LoaiVIDao() {
-    }
+public class MauSacDao implements InterfaceMauSac {
 
     @Override
-    public void insert(LoaiVi sp) {
+    public void insert(MauSac sp) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void update(LoaiVi sp) {
+    public void update(MauSac sp) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -35,32 +32,33 @@ public class LoaiVIDao implements InterfaceLoaiVi {
     }
 
     @Override
-    public LoaiVi selectID(Integer id) {
+    public MauSac selectID(Integer id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public List<LoaiVi> selectAll() {
+    public List<MauSac> selectAll() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public List<LoaiVi> selectBySQL(String sql, Object... args) {
-        List<LoaiVi> list = new ArrayList<>();
+    public List<MauSac> selectBySQL(String sql, Object... args) {
+        List<MauSac> lisst = new ArrayList<>();
         try {
             ResultSet rs = JDBCHeper.query(sql, args);
             while (rs.next()) {
-                LoaiVi lv = new LoaiVi();
-                lv.setIdLoaiVi(rs.getInt("idLoaiVi"));
-                lv.setMa_LoaiVi(rs.getString("Ma_LoaiVi"));
-                lv.setTenLoaiVi(rs.getString("tenLoaiVi"));
-                lv.setTrangThai(rs.getBoolean("trangThai"));
-                list.add(lv);
+                MauSac ms = new MauSac();
+                ms.setIdMauSac(rs.getInt("idMauSac"));
+                ms.setMa_MauSac(rs.getString("Ma_MauSac"));
+                ms.setTenMauSac(rs.getString("tenMauSac"));
+                ms.setTrangThai(rs.getBoolean("trangThai"));
+                lisst.add(ms);
             }
         } catch (Exception e) {
             e.printStackTrace();
+
         }
-        return list;
+        return lisst;
     }
 
 }
