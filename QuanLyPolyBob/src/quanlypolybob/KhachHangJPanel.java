@@ -9,6 +9,7 @@ import Repository.KhachHangRepository;
 import Service.KhachHangService;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -550,12 +551,42 @@ public class KhachHangJPanel extends javax.swing.JPanel {
     }
     
     private boolean isValidPhoneNumber(String phoneNumber) {
-    // Định dạng số điện thoại: 10 hoặc 11 chữ số, bắt đầu từ 0 hoặc 84
-    String regex = "^(0|84)?[0-9]{9,10}$";
-    Pattern pattern = Pattern.compile(regex);
-    Matcher matcher = pattern.matcher(phoneNumber);
-    return matcher.matches();
-}
+        // Định dạng số điện thoại: 10 hoặc 11 chữ số, bắt đầu từ 0 hoặc 84
+        String regex = "^(0|84)?[0-9]{9,10}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(phoneNumber);
+        return matcher.matches();
+    }
+    
+    //    Sđt trùng
+    private boolean isPhoneNumberDuplicate(String phoneNumber) {
+        DefaultTableModel model = (DefaultTableModel) tbl_KhachHang.getModel();
+        int rowCount = model.getRowCount();
+
+        for (int i = 0; i < rowCount; i++) {
+            String existingPhoneNumber = (String) model.getValueAt(i, 2); // Assuming 2 is the column index for phone number
+            if (existingPhoneNumber.equals(phoneNumber)) {
+                return true; // Phone number already exists in the table
+            }
+        }
+
+        return false; // Phone number is not a duplicate
+    }
+    
+    //    Email trùng
+    private boolean isEmailDuplicate(String email) {
+        DefaultTableModel model = (DefaultTableModel) tbl_KhachHang.getModel();
+        int rowCount = model.getRowCount();
+
+        for (int i = 0; i < rowCount; i++) {
+            String existingEmail = (String) model.getValueAt(i, 4); // Assuming 4 is the column index for email
+            if (existingEmail.equals(email)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     private boolean isValidEmail(String email) {
         // Định dạng email sử dụng regex cơ bản
@@ -579,7 +610,10 @@ public class KhachHangJPanel extends javax.swing.JPanel {
         } else if (!isValidPhoneNumber(txtSdt.getText())) {
             JOptionPane.showMessageDialog(this, "Số điện thoại không hợp lệ");
             return false;
-        }
+        } else if (isPhoneNumberDuplicate(txtSdt.getText())) {
+            JOptionPane.showMessageDialog(this, "Số điện thoại đã tồn tại trong danh sách khách hàng");
+        return false;
+    }
 
         // Kiểm tra ngày sinh
         if (txtNgaySinh.getDate() == null) {
@@ -593,6 +627,9 @@ public class KhachHangJPanel extends javax.swing.JPanel {
             return false;
         } else if (!isValidEmail(txtEmail.getText())) {
             JOptionPane.showMessageDialog(this, "Email không hợp lệ");
+            return false;
+        } else if (isEmailDuplicate(txtEmail.getText())) {
+            JOptionPane.showMessageDialog(this, "Email đã tồn tại trong danh sách khách hàng");
             return false;
         }
 
