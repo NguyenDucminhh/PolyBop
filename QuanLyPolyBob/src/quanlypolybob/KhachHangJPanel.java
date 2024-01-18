@@ -612,8 +612,8 @@ public class KhachHangJPanel extends javax.swing.JPanel {
             return false;
         } else if (isPhoneNumberDuplicate(txtSdt.getText())) {
             JOptionPane.showMessageDialog(this, "Số điện thoại đã tồn tại trong danh sách khách hàng");
-        return false;
-    }
+            return false;
+        }   
 
         // Kiểm tra ngày sinh
         if (txtNgaySinh.getDate() == null) {
