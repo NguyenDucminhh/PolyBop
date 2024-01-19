@@ -41,6 +41,9 @@ public class main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        mnDMK = new javax.swing.JMenuItem();
+        mnThoat = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -64,6 +67,12 @@ public class main extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         pnscrene = new javax.swing.JPanel();
+
+        mnDMK.setText("Đổi Mật Khẩu");
+        jPopupMenu1.add(mnDMK);
+
+        mnThoat.setText("Thoát");
+        jPopupMenu1.add(mnThoat);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -308,6 +317,11 @@ public class main extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(51, 102, 255));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/use.png"))); // NOI18N
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -623,6 +637,11 @@ public class main extends javax.swing.JFrame {
 
     }//GEN-LAST:event_pnHoaDonMouseClicked
 
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+         jPopupMenu1.show(evt.getComponent(), -45, 70);
+    }//GEN-LAST:event_jLabel1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -665,6 +684,7 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JLabel lblBanHang;
     private javax.swing.JLabel lblHoaDon;
     private javax.swing.JLabel lblKhachHang;
@@ -673,6 +693,8 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JLabel lblSanPham;
     private javax.swing.JLabel lblThongke;
     private javax.swing.JLabel lblTrangChu;
+    private javax.swing.JMenuItem mnDMK;
+    private javax.swing.JMenuItem mnThoat;
     private javax.swing.JPanel pnBanHang;
     private javax.swing.JPanel pnHoaDon;
     private javax.swing.JPanel pnKhachHang;

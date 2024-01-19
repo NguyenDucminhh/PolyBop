@@ -199,11 +199,41 @@ CREATE TABLE [ChiTietGioHang] (
 --Truy vấn bảng Vi
 Update Vi set TenVi=?, KieuDang =?, ID_ThuongHieu=?, Url_Anh =?, TrangThai=? where Ma_Vi =?
 select max(cast(substring(Ma_Vi,3,LEN(IDVi))as int)) from  Vi
+select * from Vi where IDVi =?
+select * from Vi where TenVi =?
+
 -- truy vấn bảng thương hiệu
 update ThuongHieu set TenThuongHieu =? , TrangThai = ? where Ma_ThuongHieu =?
 select * from ThuongHieu where Ma_ThuongHieu = N'TH001'
 insert into ThuongHieu (Ma_ThuongHieu , TenThuongHieu, TrangThai) values (?,?,?)
-select max(cast(substring(Ma_ThuongHieu,,LEN(IDThuongHieu))as int)) from  ThuongHieu
+select max(cast(substring(Ma_ThuongHieu,4,LEN(IDThuongHieu))as int)) from  ThuongHieu
+
+-- truy vấn bảng xuất xứ
+update XuatXu set TenXuatXu =? , TrangThai = ? where Ma_XuatXu =?
+select * from XuatXu where TenXuatXu=?
+insert into XuatXu (Ma_XuatXu , TenXuatXu, TrangThai) values (?,?,?)
+select * from XuatXu where IDXuatXu =?
+
+--truy vấn bảng chi tiết ví
+select * from ChiTietVi;
+select * from ChiTietVi where Ma_ChiTietVi =?
+select * from ChiTietVi where IDChiTietVi =?
+select max(cast(substring(Ma_ChiTietVi,5,LEN(IDChiTietVi))as int)) from ChiTietVi 
+INSERT INTO ChiTietVi(Ma_ChiTietVi,ID_Vi,ID_ChatLieu,KhoaVi, ID_MauSac, ID_XuatXu,ID_LoaiVi,SoNganDungThe,GiaNhap,GiaBan,SoLuong,NgayNhap,TrangThai) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
+Update ChiTietVi set ID_Vi=?, ID_ChatLieu =?, KhoaVi=?, ID_MauSac =?,ID_XuatXu =?,ID_LoaiVi,SoNganDungThe ?,GiaNhap =?,GiaBan=? ,SoLuong =?,NgayNhap=?, TrangThai=? where Ma_ChiTietVi =?
+
+--truy vấn bảng màu sắc
+select * from MauSac ;
+select * from MauSac where IDMauSac =?
+select * from MauSac where TenMauSac =?
+
+--truy vấn bảng chat lieu
+select * from ChatLieu where IDChatLieu = ?
+select * from ChatLieu where TenChatLieu =?
+-- truy vaans bang loai vi
+select * from LoaiVi
+select * from LoaiVi where IDLoaiVi =?
+select * from LoaiVi where TenLoaiVi =?
 -- Thêm d? li?u 
 -- Lo?i Ví
 INSERT INTO LoaiVi (Ma_LoaiVi, TenLoaiVi, TrangThai) VALUES 

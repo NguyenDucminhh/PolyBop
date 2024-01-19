@@ -23,15 +23,16 @@ public class ViDao implements InterfaceVi {
     String insert = "INSERT INTO Vi (Ma_Vi,TenVi,KieuDang,ID_ThuongHieu, Url_Anh, TrangThai) VALUES (?,?,?,?,?,?)";
     String update = "Update Vi set TenVi=?, KieuDang =?, ID_ThuongHieu=?, Url_Anh =?, TrangThai=? where Ma_Vi =?";
     String delete = "delete from SanPham where ID_Sanpham = ?";
+    String selectById = "select * from Vi where IDVi =?";
 
     @Override
     public void insert(Vi sp) {
-        JDBCHeper.update(insert,sp.getMa_Vi(), sp.getTenVi(), sp.getKieuDang(), sp.getID_ThuongHieu(), sp.getUrl_Anh(), sp.isTrangThai());
+        JDBCHeper.update(insert, sp.getMa_Vi(), sp.getTenVi(), sp.getKieuDang(), sp.getID_ThuongHieu(), sp.getUrl_Anh(), sp.isTrangThai());
     }
 
     @Override
     public void update(Vi sp) {
-        JDBCHeper.update(update, sp.getTenVi(), sp.getKieuDang(), sp.getID_ThuongHieu(), sp.getUrl_Anh(), sp.isTrangThai(),sp.getMa_Vi());
+        JDBCHeper.update(update, sp.getTenVi(), sp.getKieuDang(), sp.getID_ThuongHieu(), sp.getUrl_Anh(), sp.isTrangThai(), sp.getMa_Vi());
     }
 
     @Override
@@ -52,7 +53,8 @@ public class ViDao implements InterfaceVi {
         }
         return list.get(0);
     }
-   public List<Vi> selectByKeyword(String keyword) {
+
+    public List<Vi> selectByKeyword(String keyword) {
         String sql = "SELECT * FROM dbo.Vi WHERE TenVi LIKE ? AND IdVi = ? AND Trangthai = 1 ";
         return selectBySQL(sql, "%" + keyword + "%");
     }
@@ -95,10 +97,12 @@ public class ViDao implements InterfaceVi {
         }
         return list.get(0);
     }
+
     public List<Vi> Select_ByName(String name) {  // tìm theo tên sản phẩm
         String Select_ByName = "select  *  from Vi where TenVi like ?";
         return selectBySQL(Select_ByName, "%" + name + "%");
     }
+
     public int select_Max_id_java() {
         try {
             String sql = "select max(cast(substring(Ma_Vi,3,LEN(IDVi))as int)) from  Vi ";
@@ -110,5 +114,14 @@ public class ViDao implements InterfaceVi {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    public String selectNameById(int id) {
+        return selectBySQL(selectById, id).get(0).getTenVi();
+    }
+
+    public int selectIdByName(String name) {
+        String sql = "select * from Vi where TenVi =?";
+        return selectBySQL(sql, name).get(0).getIDVi();
     }
 }

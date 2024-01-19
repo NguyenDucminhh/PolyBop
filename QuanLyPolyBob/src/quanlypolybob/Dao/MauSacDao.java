@@ -16,6 +16,9 @@ import quanlypolybob.Hepper.JDBCHeper;
  */
 public class MauSacDao implements InterfaceMauSac {
 
+    String selectAll = "select * from MauSac";
+    String selectById = "select * from MauSac where IDMauSac =?";
+
     @Override
     public void insert(MauSac sp) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -38,7 +41,7 @@ public class MauSacDao implements InterfaceMauSac {
 
     @Override
     public List<MauSac> selectAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return selectBySQL(selectAll);
     }
 
     @Override
@@ -61,4 +64,11 @@ public class MauSacDao implements InterfaceMauSac {
         return lisst;
     }
 
+    public String selecNameById(int id) {
+        return selectBySQL(selectById, id).get(0).getTenMauSac();
+    }
+        public int selectIdByName(String name){
+        String sql = "select * from MauSac where TenMauSac =?";
+        return selectBySQL(sql, name).get(0).getIdMauSac();
+    }
 }

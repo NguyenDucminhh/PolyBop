@@ -12,17 +12,29 @@ package Model;
  */
 public class ChatLieu {
     private int idChatLieu;
+    private String Ma_ChatLieu;
     private String tenChatLieu;
     private boolean trangThai;
 
     public ChatLieu() {
     }
 
-    public ChatLieu(int idChatLieu, String tenChatLieu, boolean trangThai) {
+    public ChatLieu(int idChatLieu, String Ma_ChatLieu, String tenChatLieu, boolean trangThai) {
         this.idChatLieu = idChatLieu;
+        this.Ma_ChatLieu = Ma_ChatLieu;
         this.tenChatLieu = tenChatLieu;
         this.trangThai = trangThai;
     }
+
+    public String getMa_ChatLieu() {
+        return Ma_ChatLieu;
+    }
+
+    public void setMa_ChatLieu(String Ma_ChatLieu) {
+        this.Ma_ChatLieu = Ma_ChatLieu;
+    }
+
+ 
 
     public int getIdChatLieu() {
         return idChatLieu;
@@ -31,6 +43,7 @@ public class ChatLieu {
     public void setIdChatLieu(int idChatLieu) {
         this.idChatLieu = idChatLieu;
     }
+
 
     public String getTenChatLieu() {
         return tenChatLieu;
@@ -47,6 +60,8 @@ public class ChatLieu {
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
+
+   
 
     
     
