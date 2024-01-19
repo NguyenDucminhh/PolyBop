@@ -179,6 +179,10 @@ public class BanHangJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        mnBanHang = new javax.swing.JPopupMenu();
+        mnIThem = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtTimKiem = new javax.swing.JTextField();
@@ -204,6 +208,15 @@ public class BanHangJPanel extends javax.swing.JPanel {
         lblNgay = new javax.swing.JLabel();
         cbbLoaiVi = new javax.swing.JComboBox<>();
         pagelable = new javax.swing.JLabel();
+
+        mnIThem.setText("jMenuItem1");
+        mnBanHang.add(mnIThem);
+
+        jMenuItem2.setText("jMenuItem2");
+        mnBanHang.add(jMenuItem2);
+
+        jMenuItem3.setText("jMenuItem3");
+        mnBanHang.add(jMenuItem3);
 
         setLayout(new java.awt.BorderLayout());
 
@@ -433,10 +446,14 @@ public class BanHangJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblNgay;
+    private javax.swing.JPopupMenu mnBanHang;
+    private javax.swing.JMenuItem mnIThem;
     private javax.swing.JLabel pagelable;
     private javax.swing.JTable tblHoadon;
     private javax.swing.JTable tblSanPham;
