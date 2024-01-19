@@ -5,7 +5,7 @@
 package quanlypolybob;
 
 import java.io.File;
-import Helper.Ximages;
+import quanlypolybob.Hepper.Ximages;
 import Model.ThuongHieu;
 import Model.Vi;
 import Service.ViService;
