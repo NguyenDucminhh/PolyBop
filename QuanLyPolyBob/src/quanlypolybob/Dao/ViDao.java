@@ -8,6 +8,7 @@ import Model.Vi;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import quanlypolybob.Hepper.JDBCHeper;
 
 /**
@@ -16,7 +17,7 @@ import quanlypolybob.Hepper.JDBCHeper;
  */
 public class ViDao implements InterfaceVi {
 
-    String selectAll = "select * from Vi";
+    String selectAll = "select IDVi,ID_ThuongHieu, Ma_Vi, KieuDang, TenVi, TrangThai  from Vi";
     String select_Trangthai2 = "SELECT * FROM Vi WHERE Trangthai = 0";
     String selectID1 = "select * from Vi where IDVi= ?";
     String selectID = "select * from Vi where Ma_Vi= ?";
@@ -63,14 +64,13 @@ public class ViDao implements InterfaceVi {
         try {
             ResultSet rs = JDBCHeper.query(sql, args);
             while (rs.next()) {
-                Vi sp = new Vi();
+                Vi sp = new Vi(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getBoolean(6));
                 sp.setIDVi(rs.getInt("IdVi"));
                 sp.setID_ThuongHieu(rs.getInt("ID_ThuongHieu"));
                 sp.setMa_Vi(rs.getString("Ma_Vi"));
                 sp.setTenVi(rs.getString("tenVi"));
                 sp.setKieuDang(rs.getString("kieuDang"));
                 sp.setTrangThai(rs.getBoolean("trangThai"));
-                sp.setUrl_Anh(rs.getString("Url_Anh"));
                 list_vi.add(sp);
             }
         } catch (Exception e) {
@@ -110,5 +110,46 @@ public class ViDao implements InterfaceVi {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    @Override
+    public List<Vi> getViByPage(int page, int recordInPage) {
+        List<Vi> list = new ArrayList<>();
+        String sql = "SELECT IDVi,ID_ThuongHieu, Ma_Vi, KieuDang, TenVi, TrangThai " +
+                 "FROM Vi WHERE TRANGTHAI = 1 " +
+                 "ORDER BY IDVi " +
+                 "OFFSET ? ROWS " +
+                 "FETCH NEXT ? ROWS ONLY";
+
+        int startRecord = (page - 1) * recordInPage;
+
+        try {
+            ResultSet rs = JDBCHeper.Query(sql, startRecord, recordInPage);
+            while(rs.next()){
+                Vi sp = new Vi(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getBoolean(6));
+                list.add(sp);
+            }
+            return list;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public int getTotal() {
+         String sql = "SELECT COUNT(*) FROM Vi WHERE TRANGTHAI = 1";
+      
+        ResultSet rs = JDBCHeper.Query(sql);
+        try {
+            while(rs.next()){
+               return rs.getInt(1);
+            }
+      
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+  
+        }
+         return 0;
     }
 }

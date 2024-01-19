@@ -21,7 +21,8 @@ public interface InterfaceVi {
     abstract public List<Vi> selectAll();
     
     abstract public Vi selectID(Integer id);
+    int getTotal();
     abstract public Vi selectID1(String id);
-    
+    abstract public List<Vi> getViByPage(int page,int recordInPage);
     abstract public List<Vi> selectBySQL(String sql, Object...args);
 }

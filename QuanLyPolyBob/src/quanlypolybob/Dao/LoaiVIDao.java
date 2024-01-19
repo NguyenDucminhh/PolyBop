@@ -16,6 +16,7 @@ import quanlypolybob.Hepper.JDBCHeper;
  */
 public class LoaiVIDao implements InterfaceLoaiVi {
 
+     String selectAll = "select *  from LoaiVI";
     public LoaiVIDao() {
     }
 
@@ -41,7 +42,7 @@ public class LoaiVIDao implements InterfaceLoaiVi {
 
     @Override
     public List<LoaiVi> selectAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return selectBySQL(selectAll);
     }
 
     @Override

@@ -6,32 +6,52 @@ package quanlypolybob;
 
 
 import quanlypolybob.Dao.LoaiVIDao;
+
 import Model.LoaiVi;
 import Model.ThuongHieu;
+import Model.ChiTietVi;
+import Repository.ChiTietViRepository;
 import Model.Vi;
+import java.awt.Label;
 import quanlypolybob.Dao.ViDao;
-import java.text.NumberFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JOptionPane;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import quanlypolybob.Dao.ThuongHieuDao;
 
 /**
  *
  * @author KIPOSTEST
  */
 public class BanHangJPanel extends javax.swing.JPanel {
-    ViDao DaoVi =new ViDao();
+     ViDao dao_vi = new ViDao();
     LoaiVIDao DaoLoaiVi = new LoaiVIDao();
+    Locale vn = new Locale("vi", "VN");
+    ThuongHieuDao dao_th = new ThuongHieuDao();
+    LoaiVIDao dao_loaiVi = new LoaiVIDao();
+    ChiTietViRepository ctvi_dao = new ChiTietViRepository();
+    int row;
+    DefaultTableModel modelCH = new DefaultTableModel();
+    DefaultTableModel modelHH = new DefaultTableModel();
+    List<LoaiVi> list_loaiVi;
     /**
      * Creates new form BanHangJPanel
      */
+     
+        
     public BanHangJPanel() {
-//        filltableSanPham();
-//        filltoComboboxLSP();
-        initComponents();
-//        getDateNow();
+       
+          initComponents();
+         // Thêm scrollPane vào giao diện\
+          filltableSanPham();
+          fillToCbbLoaiVi();
+          getDateNow();
     }
   
     public void getDateNow() {
@@ -39,36 +59,37 @@ public class BanHangJPanel extends javax.swing.JPanel {
         String nowDay = quanlypolybob.Hepper.Xdate.toString(date, "yyyy-MM-dd");
         lblNgay.setText(nowDay);
     }
+    private int currentPage = 1;
+    private int recordsPerPage = 10;
+    public void filltableSanPham() {
+        
+         List<Vi> listSP;
+            DefaultTableModel mol;
+            listSP = dao_vi.selectAll();
+            mol = (DefaultTableModel) tblSanPham.getModel();
+            mol.setRowCount(0);
+            for (Vi vi : listSP) {
+                mol.addRow(new Object[]{
+                        vi.getMa_Vi(), 
+                        vi.getTenVi(), 
+                        vi.getKieuDang(), 
+                        vi.isTrangThai()? "Còn" : "Hết Hàng"
+                });
+            }
+                  int totalPages = (int) Math.ceil((double) dao_vi.getTotal()/ recordsPerPage);
+                 pagelable.setText("Trang: " + currentPage + " / " + totalPages);
+    }
 
-//    public void filltableSanPham() {
-//        DefaultTableModel model = (DefaultTableModel) tblSanPham.getModel();
-//        model.setRowCount(0);
-//        try {
-//            ThuongHieu thuonghieu = (ThuongHieu) cbbLoaiVi.getSelectedItem();
-//            //List<Vi> list = ViDao.selectByKeyword(txtTimKiem.getText());
-//            List<Vi> list = DaoVi.selectByKeyword(txtTimKiem.getText());
-//                for(Vi spVi : list){
-//                    model.addRow(new Object[]{
-//                        spVi.getIdVi(),spVi.getIdThuongHieu(),spVi.getKieuDang(),spVi.getKieuDang(),spVi.getTenVi()
-//                    });
-//                }
-//            
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-//    public void filltoComboboxLSP() {
-//        DefaultComboBoxModel<LoaiVi> modelcb = (DefaultComboBoxModel) cbbLoaiVi.getModel();
-//        modelcb.removeAllElements();
-//        List<LoaiVi> list = DaoLoaiVi.selectAll();
-//        if (list != null) {
-//            for (LoaiVi loaivi : list) {
-//                modelcb.addElement(loaivi);
-//            }
-//        }
-//        filltableSanPham();
-//    }
+        public void fillToCbbLoaiVi()
+        {
+        
+         DefaultComboBoxModel modelcbo = (DefaultComboBoxModel) cbbLoaiVi.getModel();
+         modelcbo.removeAllElements();
+        list_loaiVi = dao_loaiVi.selectAll();
+        for (LoaiVi loaivi : list_loaiVi) {
+            modelcbo.addElement(loaivi.getTenLoaiVi());
+        }
+        }
 
     /*public void filltoTableHDCT() {
         DefaultTableModel model = (DefaultTableModel) tblHoadonchitiet.getModel();
@@ -182,6 +203,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
         btnThanhToan = new javax.swing.JButton();
         lblNgay = new javax.swing.JLabel();
         cbbLoaiVi = new javax.swing.JComboBox<>();
+        pagelable = new javax.swing.JLabel();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -220,17 +242,17 @@ public class BanHangJPanel extends javax.swing.JPanel {
 
         tblSanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Tên ví", "Thương hiệu", "Số lượng", "Giá bán", "Thao tác"
+                "Mã Ví", "Tên Ví", "Kiểu dáng", "Trạng Thái"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false, true, true
+                false, false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -275,14 +297,12 @@ public class BanHangJPanel extends javax.swing.JPanel {
 
         cbbLoaiVi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4xdư", "ve", "fvdve", "vev" }));
 
+        pagelable.setText("jLabel8");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(309, 309, 309)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -311,9 +331,9 @@ public class BanHangJPanel extends javax.swing.JPanel {
                             .addGap(325, 325, 325))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3)
                                 .addComponent(jLabel6)
-                                .addComponent(jLabel7))
+                                .addComponent(jLabel7)
+                                .addComponent(jLabel3))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtMaGiamGia, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -328,6 +348,15 @@ public class BanHangJPanel extends javax.swing.JPanel {
                                 .addComponent(btnHuy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGap(16, 16, 16))))
                 .addGap(20, 20, 20))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(309, 309, 309)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(168, 168, 168)
+                        .addComponent(pagelable)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -373,7 +402,9 @@ public class BanHangJPanel extends javax.swing.JPanel {
                             .addComponent(jLabel7)
                             .addComponent(btnHuy))
                         .addGap(32, 32, 32)))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pagelable)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -406,6 +437,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblNgay;
+    private javax.swing.JLabel pagelable;
     private javax.swing.JTable tblHoadon;
     private javax.swing.JTable tblSanPham;
     private javax.swing.JTextField txtMaGiamGia;
