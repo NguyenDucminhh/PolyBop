@@ -20,8 +20,10 @@ public class Vi {
     private String Url_Anh;
     private boolean TrangThai;
 
-    public Vi(int IDVi, int ID_ThuongHieu, String Ma_Vi, String KieuDang, String TenVi, boolean TrangThai) {
+    public Vi() {
     }
+
+   
 
     public Vi(int IDVi, int ID_ThuongHieu, String Ma_Vi, String KieuDang, String TenVi, String Url_Anh, boolean TrangThai) {
         this.IDVi = IDVi;

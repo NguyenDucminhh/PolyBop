@@ -17,7 +17,7 @@ import quanlypolybob.Hepper.JDBCHeper;
  */
 public class ViDao implements InterfaceVi {
 
-    String selectAll = "select IDVi,ID_ThuongHieu, Ma_Vi, KieuDang, TenVi, TrangThai  from Vi";
+    String selectAll = "select *  from Vi";
     String select_Trangthai2 = "SELECT * FROM Vi WHERE Trangthai = 0";
     String selectID1 = "select * from Vi where IDVi= ?";
     String selectID = "select * from Vi where Ma_Vi= ?";
@@ -66,7 +66,7 @@ public class ViDao implements InterfaceVi {
         try {
             ResultSet rs = JDBCHeper.query(sql, args);
             while (rs.next()) {
-                Vi sp = new Vi(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getBoolean(6));
+                Vi sp = new Vi();
                 sp.setIDVi(rs.getInt("IdVi"));
                 sp.setID_ThuongHieu(rs.getInt("ID_ThuongHieu"));
                 sp.setMa_Vi(rs.getString("Ma_Vi"));
@@ -131,7 +131,7 @@ public class ViDao implements InterfaceVi {
         try {
             ResultSet rs = JDBCHeper.Query(sql, startRecord, recordInPage);
             while(rs.next()){
-                Vi sp = new Vi(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getBoolean(6));
+                Vi sp = new Vi();
                 list.add(sp);
             }
             return list;
