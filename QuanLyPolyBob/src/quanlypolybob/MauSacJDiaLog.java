@@ -70,7 +70,7 @@ public class MauSacJDiaLog extends javax.swing.JDialog {
                 {null, null, null}
             },
             new String [] {
-                "Mã Thương Hiệu", "Tên Thương Hiệu", "Trạng Thái"
+                "Mã Màu Sắc", "Tên Màu Sắc", "Trạng Thái"
             }
         ));
         tblThuongHieu.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -80,9 +80,9 @@ public class MauSacJDiaLog extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(tblThuongHieu);
 
-        lblMa.setText("Mã Xuất Xứ");
+        lblMa.setText("Mã Màu Sắc");
 
-        lblTen.setText("Tên Xuất Xứ");
+        lblTen.setText("Tên Màu Sắc");
 
         lblTrangThai.setText("Trạng Thái");
 

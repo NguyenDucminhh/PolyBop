@@ -4,10 +4,12 @@
  */
 package quanlypolybob;
 
+import Model.ChatLieu;
 import Model.ThuongHieu;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import quanlypolybob.Dao.ChatLieuDao;
 import quanlypolybob.Dao.ThuongHieuDao;
 import quanlypolybob.Hepper.MsgBox;
 
@@ -17,7 +19,7 @@ import quanlypolybob.Hepper.MsgBox;
  */
 public class ChatLieuJDiaLog extends javax.swing.JDialog {
 
-    ThuongHieuDao dao = new ThuongHieuDao();
+    ChatLieuDao dao = new ChatLieuDao();
     int row;
 
     /**
@@ -27,7 +29,7 @@ public class ChatLieuJDiaLog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        filltotableThuongHieu();
+        filltotableChatLieu();
     }
 
     /**
@@ -42,7 +44,7 @@ public class ChatLieuJDiaLog extends javax.swing.JDialog {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblThuongHieu = new javax.swing.JTable();
+        tblChatLieu = new javax.swing.JTable();
         lblMa = new javax.swing.JLabel();
         txtMa = new javax.swing.JTextField();
         txtTen = new javax.swing.JTextField();
@@ -62,7 +64,7 @@ public class ChatLieuJDiaLog extends javax.swing.JDialog {
             }
         });
 
-        tblThuongHieu.setModel(new javax.swing.table.DefaultTableModel(
+        tblChatLieu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -70,15 +72,15 @@ public class ChatLieuJDiaLog extends javax.swing.JDialog {
                 {null, null, null}
             },
             new String [] {
-                "Mã Thương Hiệu", "Tên Thương Hiệu", "Trạng Thái"
+                "Mã Chất Liệu", "Tên Chất Liệu", "Trạng Thái"
             }
         ));
-        tblThuongHieu.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblChatLieu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblThuongHieuMouseClicked(evt);
+                tblChatLieuMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblThuongHieu);
+        jScrollPane1.setViewportView(tblChatLieu);
 
         lblMa.setText("Mã Xuất Xứ");
 
@@ -188,7 +190,7 @@ public class ChatLieuJDiaLog extends javax.swing.JDialog {
     private void jScrollPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseClicked
         // TODO add your handling code here:
         try {
-            row = tblThuongHieu.getSelectedRow();
+            row = tblChatLieu.getSelectedRow();
             edit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -200,15 +202,15 @@ public class ChatLieuJDiaLog extends javax.swing.JDialog {
         lammoi();
     }//GEN-LAST:event_btnlammoiActionPerformed
 
-    private void tblThuongHieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblThuongHieuMouseClicked
+    private void tblChatLieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblChatLieuMouseClicked
         // TODO add your handling code here:
         try {
-            row = tblThuongHieu.getSelectedRow();
+            row = tblChatLieu.getSelectedRow();
             edit();
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }//GEN-LAST:event_tblThuongHieuMouseClicked
+    }//GEN-LAST:event_tblChatLieuMouseClicked
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
@@ -277,38 +279,38 @@ public class ChatLieuJDiaLog extends javax.swing.JDialog {
     private javax.swing.JLabel lblMa;
     private javax.swing.JLabel lblTen;
     private javax.swing.JLabel lblTrangThai;
-    private javax.swing.JTable tblThuongHieu;
+    private javax.swing.JTable tblChatLieu;
     private javax.swing.JTextField txtMa;
     private javax.swing.JTextField txtTen;
     // End of variables declaration//GEN-END:variables
 
-    private void filltotableThuongHieu() {
-        DefaultTableModel model = (DefaultTableModel) tblThuongHieu.getModel();
+    private void filltotableChatLieu() {
+        DefaultTableModel model = (DefaultTableModel) tblChatLieu.getModel();
         model.setRowCount(0);
-        List<ThuongHieu> list = dao.selectAll();
-        for (ThuongHieu x : list) {
-            model.addRow(new Object[]{x.getMa_ThuongHieu(), x.getTenThuongHieu(), x.isTrangThai() ? "Còn Hàng" : "Hết Hàng"});
+        List<ChatLieu> list = dao.selectAll();
+        for (ChatLieu x : list) {
+            model.addRow(new Object[]{x.getMa_ChatLieu(), x.getTenChatLieu(), x.isTrangThai() ? "Còn Hàng" : "Hết Hàng"});
         }
 
     }
-        private ThuongHieu getInformation() {
-        ThuongHieu sp = new ThuongHieu();
+        private ChatLieu getInformation() {
+        ChatLieu sp = new ChatLieu();
 //        sp.setIDVi(Integer.parseInt(txtMaVi.getText()));
-        sp.setMa_ThuongHieu(txtMa.getText());
-        sp.setTenThuongHieu(txtTen.getText());
+        sp.setMa_ChatLieu(txtMa.getText());
+        sp.setTenChatLieu(txtTen.getText());
         //System.out.println(sp.getId_loaiSP());
         sp.setTrangThai(jRadioButton1.isSelected());
 
-        System.out.println(sp.getMa_ThuongHieu());
-        System.out.println(sp.getTenThuongHieu());
+        System.out.println(sp.getMa_ChatLieu());
+        System.out.println(sp.getTenChatLieu());
             System.out.println(sp.isTrangThai());
         return sp;
     }
 
-    private void setForm(ThuongHieu sp) {
+    private void setForm(ChatLieu sp) {
 //        txtMaVi.setText(sp.getIDVi() + "");
-        txtMa.setText(sp.getMa_ThuongHieu());
-        txtTen.setText(sp.getTenThuongHieu());
+        txtMa.setText(sp.getMa_ChatLieu());
+        txtTen.setText(sp.getTenChatLieu());
 
         jRadioButton1.setSelected(sp.isTrangThai());
         jRadioButton2.setSelected(!sp.isTrangThai());
@@ -316,17 +318,17 @@ public class ChatLieuJDiaLog extends javax.swing.JDialog {
     }
     
         private void edit() {
-        String idloaisp = tblThuongHieu.getValueAt(row, 0).toString();
-            ThuongHieu lsp = dao.selectID1(idloaisp);
+        String idloaisp = tblChatLieu.getValueAt(row, 0).toString();
+            ChatLieu lsp = dao.selectID1(idloaisp);
         setForm(lsp);
     }
 
     // tự điền mã đồ uống
     private void selectMaxIDLSP() {
         if (dao.selectAll().isEmpty()) {
-            txtMa.setText("TH001");
+            txtMa.setText("CL001");
         } else {
-            txtMa.setText("TH0" + (dao.selectMaLOAISP() + 1));
+            txtMa.setText("CL0" + (dao.selectMaLOAISP() + 1));
         }
     }
 
@@ -343,9 +345,9 @@ public class ChatLieuJDiaLog extends javax.swing.JDialog {
             return;
         }  else {
             try {
-                ThuongHieu lsp = getInformation();
+                ChatLieu lsp = getInformation();
                 dao.insert(lsp);
-                filltotableThuongHieu();
+                filltotableChatLieu();
                 lammoi();
                 JOptionPane.showMessageDialog(this, "đã thêm loại sản phẩm này");
             } catch (Exception e) {
@@ -361,9 +363,9 @@ public class ChatLieuJDiaLog extends javax.swing.JDialog {
             return;
         } else {
             try {
-                ThuongHieu lsp = getInformation();
+                ChatLieu lsp = getInformation();
                 dao.update(lsp);
-                filltotableThuongHieu();
+                filltotableChatLieu();
                 lammoi();
                 JOptionPane.showMessageDialog(this, "đã cập nhập lại loại sản phẩm này");
             } catch (Exception e) {
@@ -385,25 +387,25 @@ public class ChatLieuJDiaLog extends javax.swing.JDialog {
             return true;
         }
       
-        List<ThuongHieu> list = dao.selectAll();
+        List<ChatLieu> list = dao.selectAll();
         String id = txtMa.getText();
         String tensp = txtTen.getText();
         for (int i = 0; i < list.size(); i++) {
-            if (id.equalsIgnoreCase(list.get(i).getMa_ThuongHieu())) {
+            if (id.equalsIgnoreCase(list.get(i).getMa_ChatLieu())) {
                 JOptionPane.showMessageDialog(this, "Trùng khóa chính");
                 txtMa.requestFocus();
                 return true;
-            } else if (tensp.equalsIgnoreCase(list.get(i).getTenThuongHieu())) {
-                JOptionPane.showMessageDialog(this, "Tên sản phẩm đã tồn tại");
+            } else if (tensp.equalsIgnoreCase(list.get(i).getTenChatLieu())) {
+                JOptionPane.showMessageDialog(this, "Tên chất liệu đã tồn tại");
                 txtTen.requestFocus();
                 return true;
             }
         }
          if (txtMa.getText().length() < 3) {
-            JOptionPane.showMessageDialog(this, "Mã thương hiệu phải trên 2 kí tự");
+            JOptionPane.showMessageDialog(this, "Mã chất liệu phải trên 2 kí tự");
             return true;
         } else if (txtTen.getText().length() < 5) {
-            JOptionPane.showMessageDialog(this, "Tên thương hiệu phải trên 5 kí tự");
+            JOptionPane.showMessageDialog(this, "Tên chất liệu phải trên 5 kí tự");
             return true;
         }
         return false;
@@ -411,13 +413,13 @@ public class ChatLieuJDiaLog extends javax.swing.JDialog {
     }
     private boolean Checknull1() {
         if (txtMa.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Vui lòng nhập mã thương hiệu!");
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập mã chất liệu!");
             txtMa.requestFocus();
 
             return true;
         }
         if (txtTen.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Vui lòng nhập tên thương hiệu!");
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập tên chất liệu!");
             txtTen.requestFocus();
 
             return true;

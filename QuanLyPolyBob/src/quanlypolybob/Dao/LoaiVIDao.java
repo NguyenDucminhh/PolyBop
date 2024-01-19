@@ -20,6 +20,9 @@ public class LoaiVIDao implements InterfaceLoaiVi {
     public LoaiVIDao() {
     }
 
+
+    String selectById = "select * from LoaiVi where IDLoaiVi =?";
+
     @Override
     public void insert(LoaiVi sp) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -42,7 +45,8 @@ public class LoaiVIDao implements InterfaceLoaiVi {
 
     @Override
     public List<LoaiVi> selectAll() {
-        return selectBySQL(selectAll);
+
+       return selectBySQL(selectAll);
     }
 
     @Override
@@ -63,5 +67,11 @@ public class LoaiVIDao implements InterfaceLoaiVi {
         }
         return list;
     }
-
+public String selectNameByID(int id){
+    return selectBySQL(selectById, id).get(0).getTenLoaiVi();
+}
+    public int selectIdByName(String name){
+        String sql = "select * from LoaiVi where TenLoaiVi =?";
+        return selectBySQL(sql, name).get(0).getIdLoaiVi();
+    }
 }

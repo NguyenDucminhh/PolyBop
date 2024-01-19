@@ -13,27 +13,31 @@ import java.util.Date;
 public class ChiTietVi {
 
     private int idChiTietVi;
+    private int ID_Vi;
     private int ID_MauSac;
     private int ID_ChatLieu;
     private int ID_XuatXu;
     private int ID_LoaiVi;
+    private String Ma_ChiTietVi;
     private String KhoaVi;
     private String SoNganDungThe;
     private int SoLuong;
     private Double GiaNhap;
     private Double GiaBan;
     private Date NgayNhap;
-    private Boolean TrangThai;
+    private boolean TrangThai;
 
     public ChiTietVi() {
     }
 
-    public ChiTietVi(int idChiTietVi, int ID_MauSac, int ID_ChatLieu, int ID_XuatXu, int ID_LoaiVi, String KhoaVi, String SoNganDungThe, int SoLuong, Double GiaNhap, Double GiaBan, Date NgayNhap, Boolean TrangThai) {
+    public ChiTietVi(int idChiTietVi, int ID_Vi, int ID_MauSac, int ID_ChatLieu, int ID_XuatXu, int ID_LoaiVi, String Ma_ChiTietVi, String KhoaVi, String SoNganDungThe, int SoLuong, Double GiaNhap, Double GiaBan, Date NgayNhap, boolean TrangThai) {
         this.idChiTietVi = idChiTietVi;
+        this.ID_Vi = ID_Vi;
         this.ID_MauSac = ID_MauSac;
         this.ID_ChatLieu = ID_ChatLieu;
         this.ID_XuatXu = ID_XuatXu;
         this.ID_LoaiVi = ID_LoaiVi;
+        this.Ma_ChiTietVi = Ma_ChiTietVi;
         this.KhoaVi = KhoaVi;
         this.SoNganDungThe = SoNganDungThe;
         this.SoLuong = SoLuong;
@@ -42,6 +46,25 @@ public class ChiTietVi {
         this.NgayNhap = NgayNhap;
         this.TrangThai = TrangThai;
     }
+
+    public int getID_Vi() {
+        return ID_Vi;
+    }
+
+    public void setID_Vi(int ID_Vi) {
+        this.ID_Vi = ID_Vi;
+    }
+
+   
+
+    public String getMa_ChiTietVi() {
+        return Ma_ChiTietVi;
+    }
+
+    public void setMa_ChiTietVi(String Ma_ChiTietVi) {
+        this.Ma_ChiTietVi = Ma_ChiTietVi;
+    }
+
 
     public int getIdChiTietVi() {
         return idChiTietVi;
@@ -131,12 +154,14 @@ public class ChiTietVi {
         this.NgayNhap = NgayNhap;
     }
 
-    public Boolean getTrangThai() {
+    public boolean isTrangThai() {
         return TrangThai;
     }
 
-    public void setTrangThai(Boolean TrangThai) {
+    public void setTrangThai(boolean TrangThai) {
         this.TrangThai = TrangThai;
     }
+
+
 
 }
