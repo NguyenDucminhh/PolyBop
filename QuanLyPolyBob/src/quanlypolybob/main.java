@@ -25,11 +25,10 @@ public class main extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
 //        new LoginView().setVisible(false);
-
         setExtendedState(this.MAXIMIZED_BOTH);
         setColor(lblTrangChu);
         setColorJpanel(pnTrangChu);
-        showPanel(new TrangChuJPanel());
+//        showPanel(new TrangChuJPanel());
 
     }
 
