@@ -16,12 +16,15 @@ import quanlypolybob.Hepper.JDBCHeper;
  */
 public class LoaiVIDao implements InterfaceLoaiVi {
 
+
      String selectAll = "select *  from LoaiVI";
     public LoaiVIDao() {
     }
 
 
     String selectById = "select * from LoaiVi where IDLoaiVi =?";
+
+    
 
     @Override
     public void insert(LoaiVi sp) {
@@ -45,7 +48,6 @@ public class LoaiVIDao implements InterfaceLoaiVi {
 
     @Override
     public List<LoaiVi> selectAll() {
-
        return selectBySQL(selectAll);
     }
 

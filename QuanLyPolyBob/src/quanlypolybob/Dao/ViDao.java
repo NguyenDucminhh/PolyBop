@@ -157,6 +157,7 @@ public class ViDao implements InterfaceVi {
         }
          return 0;
     }
+
     public String selectNameById(int id) {
         return selectBySQL(selectById, id).get(0).getTenVi();
     }
@@ -164,6 +165,5 @@ public class ViDao implements InterfaceVi {
     public int selectIdByName(String name) {
         String sql = "select * from Vi where TenVi =?";
         return selectBySQL(sql, name).get(0).getIDVi();
-
     }
 }
