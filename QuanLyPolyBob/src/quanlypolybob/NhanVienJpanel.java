@@ -756,6 +756,36 @@ public class NhanVienJpanel extends javax.swing.JPanel {
             fillTableNhanVien();
         }
     }
+    
+    //    Sđt trùng
+    private boolean isPhoneNumberDuplicate(String phoneNumber) {
+        DefaultTableModel model = (DefaultTableModel) tblNV.getModel();
+        int rowCount = model.getRowCount();
+
+        for (int i = 0; i < rowCount; i++) {
+            String existingPhoneNumber = (String) model.getValueAt(i, 2); // Assuming 2 is the column index for phone number
+            if (existingPhoneNumber.equals(phoneNumber)) {
+                return true; // Phone number already exists in the table
+            }
+        }
+
+        return false; // Phone number is not a duplicate
+    }
+    
+    //    Email trùng
+    private boolean isEmailDuplicate(String email) {
+        DefaultTableModel model = (DefaultTableModel) tblNV.getModel();
+        int rowCount = model.getRowCount();
+
+        for (int i = 0; i < rowCount; i++) {
+            String existingEmail = (String) model.getValueAt(i, 4); // Assuming 4 is the column index for email
+            if (existingEmail.equals(email)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     private boolean validateForm() {
         // Kiểm tra họ tên
@@ -771,7 +801,10 @@ public class NhanVienJpanel extends javax.swing.JPanel {
         } else if (!isValidPhoneNumber(txtSdt.getText())) {
             JOptionPane.showMessageDialog(this, "Số điện thoại không hợp lệ");
             return false;
-        }
+        } else if (isPhoneNumberDuplicate(txtSdt.getText())) {
+            JOptionPane.showMessageDialog(this, "Số điện thoại đã tồn tại trong danh sách khách hàng");
+            return false;
+        }   
 
         // Kiểm tra ngày sinh
         if (txtNgaySinh.getDate() == null) {
@@ -785,6 +818,9 @@ public class NhanVienJpanel extends javax.swing.JPanel {
             return false;
         } else if (!isValidEmail(txtEmail.getText())) {
             JOptionPane.showMessageDialog(this, "Email không hợp lệ");
+            return false;
+        } else if (isEmailDuplicate(txtEmail.getText())) {
+            JOptionPane.showMessageDialog(this, "Email đã tồn tại trong danh sách khách hàng");
             return false;
         }
 

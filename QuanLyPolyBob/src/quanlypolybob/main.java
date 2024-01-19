@@ -523,7 +523,7 @@ public class main extends javax.swing.JFrame {
         resetColor(lblThongke);
         resetColor(lblKhuyenMai);
         resetColor(lblSanPham);
-        showPanel(new KhachHang());
+        showPanel(new KhachHangJPanel());
     }//GEN-LAST:event_pnKhachHangMouseClicked
 
     private void pnNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnNhanVienMouseClicked
@@ -545,7 +545,7 @@ public class main extends javax.swing.JFrame {
         resetColor(lblThongke);
         resetColor(lblKhuyenMai);
         resetColor(lblSanPham);
-        showPanel(new NhanVien());
+        showPanel(new NhanVienJpanel());
     }//GEN-LAST:event_pnNhanVienMouseClicked
 
     private void pnKhuyenMaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnKhuyenMaiMouseClicked
