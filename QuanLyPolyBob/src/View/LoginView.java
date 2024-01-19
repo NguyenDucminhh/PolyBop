@@ -10,6 +10,7 @@ import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.border.MatteBorder;
+import quanlypolybob.main; 
 
 /**
  *
@@ -372,9 +373,15 @@ public class LoginView extends javax.swing.JFrame {
                             // check chức vụ 
                             if (tt.getChucVuNV() == 1) {
                                 JOptionPane.showMessageDialog(this,"Đăng nhập thành công dưới quyền quản lý");
+                                main m = new main(); 
+                                m.setVisible(true);
+                                this.dispose();
                             }
                             else {
                                 JOptionPane.showMessageDialog(this,"Đăng nhập thành công dưới quyền nhân viên");
+                                                                main m = new main(); 
+                                m.setVisible(true);
+                                this.dispose();
                             }
                             
                         }
