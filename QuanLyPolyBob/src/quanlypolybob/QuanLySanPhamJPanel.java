@@ -9,7 +9,6 @@ import quanlypolybob.Hepper.Ximages;
 import Model.ThuongHieu;
 import Model.Vi;
 import Service.ViService;
-import Services.SanPhamService;
 import java.util.List;
 import java.util.Locale;
 import javax.swing.DefaultComboBoxModel;

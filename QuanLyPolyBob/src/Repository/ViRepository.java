@@ -54,7 +54,7 @@ String SELECT_ALL_SQL = "select * from Vi ";
         try {
             ResultSet rs = JDBCHeper.query(sql, args);
             while (rs.next()) {
-                Vi Entity = new Vi(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getBoolean(6));
+                Vi Entity = new Vi();
                 Entity.setIDVi(rs.getInt("IDVi"));
                 Entity.setID_ThuongHieu(rs.getInt("ID_ThuongHieu"));
                 Entity.setMa_Vi(rs.getString("Ma_Vi"));
