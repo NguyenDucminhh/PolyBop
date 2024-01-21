@@ -152,14 +152,12 @@ public class main extends javax.swing.JFrame {
             pnSanPhamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnSanPhamLayout.createSequentialGroup()
                 .addContainerGap(29, Short.MAX_VALUE)
-                .addComponent(lblSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addComponent(lblSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52))
         );
         pnSanPhamLayout.setVerticalGroup(
             pnSanPhamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnSanPhamLayout.createSequentialGroup()
-                .addComponent(lblSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 5, Short.MAX_VALUE))
+            .addComponent(lblSanPham, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
         );
 
         pnNhanVien.setBackground(new java.awt.Color(51, 102, 255));
@@ -174,6 +172,11 @@ public class main extends javax.swing.JFrame {
         lblNhanVien.setForeground(new java.awt.Color(255, 255, 255));
         lblNhanVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icon-user.png"))); // NOI18N
         lblNhanVien.setText("Nhân Viên");
+        lblNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblNhanVienMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnNhanVienLayout = new javax.swing.GroupLayout(pnNhanVien);
         pnNhanVien.setLayout(pnNhanVienLayout);
@@ -211,9 +214,10 @@ public class main extends javax.swing.JFrame {
         pnKhachHang.setLayout(pnKhachHangLayout);
         pnKhachHangLayout.setHorizontalGroup(
             pnKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnKhachHangLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnKhachHangLayout.createSequentialGroup()
                 .addContainerGap(24, Short.MAX_VALUE)
-                .addComponent(lblKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lblKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
         pnKhachHangLayout.setVerticalGroup(
             pnKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,6 +235,11 @@ public class main extends javax.swing.JFrame {
         lblKhuyenMai.setForeground(new java.awt.Color(255, 255, 255));
         lblKhuyenMai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/voucher.png"))); // NOI18N
         lblKhuyenMai.setText("Khuyến Mãi");
+        lblKhuyenMai.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblKhuyenMaiMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnKhuyenMaiLayout = new javax.swing.GroupLayout(pnKhuyenMai);
         pnKhuyenMai.setLayout(pnKhuyenMaiLayout);
@@ -257,6 +266,11 @@ public class main extends javax.swing.JFrame {
         lblThongke.setForeground(new java.awt.Color(255, 255, 255));
         lblThongke.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/rank.png"))); // NOI18N
         lblThongke.setText("Thống Kê");
+        lblThongke.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblThongkeMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnThongKeLayout = new javax.swing.GroupLayout(pnThongKe);
         pnThongKe.setLayout(pnThongKeLayout);
@@ -451,12 +465,47 @@ public class main extends javax.swing.JFrame {
 
     private void lblSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSanPhamMouseClicked
         // TODO add your handling code here:
+                setColorJpanel(pnSanPham);                                                                                                  
+        resetColorJpane(pnBanHang);
+        resetColorJpane(pnKhuyenMai);
+        resetColorJpane(pnHoaDon);
+        resetColorJpane(pnNhanVien);
+        resetColorJpane(pnTrangChu);
+        resetColorJpane(pnThongKe);
+        resetColorJpane(pnKhachHang);
+
+        setColor(lblSanPham);
+        resetColor(lblHoaDon);
+        resetColor(lblBanHang);
+        resetColor(lblNhanVien);
+        resetColor(lblTrangChu);
+        resetColor(lblThongke);
+        resetColor(lblKhuyenMai);
+        resetColor(lblKhachHang);
+        showPanel(new QuanLySanPhamJPanel());
 
     }//GEN-LAST:event_lblSanPhamMouseClicked
 
     private void lblTrangChuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTrangChuMouseClicked
         // TODO add your handling code here:
+setColorJpanel(pnTrangChu);
+        resetColorJpane(pnBanHang);
+        resetColorJpane(pnKhuyenMai);
+        resetColorJpane(pnHoaDon);
+        resetColorJpane(pnNhanVien);
+        resetColorJpane(pnSanPham);
+        resetColorJpane(pnThongKe);
+        resetColorJpane(pnKhachHang);
 
+        setColor(lblTrangChu);
+        resetColor(lblHoaDon);
+        resetColor(lblBanHang);
+        resetColor(lblNhanVien);
+        resetColor(lblSanPham);
+        resetColor(lblThongke);
+        resetColor(lblKhuyenMai);
+        resetColor(lblKhachHang);
+        showPanel(new TrangChuJPanel());
     }//GEN-LAST:event_lblTrangChuMouseClicked
 
     private void pnTrangChuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnTrangChuMouseClicked
@@ -505,6 +554,25 @@ public class main extends javax.swing.JFrame {
 
     private void lblKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblKhachHangMouseClicked
         // TODO add your handling code here:
+        // TODO add your handling code here:
+        setColorJpanel(pnKhachHang);
+        resetColorJpane(pnBanHang);
+        resetColorJpane(pnKhuyenMai);
+        resetColorJpane(pnHoaDon);
+        resetColorJpane(pnNhanVien);
+        resetColorJpane(pnTrangChu);
+        resetColorJpane(pnThongKe);
+        resetColorJpane(pnSanPham);
+
+        setColor(lblKhachHang);
+        resetColor(lblHoaDon);
+        resetColor(lblBanHang);
+        resetColor(lblNhanVien);
+        resetColor(lblTrangChu);
+        resetColor(lblThongke);
+        resetColor(lblKhuyenMai);
+        resetColor(lblSanPham);
+        showPanel(new KhachHangJPanel());
     }//GEN-LAST:event_lblKhachHangMouseClicked
 
     private void pnKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnKhachHangMouseClicked
@@ -658,6 +726,72 @@ public class main extends javax.swing.JFrame {
         lg.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_mnThoatActionPerformed
+
+    private void lblThongkeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblThongkeMouseClicked
+        // TODO add your handling code here:
+                setColorJpanel(pnThongKe);
+        resetColorJpane(pnBanHang);
+        resetColorJpane(pnNhanVien);
+        resetColorJpane(pnHoaDon);
+        resetColorJpane(pnKhachHang);
+        resetColorJpane(pnTrangChu);
+        resetColorJpane(pnKhuyenMai);
+        resetColorJpane(pnSanPham);
+
+        setColor(lblThongke);
+        resetColor(lblHoaDon);
+        resetColor(lblBanHang);
+        resetColor(lblKhachHang);
+        resetColor(lblTrangChu);
+        resetColor(lblKhuyenMai);
+        resetColor(lblNhanVien);
+        resetColor(lblSanPham);
+        showPanel(new ThongKeJpanel());
+    }//GEN-LAST:event_lblThongkeMouseClicked
+
+    private void lblKhuyenMaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblKhuyenMaiMouseClicked
+        // TODO add your handling code here:
+                setColorJpanel(pnKhuyenMai);
+        resetColorJpane(pnBanHang);
+        resetColorJpane(pnNhanVien);
+        resetColorJpane(pnHoaDon);
+        resetColorJpane(pnKhachHang);
+        resetColorJpane(pnTrangChu);
+        resetColorJpane(pnThongKe);
+        resetColorJpane(pnSanPham);
+
+        setColor(lblKhuyenMai);
+        resetColor(lblHoaDon);
+        resetColor(lblBanHang);
+        resetColor(lblKhachHang);
+        resetColor(lblTrangChu);
+        resetColor(lblThongke);
+        resetColor(lblNhanVien);
+        resetColor(lblSanPham);
+        showPanel(new KhuyenMaiJPanel());
+    }//GEN-LAST:event_lblKhuyenMaiMouseClicked
+
+    private void lblNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNhanVienMouseClicked
+        // TODO add your handling code here:
+                setColorJpanel(pnNhanVien);
+        resetColorJpane(pnBanHang);
+        resetColorJpane(pnKhuyenMai);
+        resetColorJpane(pnHoaDon);
+        resetColorJpane(pnKhachHang);
+        resetColorJpane(pnTrangChu);
+        resetColorJpane(pnThongKe);
+        resetColorJpane(pnSanPham);
+
+        setColor(lblNhanVien);
+        resetColor(lblHoaDon);
+        resetColor(lblBanHang);
+        resetColor(lblKhachHang);
+        resetColor(lblTrangChu);
+        resetColor(lblThongke);
+        resetColor(lblKhuyenMai);
+        resetColor(lblSanPham);
+        showPanel(new NhanVienJpanel());
+    }//GEN-LAST:event_lblNhanVienMouseClicked
 
     /**
      * @param args the command line arguments
