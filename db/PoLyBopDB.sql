@@ -235,6 +235,7 @@ select * from LoaiVi
 select * from LoaiVi where IDLoaiVi =?
 select * from LoaiVi where TenLoaiVi =?
 -- Thêm d? li?u 
+select * fr
 -- Lo?i Ví
 INSERT INTO LoaiVi (Ma_LoaiVi, TenLoaiVi, TrangThai) VALUES 
 ('LV001', N'Ví Th??ng', 1),
