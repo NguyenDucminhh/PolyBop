@@ -19,7 +19,7 @@ public class ChiTietViDao implements InterfaceChiTietVi {
 
     String selectAll = "select * from ChiTietVi";
     String select_Trangthai2 = "SELECT * FROM Vi WHERE Trangthai = 0";
-    String selectID1 = "select * from ChiTietVi where IDVi= ?";
+    String selectID1 = "select GiaBan from ChiTietVi where ID_Vi= ?";
     String selectID = "select * from ChiTietVi where Ma_ChiTietVi= ?";
     String insert = "INSERT INTO ChiTietVi(Ma_ChiTietVi,ID_Vi,ID_ChatLieu,KhoaVi, ID_MauSac, ID_XuatXu,ID_LoaiVi,SoNganDungThe,GiaNhap,GiaBan,SoLuong,NgayNhap,TrangThai) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
     String update = "Update ChiTietVi set ID_Vi=?, ID_ChatLieu =?, KhoaVi=?, ID_MauSac =?,ID_XuatXu =?,ID_LoaiVi =?,SoNganDungThe= ?,GiaNhap =?,GiaBan=? ,SoLuong =?,NgayNhap=?, TrangThai=? where Ma_ChiTietVi =?";
@@ -56,13 +56,13 @@ public class ChiTietViDao implements InterfaceChiTietVi {
             ResultSet rs = JDBCHeper.query(sql, args);
             while (rs.next()) {
                 ChiTietVi ctv = new ChiTietVi();
-                ctv.setMa_ChiTietVi(rs.getString("Ma_ChiTietVi"));
                 ctv.setID_Vi(rs.getInt("ID_Vi"));
                 ctv.setID_ChatLieu(rs.getInt("ID_ChatLieu"));
                 ctv.setKhoaVi(rs.getString("KhoaVi"));
                 ctv.setID_MauSac(rs.getInt("ID_MauSac"));
                 ctv.setID_XuatXu(rs.getInt("ID_XuatXu"));
                 ctv.setID_LoaiVi(rs.getInt("ID_LoaiVi"));
+                ctv.setMa_ChiTietVi(rs.getString("Ma_ChiTietVi"));
                 ctv.setSoNganDungThe(rs.getString("SoNganDungThe"));
                 ctv.setGiaNhap(rs.getDouble("GiaNhap"));
                 ctv.setGiaBan(rs.getDouble("GiaBan"));

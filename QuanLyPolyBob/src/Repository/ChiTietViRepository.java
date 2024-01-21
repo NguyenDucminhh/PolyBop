@@ -18,6 +18,7 @@ import quanlypolybob.Hepper.JDBCHeper;
  */
 public class ChiTietViRepository implements ChiTietViRepositoryImp{
 
+    String selectbyID = "select * from ChiTietVi where IDVi= ?";
     @Override
     public List<ChiTietVi> getAllVI() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -73,6 +74,48 @@ public class ChiTietViRepository implements ChiTietViRepositoryImp{
 
     @Override
     public int getTotalCTV() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    
+    public ChiTietVi selectID(Integer id) {
+        List<ChiTietVi> list = selectBySQL(selectbyID, id);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
+    }
+
+    @Override
+    public List<ChiTietVi> selectBySQL(String sql, Object... args) {
+         List<ChiTietVi> list_vi = new ArrayList<>();
+        try {
+            ResultSet rs = JDBCHeper.query(sql, args);
+            while (rs.next()) {
+                ChiTietVi ctv = new ChiTietVi();
+                ctv.setID_Vi(rs.getInt("ID_Vi"));
+                ctv.setID_ChatLieu(rs.getInt("ID_ChatLieu"));
+                ctv.setKhoaVi(rs.getString("KhoaVi"));
+                ctv.setID_MauSac(rs.getInt("ID_MauSac"));
+                ctv.setID_XuatXu(rs.getInt("ID_XuatXu"));
+                ctv.setID_LoaiVi(rs.getInt("ID_LoaiVi"));
+                ctv.setMa_ChiTietVi(rs.getString("Ma_ChiTietVi"));
+                ctv.setSoNganDungThe(rs.getString("SoNganDungThe"));
+                ctv.setGiaNhap(rs.getDouble("GiaNhap"));
+                ctv.setGiaBan(rs.getDouble("GiaBan"));
+                ctv.setSoLuong(rs.getInt("SoLuong"));
+                ctv.setNgayNhap(rs.getDate("NgayNhap"));
+                ctv.setTrangThai(rs.getBoolean("TrangThai"));
+                list_vi.add(ctv);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list_vi;
+    }
+
+    @Override
+    public ChiTietVi SelectGia(int maVi) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

@@ -21,7 +21,8 @@ public interface ChiTietViRepositoryImp {
     void delete(String sdt);
     void updateCTV(ChiTietVi nv);
     List<ChiTietVi> searchVi(String key);
-
     List<ChiTietVi> getViByPage(int page, int recordsPerPage);
     int getTotalCTV();
+    abstract public ChiTietVi SelectGia(int maVi);
+    abstract public List<ChiTietVi> selectBySQL(String sql, Object...args);
 }
