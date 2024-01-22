@@ -15,6 +15,7 @@ public class HoaDon {
     private int IdKhachHang;
     private int IdNhanVien;
     private int IdKhuyenMai;
+    private String MaHoaDon;
    private  double TienSauGiamGia;
    private double ThanhTien;
    private boolean PhuongThucThanhToan;
@@ -23,16 +24,25 @@ public class HoaDon {
    
    public HoaDon(){}
 
-    public HoaDon(int IdHoaDon, int IdKhachHang, int IdNhanVien, int IdKhuyenMai, double TienSauGiamGia, double ThanhTien, boolean PhuongThucThanhToan, Date NgayThanhToan, boolean TrangThai) {
+    public HoaDon(int IdHoaDon, int IdKhachHang, int IdNhanVien, int IdKhuyenMai,String maHoaDon ,double TienSauGiamGia, double ThanhTien, boolean PhuongThucThanhToan, Date NgayThanhToan, boolean TrangThai) {
         this.IdHoaDon = IdHoaDon;
         this.IdKhachHang = IdKhachHang;
         this.IdNhanVien = IdNhanVien;
         this.IdKhuyenMai = IdKhuyenMai;
+        this.MaHoaDon = maHoaDon;
         this.TienSauGiamGia = TienSauGiamGia;
         this.ThanhTien = ThanhTien;
         this.PhuongThucThanhToan = PhuongThucThanhToan;
         this.NgayThanhToan = NgayThanhToan;
         this.TrangThai = TrangThai;
+    }
+
+    public String getMaHoaDon() {
+        return MaHoaDon;
+    }
+
+    public void setMaHoaDon(String MaHoaDon) {
+        this.MaHoaDon = MaHoaDon;
     }
    
     public int getIdHoaDon() {
@@ -105,6 +115,14 @@ public class HoaDon {
 
     public void setTrangThai(boolean TrangThai) {
         this.TrangThai = TrangThai;
+    }
+
+    public void isPhuongThucThanhToan(boolean aBoolean) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void isTrangThai(boolean aBoolean) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
    
 }

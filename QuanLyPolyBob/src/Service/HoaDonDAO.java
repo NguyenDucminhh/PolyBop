@@ -4,6 +4,8 @@
  */
 package Service;
 
+import quanlypolybob.Hepper.JDBCHeper;
+import Model.HoaDon;
 import Model.HoaDonCT;
 import Model.HoaDonCT1;
 import java.sql.DriverManager;
@@ -15,7 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HoaDonDAO implements InterfaceHoaDon {
-
+    String INSERT_SQL = "INSERT dbo.HoaDon VALUES (?,?,?,?,?,?,?,?,?,?)";
+    String Select_all_Hd = "Select * from HoaDon";
     @Override
     public List<HoaDonCT> getAll() {
         String sql = "SELECT [IDHoaDon]\n"
@@ -100,6 +103,43 @@ public class HoaDonDAO implements InterfaceHoaDon {
         }
 
         return listSeach;
+    }
+
+    @Override
+    public void insert(HoaDon Entity) {
+          quanlypolybob.Hepper.JDBCHeper.update(INSERT_SQL, Entity.getIdHoaDon(), Entity.getIdKhachHang(), Entity.getIdNhanVien(),
+                Entity.getIdKhuyenMai(), Entity.getMaHoaDon(), Entity.getTienSauGiamGia(), Entity.getThanhTien(), Entity.isPhuongThucThanhToan(),
+                Entity.getNgayThanhToan(), Entity.isTrangThai());
+    }
+
+    @Override
+    public List<HoaDon> SelectAll() {
+    return this.selectBySql(Select_all_Hd);
+    }
+
+    private List<HoaDon> selectBySql(String sql, Object... args) {
+         List<HoaDon> listVi = new ArrayList<>();
+        try {
+            ResultSet rs = JDBCHeper.query(sql, args);
+            while (rs.next()) {
+                HoaDon Entity = new HoaDon();
+                Entity.setIdHoaDon(rs.getInt("IDHoaDon"));
+                Entity.setIdKhachHang(rs.getInt("ID_KhachHang"));
+                Entity.setIdNhanVien(rs.getInt("ID_NhanVien"));
+                Entity.setIdKhuyenMai(rs.getInt("ID_KhuyenMai"));
+                Entity.setMaHoaDon(rs.getString("Ma_HoaDon"));
+                Entity.setTienSauGiamGia(rs.getDouble("TienSauGiamGia"));    
+                Entity.setThanhTien(rs.getDouble("ThanhTien"));    
+                Entity.isPhuongThucThanhToan(rs.getBoolean("PhuongThucThanhToan"));  
+                Entity.setNgayThanhToan(rs.getDate("NgayThanhToan"));  
+                Entity.isTrangThai(rs.getBoolean("TrangThai")); 
+                listVi.add(Entity);
+            }
+            rs.getStatement().getConnection().close();
+            return listVi;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

@@ -14,28 +14,29 @@ import Model.ThuongHieu;
 import Model.ChiTietVi;
 import Model.HoaDonCT;
 import Repository.ChiTietViRepository;
+import Repository.NhanVienRepository;
 import Model.Vi;
+import Repository.ViRepository;
 import java.awt.Label;
+import java.text.NumberFormat;
 import quanlypolybob.Dao.ViDao;
 import quanlypolybob.Dao.ChiTietViDao;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import quanlypolybob.Dao.ThuongHieuDao;
+import quanlypolybob.Hepper.Xdate;
 
 /**
  *
  * @author KIPOSTEST
  */
 public class BanHangJPanel extends javax.swing.JPanel {
-     ViDao dao_vi = new ViDao();
+     ViRepository dao_vi = new ViRepository();
     LoaiVIDao DaoLoaiVi = new LoaiVIDao();
+    NhanVienRepository nvRepo = new NhanVienRepository();
     Locale vn = new Locale("vi", "VN");
     ThuongHieuDao dao_th = new ThuongHieuDao();
     LoaiVIDao dao_loaiVi = new LoaiVIDao();
@@ -53,7 +54,6 @@ public class BanHangJPanel extends javax.swing.JPanel {
     public BanHangJPanel() {
        
           initComponents();
-         // Thêm scrollPane vào giao diện\
           filltableSanPham();
           fillToCbbLoaiVi();
           getDateNow();
@@ -66,6 +66,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
     }
     private int currentPage = 1;
     private int recordsPerPage = 10;
+
     public void filltableSanPham() {
         
          List<Vi> listSP;
@@ -74,13 +75,15 @@ public class BanHangJPanel extends javax.swing.JPanel {
             mol = (DefaultTableModel) tblSanPham.getModel();
             mol.setRowCount(0);
             for (Vi vi : listSP) {
+                
                 mol.addRow(new Object[]{
                         vi.getMa_Vi(), 
                         vi.getTenVi(), 
                         dao_th.selectNameByID(vi.getID_ThuongHieu()),
                         vi.getKieuDang(),
                         vi.isTrangThai()? "Còn" : "Hết Hàng",
-                       ctvi_dao.selectAll()
+                        vi.getGiaBan()
+                       
                 });
             }
                   int totalPages = (int) Math.ceil((double) dao_vi.getTotal()/ recordsPerPage);
@@ -447,14 +450,41 @@ public class BanHangJPanel extends javax.swing.JPanel {
     private void txtTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimKiemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTimKiemActionPerformed
-
+    public void taoDon(){
+        HoaDon hd;
+        DAOHOADON.insert(setInforHoaDon());
+    }
+    private HoaDon setInforHoaDon() {
+        HoaDon hd = new HoaDon();
+            hd.setIdNhanVien(WIDTH);//Chưa biết cách lấy ra id nhân viên
+            hd.setNgayThanhToan(Xdate.toDate(lblNgay.getText(), "yyyy-MM-dd"));
+            hd.setTrangThai(true);
+            hd.setThanhTien(0);
+       
+        return hd;
+    }
+   
+    public void filltoHoadonCT() {
+        DefaultTableModel model = (DefaultTableModel) tblHoadon.getModel();
+        model.setRowCount(0);
+        List<HoaDon> list = DAOHOADON.SelectAll();
+        for (HoaDon hd : list) {
+            model.addRow(new Object[]{
+                hd.getIdHoaDon(),
+                hd.getNgayThanhToan(),
+                hd.isTrangThai() ? "Thanh toán" : "Chưa thanh toán",
+                nvRepo.getById(hd.getIdNhanVien()+"").getHoTen(),
+                NumberFormat.getInstance().format(hd.getThanhTien()),
+            
+            });
+            
+            System.out.println("thành tiền: "+hd.getThanhTien());
+        }
+    }
     private void btnTaoDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoDonActionPerformed
-
-//                List<HoaDonCT> list = DAOHOADON.getAll();
-//                filltoDesk();
-//                lblMaHoaDon.setText(list.get(list.size() - 1).getIdHoaDon() + "");
-//                resettrue();
-//                filltoHoadonCTT();
+        taoDon();
+        filltoHoadonCT();
+        
     }//GEN-LAST:event_btnTaoDonActionPerformed
     public void filltoDesk() {
         

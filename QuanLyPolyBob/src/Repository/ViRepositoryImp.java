@@ -19,11 +19,12 @@ public interface ViRepositoryImp {
 
     abstract public void delete(String id);
 
-    abstract public NhanVien selectById(String id);
+    abstract public Vi selectGiaById(Double id);
 
-    abstract public NhanVien selectByAccount(String account);
+    abstract public Vi selectByAccount(String account);
 
     abstract public List<Vi> selectAll();
-
+int getTotal();
     abstract public List<Vi> selectBySql(String sql, Object... args);
+    abstract public List<Vi> getViByPage(int page,int recordInPage);
 }

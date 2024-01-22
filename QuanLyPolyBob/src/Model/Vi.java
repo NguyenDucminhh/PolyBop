@@ -19,12 +19,13 @@ public class Vi {
     private String TenVi;
     private String Url_Anh;
     private boolean TrangThai;
+    private double giaBan;
 
     public Vi() {
     }
 
 
-    public Vi(int IDVi, int ID_ThuongHieu, String Ma_Vi, String KieuDang, String TenVi, String Url_Anh, boolean TrangThai) {
+    public Vi(int IDVi, int ID_ThuongHieu, String Ma_Vi, String KieuDang, String TenVi, String Url_Anh, boolean TrangThai,double giaBan) {
         this.IDVi = IDVi;
         this.ID_ThuongHieu = ID_ThuongHieu;
         this.Ma_Vi = Ma_Vi;
@@ -32,6 +33,15 @@ public class Vi {
         this.TenVi = TenVi;
         this.Url_Anh = Url_Anh;
         this.TrangThai = TrangThai;
+        this.giaBan = giaBan;
+    }
+
+    public double getGiaBan() {
+        return giaBan;
+    }
+
+    public void setGiaBan(double giaBan) {
+        this.giaBan = giaBan;
     }
 
     public int getIDVi() {

@@ -17,7 +17,8 @@ import quanlypolybob.Hepper.JDBCHeper;
  * @author Admin
  */
 public class ViRepository implements ViRepositoryImp{
-String SELECT_ALL_SQL = "select * from Vi ";
+    String SELECT_GIA_BY_ID = "SELECT GIABAN FROM VI WHERE ID = ?";
+    String SELECT_ALL_SQL = "select * from Vi ";
     @Override
     public void insert(Vi Entity) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -33,13 +34,9 @@ String SELECT_ALL_SQL = "select * from Vi ";
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
-    public NhanVien selectById(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
     @Override
-    public NhanVien selectByAccount(String account) {
+    public Vi selectByAccount(String account) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -60,7 +57,8 @@ String SELECT_ALL_SQL = "select * from Vi ";
                 Entity.setMa_Vi(rs.getString("Ma_Vi"));
                 Entity.setTenVi(rs.getString("TenVi"));
                 Entity.setUrl_Anh(rs.getString("Url_Anh"));
-                Entity.setTrangThai(rs.getBoolean("TrangThai"));     
+                Entity.setTrangThai(rs.getBoolean("TrangThai"));    
+                Entity.setGiaBan(rs.getDouble("GiaBan"));    
                 listVi.add(Entity);
             }
             rs.getStatement().getConnection().close();
@@ -68,6 +66,52 @@ String SELECT_ALL_SQL = "select * from Vi ";
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public Vi selectGiaById(Double id) {
+            return (Vi) this.selectBySql(SELECT_GIA_BY_ID);
+    }
+
+    @Override
+    public List<Vi> getViByPage(int page, int recordInPage) {
+        List<Vi> list = new ArrayList<>();
+        String sql = "SELECT IDVi,ID_ThuongHieu, Ma_Vi, KieuDang, TenVi, TrangThai " +
+                 "FROM Vi WHERE TRANGTHAI = 1 " +
+                 "ORDER BY IDVi " +
+                 "OFFSET ? ROWS " +
+                 "FETCH NEXT ? ROWS ONLY";
+
+        int startRecord = (page - 1) * recordInPage;
+
+        try {
+            ResultSet rs = JDBCHeper.Query(sql, startRecord, recordInPage);
+            while(rs.next()){
+                Vi sp = new Vi();
+                list.add(sp);
+            }
+            return list;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public int getTotal() {
+          String sql = "SELECT COUNT(*) FROM Vi WHERE TRANGTHAI = 1";
+      
+        ResultSet rs = JDBCHeper.Query(sql);
+        try {
+            while(rs.next()){
+               return rs.getInt(1);
+            }
+      
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+  
+        }
+         return 0;
     }
 
    
