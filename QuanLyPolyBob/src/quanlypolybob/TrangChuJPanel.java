@@ -28,10 +28,10 @@ public class TrangChuJPanel extends javax.swing.JPanel {
 
         jLabel2 = new javax.swing.JLabel();
 
-        setLayout(new java.awt.BorderLayout());
+        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/thiet-ke-cafe-up-coffee+(02).jpg"))); // NOI18N
-        add(jLabel2, java.awt.BorderLayout.CENTER);
+        add(jLabel2);
     }// </editor-fold>//GEN-END:initComponents
 
 

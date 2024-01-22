@@ -156,7 +156,6 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
             }
         });
 
-        jPanel4.setBackground(new java.awt.Color(241, 241, 241));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Tìm kiếm(Tên hoặc Mã)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
         txtTimKiem.addActionListener(new java.awt.event.ActionListener() {

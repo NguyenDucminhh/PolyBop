@@ -858,29 +858,32 @@ public class ChiTietViJDiaLog extends javax.swing.JDialog {
             return true;
         } else {
             Pattern p = Pattern.compile("^[0-9]{1,15}$");
-            if (!p.matcher(txtGiaNhap.getText()).matches()) {
-                JOptionPane.showMessageDialog(this, "Nhập sai định dạng giá nhập sản phẩm");
-                txtGiaNhap.requestFocus();
-                return true;
-            } else if (Integer.parseInt(txtGiaNhap.getText()) < 0) {
+//            if (!p.matcher(txtGiaNhap.getText()).matches()) {
+//                JOptionPane.showMessageDialog(this, "Nhập sai định dạng giá nhập sản phẩm");
+//                txtGiaNhap.requestFocus();
+//                return true;
+//            } else 
+                if (Double.parseDouble(txtGiaNhap.getText()) < 0) {
                 JOptionPane.showMessageDialog(this, "Giá nhập vào không được âm");
                 txtGiaNhap.requestFocus();
                 return true;
             }
-            if (!p.matcher(txtGiaban.getText()).matches()) {
-                JOptionPane.showMessageDialog(this, "Nhập sai định dạng giá bán sản phẩm");
-                txtGiaban.requestFocus();
-                return true;
-            } else if (Integer.parseInt(txtGiaban.getText()) < 0) {
+//            if (!p.matcher(txtGiaban.getText()).matches()) {
+//                JOptionPane.showMessageDialog(this, "Nhập sai định dạng giá bán sản phẩm");
+//                txtGiaban.requestFocus();
+//                return true;
+//            } else 
+                if (Double.parseDouble(txtGiaban.getText()) < 0) {
                 JOptionPane.showMessageDialog(this, "Giá nhập vào không được âm");
                 txtGiaban.requestFocus();
                 return true;
             }
-            if (!p.matcher(txtSoluong.getText()).matches()) {
-                JOptionPane.showMessageDialog(this, "Nhập sai định dạng số lượng");
-                txtSoluong.requestFocus();
-                return true;
-            } else if (Integer.parseInt(txtSoluong.getText()) < 0) {
+//            if (!p.matcher(txtSoluong.getText()).matches()) {
+//                JOptionPane.showMessageDialog(this, "Nhập sai định dạng số lượng");
+//                txtSoluong.requestFocus();
+//                return true;
+//            } else 
+                if (Double.parseDouble(txtSoluong.getText()) < 0) {
                 JOptionPane.showMessageDialog(this, "Số lượng không được âm");
                 txtSoluong.requestFocus();
                 return true;
