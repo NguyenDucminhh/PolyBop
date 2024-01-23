@@ -19,7 +19,7 @@ public interface InterfaceChiTietVi {
     abstract public void delete(Integer id);
     
     abstract public List<ChiTietVi> selectAll();
-    
+
     abstract public ChiTietVi selectID(Integer id);
     abstract public ChiTietVi selectID1(String id);
     

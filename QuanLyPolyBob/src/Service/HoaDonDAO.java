@@ -18,7 +18,7 @@ import java.util.List;
 
 public class HoaDonDAO implements InterfaceHoaDon {
     String INSERT_SQL = "INSERT dbo.HoaDon VALUES (?,?,?,?,?,?,?,?,?,?)";
-    String Select_all_Hd = "Select * from HoaDon";
+    String Select_all_Hd = "Select *from HoaDon";
     @Override
     public List<HoaDonCT> getAll() {
         String sql = "SELECT [IDHoaDon]\n"
@@ -116,8 +116,8 @@ public class HoaDonDAO implements InterfaceHoaDon {
     public List<HoaDon> SelectAll() {
     return this.selectBySql(Select_all_Hd);
     }
-
-    private List<HoaDon> selectBySql(String sql, Object... args) {
+    @Override
+    public List<HoaDon> selectBySql(String sql, Object... args) {
          List<HoaDon> listVi = new ArrayList<>();
         try {
             ResultSet rs = JDBCHeper.query(sql, args);
@@ -130,9 +130,9 @@ public class HoaDonDAO implements InterfaceHoaDon {
                 Entity.setMaHoaDon(rs.getString("Ma_HoaDon"));
                 Entity.setTienSauGiamGia(rs.getDouble("TienSauGiamGia"));    
                 Entity.setThanhTien(rs.getDouble("ThanhTien"));    
-                Entity.isPhuongThucThanhToan(rs.getBoolean("PhuongThucThanhToan"));  
+                Entity.setPhuongThucThanhToan(rs.getBoolean("PhuongThucThanhToan"));  
                 Entity.setNgayThanhToan(rs.getDate("NgayThanhToan"));  
-                Entity.isTrangThai(rs.getBoolean("TrangThai")); 
+                Entity.setTrangThai(rs.getBoolean("TrangThai")); 
                 listVi.add(Entity);
             }
             rs.getStatement().getConnection().close();
@@ -141,5 +141,45 @@ public class HoaDonDAO implements InterfaceHoaDon {
             throw new RuntimeException(e);
         }
     }
-
+    
+    public Boolean saveHoaDon(HoaDon hoaDon){
+        int checkInsert = 0;
+        String sql  = ("INSERT dbo.HoaDon (NgayThanhToan,TrangThai) VALUES (?,?)");
+        try(Connection conn = DBconnect.getConnection();
+                PreparedStatement ps = conn.prepareStatement(sql)
+            )
+        {
+            ps.setObject(1,hoaDon.getNgayThanhToan());
+            ps.setObject(2,hoaDon.isTrangThai());
+           
+            checkInsert = ps.executeUpdate();
+            return checkInsert>0;
+            
+        }catch(Exception ex){
+           ex.getMessage();
+        }
+        return null;
+    }
+    @Override
+    public  ArrayList<HoaDon> getListHoaDon(){
+        ArrayList<HoaDon> list = new ArrayList<>();
+        String sql = "Select IDHoaDon,NgayThanhToan,TrangThai from HoaDon";
+         try(Connection conn = DBconnect.getConnection();
+                PreparedStatement ps = conn.prepareStatement(sql)
+            )
+        {
+           ResultSet rs = ps.executeQuery();
+           while(rs.next()){
+               HoaDon hoaDon = new HoaDon();
+               hoaDon.setIdHoaDon(rs.getInt(1));
+               hoaDon.setNgayThanhToan(rs.getDate(2));
+               hoaDon.setTrangThai(rs.getBoolean(3));
+               list.add(hoaDon);
+           }
+            
+        }catch(Exception ex){
+           ex.getMessage();
+        }
+     return list;   
+    }
 }

@@ -16,6 +16,7 @@ import quanlypolybob.Hepper.JDBCHeper;
  * @author ADMIN
  */
 public class NhanVienRepository implements NhanVienRepositoryImpl{
+
     String INSERT_SQL = "INSERT dbo.NhanVien VALUES(?,?,?,?,?,?,?,?,?)";
     String UPDATE_SQL = "UPDATE NhanVien set HOTEN = ?,SDT = ?,Ngaysinh = ?, Email = ?, Diachi = ?, MATKHAU = ?, CHUCVU = ?, GIOITINH = ?, TRANGTHAI=? where IDNHANVIEN = ?";
     String DELETE_SQL = "UPDATE NHANVIEN set TRANGTHAI = 0 WHERE IDNHANVIEN = ?";
@@ -190,6 +191,8 @@ public class NhanVienRepository implements NhanVienRepositoryImpl{
         }
          return 0;
     }
+
+  
 
     
   

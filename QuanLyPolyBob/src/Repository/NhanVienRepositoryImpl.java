@@ -14,6 +14,7 @@ import java.util.List;
 public interface NhanVienRepositoryImpl {
     List<NhanVien> getAllNhanVien();
     List<NhanVien> getAllNhanVienKhongHoatDong();
+    
     NhanVien getById(String id);
     NhanVien getByIdKhongHoatDong(String id);
     List<NhanVien> findNhanVien(String keyWord);

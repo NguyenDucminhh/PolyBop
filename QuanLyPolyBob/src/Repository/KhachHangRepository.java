@@ -16,6 +16,7 @@ import quanlypolybob.Hepper.JDBCHeper;
  * @author ADMIN
  */
 public class KhachHangRepository implements KhachHangRepositoryImpl {
+
     String INSERT_SQL = "INSERT KHACHHANG VALUES(?,?,?,?,?,?)";
     String UPDATE_SQL = "UPDATE KhachHang set TenKhachHang = ?,SDT = ?,Ngaysinh = ?, Email = ?, Diachi = ?, TRANGTHAI=? where IDKHANGHANG = ?";
     String DELETE_SQL = "UPDATE KhachHang set TRANGTHAI = 0 WHERE IDKhangHang = ?";
@@ -140,5 +141,7 @@ public class KhachHangRepository implements KhachHangRepositoryImpl {
         }
          return 0;
     }
+
+  
     
 }

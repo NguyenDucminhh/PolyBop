@@ -17,6 +17,7 @@ public interface KhachHangRepositoryImpl {
     KhachHang getById(String SĐT);
     List<KhachHang> FindKhachHang(String keyWord);
     abstract public void insert(KhachHang Entity);
+  
     void delKH(String sdt);
     void updateKH(KhachHang kh);  
     List<KhachHang> searchKH(String key);

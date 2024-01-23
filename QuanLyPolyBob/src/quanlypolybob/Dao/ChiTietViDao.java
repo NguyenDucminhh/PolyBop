@@ -18,6 +18,7 @@ import quanlypolybob.Hepper.JDBCHeper;
 public class ChiTietViDao implements InterfaceChiTietVi {
 
     String selectAll = "select * from ChiTietVi";
+    String selectSoLuongByID = "select * from ChiTietVi where ID_Vi= ?";
     String select_Trangthai2 = "SELECT * FROM Vi WHERE Trangthai = 0";
     String selectID1 = "select GiaBan from ChiTietVi where ID_Vi= ?";
     String selectID = "select * from ChiTietVi where Ma_ChiTietVi= ?";
@@ -129,4 +130,9 @@ public class ChiTietViDao implements InterfaceChiTietVi {
     public String selectNameByid(int id) {
         return selectBySQL(selectID1, id).get(0).getMa_ChiTietVi();
     }
+
+   public int selectSLByID(int id) {
+        return selectBySQL(selectSoLuongByID, id).get(0).getSoLuong();
+    }
 }
+

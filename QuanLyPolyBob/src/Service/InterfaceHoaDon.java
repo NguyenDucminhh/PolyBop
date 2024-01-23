@@ -6,6 +6,7 @@ package Service;
 import Model.HoaDon;
 import Model.HoaDonCT; 
 import Model.HoaDonCT1; 
+import java.util.ArrayList;
 
 import java.util.List;
 
@@ -19,6 +20,8 @@ public interface InterfaceHoaDon {
      List<HoaDon> SelectAll(); 
     
     // Tìm kiếm hóa đơn 
+    public  ArrayList<HoaDon> getListHoaDon();
     List<HoaDonCT> timKiem(String seach); 
      abstract public void insert(HoaDon Entity);
+     abstract public List<HoaDon> selectBySql(String sql, Object... args);
 }
