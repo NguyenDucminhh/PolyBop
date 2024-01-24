@@ -559,7 +559,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
         String strDate = sdf.format(hd.getNgayThanhToan());
         txtMaHoaDon.setText(hd.getMaHoaDon());
         txtNgayTao.setText(strDate);
-        
+        //a
     }//GEN-LAST:event_tblHoaDonMouseClicked
 
     private void txtMaHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaHoaDonActionPerformed
