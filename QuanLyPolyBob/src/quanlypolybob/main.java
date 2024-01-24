@@ -29,7 +29,7 @@ public class main extends javax.swing.JFrame {
         setColor(lblTrangChu);
         setColorJpanel(pnTrangChu);
 //        showPanel(new TrangChuJPanel());
-
+//mm
     }
 
     /**
