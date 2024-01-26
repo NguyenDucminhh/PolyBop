@@ -5,12 +5,14 @@
 package View;
 
 import Service.TaiKhoanDao;
-import Model.TaiKhoan; 
+import Model.TaiKhoan;
+import com.itextpdf.text.pdf.BidiOrder;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.border.MatteBorder;
-import quanlypolybob.main; 
+import quanlypolybob.BanHangJPanel;
+import quanlypolybob.main;
 
 /**
  *
@@ -18,8 +20,8 @@ import quanlypolybob.main;
  */
 public class LoginView extends javax.swing.JFrame {
 
-    TaiKhoanDao service = new TaiKhoanDao(); 
-    
+    TaiKhoanDao service = new TaiKhoanDao();
+
     /**
      * Creates new form LoginView
      */
@@ -27,7 +29,10 @@ public class LoginView extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        txt_Email.setText("dh2k4k@gmail.com");
+        txt_Pass.setText("1234567");
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -356,42 +361,40 @@ public class LoginView extends javax.swing.JFrame {
 
     private void checkAccount() {
         if (CheckData() == true) {
-            String email = txt_Email.getText().trim(); 
-            String matKhau = txt_Pass.getText().trim(); 
-            int check = 0 ; 
-            for (TaiKhoan x : service.getTaiKhoanNV() ) {
+            String email = txt_Email.getText().trim();
+            String matKhau = txt_Pass.getText().trim();
+            int check = 0;
+            for (TaiKhoan x : service.getTaiKhoanNV()) {
                 // Đăng nhập thành công 
                 if (email.equalsIgnoreCase(x.getEmail()) && matKhau.equalsIgnoreCase(x.getMatKhau())) {
                     // Check trạng thái tài khoản 
                     for (TaiKhoan tt : service.getChucVu(email)) {
                         // Tài khoản không hoạt động 
-                        if(tt.getTrangThaiNV() == 0 ){
-                            JOptionPane.showMessageDialog(this,"Tài khoản không còn hoạt dộng");
-                        }
-                        // Tài khoản còn hoạt động
+                        if (tt.getTrangThaiNV() == 0) {
+                            JOptionPane.showMessageDialog(this, "Tài khoản không còn hoạt dộng");
+                        } // Tài khoản còn hoạt động
                         else {
                             // check chức vụ 
                             if (tt.getChucVuNV() == 1) {
-                                JOptionPane.showMessageDialog(this,"Đăng nhập thành công dưới quyền quản lý");
-                                main m = new main(); 
+                                JOptionPane.showMessageDialog(this, "Đăng nhập thành công dưới quyền quản lý");
+                                main m = new main(txt_Email.getText(), service.getNameNV(txt_Email.getText()), 1);
+                                m.setVisible(true);
+                                this.dispose();
+                            } else {
+                                JOptionPane.showMessageDialog(this, "Đăng nhập thành công dưới quyền nhân viên");
+                                main m = new main(txt_Email.getText(), service.getNameNV(txt_Email.getText()), 0);
                                 m.setVisible(true);
                                 this.dispose();
                             }
-                            else {
-                                JOptionPane.showMessageDialog(this,"Đăng nhập thành công dưới quyền nhân viên");
-                                                                main m = new main(); 
-                                m.setVisible(true);
-                                this.dispose();
-                            }
-                            
+
                         }
                     }
-                    check = 1 ; 
+                    check = 1;
                 }
             }
             // đăng nhập thất bại 
             if (check == 0) {
-                JOptionPane.showMessageDialog(this,"Tài khoản hoặc mật khẩu chưa chính xác !");
+                JOptionPane.showMessageDialog(this, "Tài khoản hoặc mật khẩu chưa chính xác !");
             }
         }
     }

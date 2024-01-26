@@ -15,4 +15,5 @@ public interface InterfaceTaiKhoan {
     List<TaiKhoan> getTaiKhoanNV(); 
     List<TaiKhoan> getChucVu(String email); 
     String updateTaiKhoan(String email,String mk); 
+    String getNameNV(String email) ; 
 }

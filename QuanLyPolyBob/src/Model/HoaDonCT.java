@@ -101,6 +101,14 @@ public class HoaDonCT {
     public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
+    public String getTT(){
+        if (getTrangThai() == 1) {
+            return "Đã Thanh Toán"; 
+        }
+        else {
+            return "Chưa Thanh Toán"; 
+        }
+    }
 
     public HoaDonCT(String maHD, String tenKH, String tenNV, int IDKM, double tienSauGiamGia, double thanhTien, int phuongThucThanhToan, String ngayTT, int trangThai) {
         this.maHD = maHD;

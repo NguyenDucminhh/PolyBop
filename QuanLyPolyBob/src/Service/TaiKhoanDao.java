@@ -61,19 +61,36 @@ public class TaiKhoanDao implements InterfaceTaiKhoan {
     }
 
     @Override
-    public String updateTaiKhoan(String email,String mk) {
+    public String updateTaiKhoan(String email, String mk) {
         String sql = "UPDATE NhanVien \n"
                 + "SET MatKhau = ? \n"
-                + "WHERE Email = ? "; 
-        try(Connection con = DBconnect.getConnection() ; PreparedStatement ps = con.prepareCall(sql)) {
-            ps.setString(1,mk);
-            ps.setString(2,email);
-            ps.executeUpdate(); 
-            
+                + "WHERE Email = ? ";
+        try (Connection con = DBconnect.getConnection(); PreparedStatement ps = con.prepareCall(sql)) {
+            ps.setString(1, mk);
+            ps.setString(2, email);
+            ps.executeUpdate();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "Đổi mật khẩu thành công " ; 
+        return "Đổi mật khẩu thành công ";
+    }
+
+    @Override
+    public String getNameNV(String email) {
+        String sql = "SELECT [HoTen]\n"
+                + "  FROM [PoLyBop].[dbo].[NhanVien] \n"
+                + "  WHERE Email = '"+email+"'";
+        String nameNV = ""; 
+        try(Connection con = DBconnect.getConnection() ; PreparedStatement ps= con.prepareCall(sql)) {
+            ResultSet rs = ps.executeQuery(); 
+            while (rs.next()) {                
+                nameNV = rs.getString(1); 
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return nameNV; 
     }
 
 }
