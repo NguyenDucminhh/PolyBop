@@ -336,7 +336,7 @@ public class HoaDonDAO implements InterfaceHoaDon {
 
     @Override
     public void setSLHDCT(String maHDCT, int soLuong) {
-        String sql = "update HoaDonChiTiet set SoLuong = "+soLuong+" where Ma_HoaDonChiTiet = '"+maHDCT+"' ";
+        String sql = "update HoaDonChiTiet set SoLuong = " + soLuong + " where Ma_HoaDonChiTiet = '" + maHDCT + "' ";
         try (Connection con = DBconnect.getConnection(); PreparedStatement ps = con.prepareCall(sql)) {
             ps.executeUpdate();
         } catch (Exception e) {
@@ -362,6 +362,22 @@ public class HoaDonDAO implements InterfaceHoaDon {
     @Override
     public void deleteSPHDCT(String maHDCT) {
         String sql = "delete HoaDonChiTiet where Ma_HoaDonChiTiet = '" + maHDCT + "'";
+        try (Connection con = DBconnect.getConnection(); PreparedStatement ps = con.prepareCall(sql)) {
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Thanh toán hóa đơn 
+    @Override
+    public void thanhToanHD(String maHD, int IDKH, double tongTien, int PTTT) {
+        String sql = "update HoaDon "
+                + "set ID_KhachHang = "+IDKH+" "
+                + ",ThanhTien = "+tongTien+"  ,"
+                + "PhuongThucThanhToan = "+PTTT+" ,"
+                + " TrangThai = 1 \n"
+                + "where Ma_HoaDon = '"+maHD+"' ";
         try (Connection con = DBconnect.getConnection(); PreparedStatement ps = con.prepareCall(sql)) {
             ps.executeUpdate();
         } catch (Exception e) {

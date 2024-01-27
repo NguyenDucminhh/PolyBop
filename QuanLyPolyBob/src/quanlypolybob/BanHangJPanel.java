@@ -14,8 +14,8 @@ import javax.swing.ButtonGroup;
 import Model.SanPham;
 import Model.HoaDonCT;
 import Model.HoaDonCT1;
+import Model.KhachHang;
 import View.LoginView;
-import quanlypolybob.KhachHang;
 import Repository.KhachHangRepository;
 import Service.KhachHangService;
 import static java.awt.image.ImageObserver.HEIGHT;
@@ -48,7 +48,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
         this.email = email;
         this.fillTableSP(service.seachSP(txt_TimKiemSP.getText()));
         this.fillTableHD(serviceHD.getAllHDChuaHT());
-        this.fillTableKH();
+        this.fillTableKH(khachHangService.firdKhachHangHD(txt_KhachHang.getText()));
         txt_NhanVien.setText(tenNV);
         // System.out.println(serviceHD.getIDNhanVien(email));
     }
@@ -66,27 +66,26 @@ public class BanHangJPanel extends javax.swing.JPanel {
         mnIThem = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jLabel6 = new javax.swing.JLabel();
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txt_NhanVien = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txt_KhachHang = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         lbl_maHD = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         lbl_TongTien = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        rdo_TienMat = new javax.swing.JRadioButton();
+        rdo_ChuyenKhoan = new javax.swing.JRadioButton();
         jLabel9 = new javax.swing.JLabel();
         txt_MaGiamGia = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        txt_KhachHang1 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_hoaDon = new javax.swing.JTable();
@@ -103,6 +102,8 @@ public class BanHangJPanel extends javax.swing.JPanel {
         jPanel5 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tbl_KhachHang = new javax.swing.JTable();
+        txt_KhachHang = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
 
         mnIThem.setText("jMenuItem1");
         mnBanHang.add(mnIThem);
@@ -112,8 +113,6 @@ public class BanHangJPanel extends javax.swing.JPanel {
 
         jMenuItem3.setText("jMenuItem3");
         mnBanHang.add(jMenuItem3);
-
-        jLabel6.setText("jLabel6");
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -137,16 +136,13 @@ public class BanHangJPanel extends javax.swing.JPanel {
         jLabel3.setText("Khách Hàng");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
 
-        txt_KhachHang.setForeground(java.awt.Color.red);
-        txt_KhachHang.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txt_KhachHangKeyReleased(evt);
-            }
-        });
-        jPanel2.add(txt_KhachHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 144, -1));
-
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton3.setText("+");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -171,16 +167,16 @@ public class BanHangJPanel extends javax.swing.JPanel {
         jLabel8.setText("Phương Thức Thanh Toán :");
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jRadioButton1.setSelected(true);
-        jRadioButton1.setText("Tiền Mặt");
-        jPanel2.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
+        buttonGroup1.add(rdo_TienMat);
+        rdo_TienMat.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdo_TienMat.setSelected(true);
+        rdo_TienMat.setText("Tiền Mặt");
+        jPanel2.add(rdo_TienMat, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jRadioButton2.setText("Chuyển Khoản");
-        jPanel2.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, -1, -1));
+        buttonGroup1.add(rdo_ChuyenKhoan);
+        rdo_ChuyenKhoan.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rdo_ChuyenKhoan.setText("Chuyển Khoản");
+        jPanel2.add(rdo_ChuyenKhoan, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel9.setText("Mã Giảm Giá ( Nếu Có)");
@@ -197,7 +193,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 124, 41));
+        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 124, 41));
 
         jButton5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton5.setText("Tạo Hóa Đơn");
@@ -206,13 +202,29 @@ public class BanHangJPanel extends javax.swing.JPanel {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, 140, 41));
+        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, 140, 41));
 
         jButton6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton6.setText("Thanh Toán");
-        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 276, 77));
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 276, 50));
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 0, 300, 470));
+        txt_KhachHang1.setForeground(java.awt.Color.red);
+        txt_KhachHang1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_KhachHang1KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_KhachHang1KeyTyped(evt);
+            }
+        });
+        jPanel2.add(txt_KhachHang1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 144, -1));
+
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 0, 300, 440));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Hóa Đơn", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -353,7 +365,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Mã ", "Tên KH", "SĐT"
+                "ID", "Tên KH", "SĐT"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -368,12 +380,30 @@ public class BanHangJPanel extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_KhachHangMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tbl_KhachHangMouseEntered(evt);
+            }
         });
         jScrollPane4.setViewportView(tbl_KhachHang);
 
-        jPanel5.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 280, 140));
+        jPanel5.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 280, 140));
 
-        add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 470, 300, 160));
+        txt_KhachHang.setForeground(java.awt.Color.red);
+        txt_KhachHang.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_KhachHangKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_KhachHangKeyTyped(evt);
+            }
+        });
+        jPanel5.add(txt_KhachHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 200, -1));
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel10.setText("Tìm Kiếm ");
+        jPanel5.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, 20));
+
+        add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 440, 300, 190));
     }// </editor-fold>//GEN-END:initComponents
 
     private void tbl_hoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_hoaDonMouseClicked
@@ -395,7 +425,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
 
     private void txt_KhachHangKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_KhachHangKeyReleased
         // Tìm khách hàng 
-        searchKH(txt_KhachHang.getText());
+        fillTableKH(khachHangService.firdKhachHangHD(txt_KhachHang.getText()));
     }//GEN-LAST:event_txt_KhachHangKeyReleased
 
     private void tbl_KhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_KhachHangMouseClicked
@@ -435,6 +465,32 @@ public class BanHangJPanel extends javax.swing.JPanel {
         this.removeSPHDCT();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void txt_KhachHangKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_KhachHangKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_KhachHangKeyTyped
+
+    private void tbl_KhachHangMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_KhachHangMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbl_KhachHangMouseEntered
+
+    private void txt_KhachHang1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_KhachHang1KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_KhachHang1KeyReleased
+
+    private void txt_KhachHang1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_KhachHang1KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_KhachHang1KeyTyped
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // Thêm khách hàng mới 
+        this.addKhNew();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // thanh toán 
+        this.thanhToanHD();
+    }//GEN-LAST:event_jButton6ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -445,11 +501,11 @@ public class BanHangJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -460,8 +516,6 @@ public class BanHangJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -470,11 +524,14 @@ public class BanHangJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lbl_maHD;
     private javax.swing.JPopupMenu mnBanHang;
     private javax.swing.JMenuItem mnIThem;
+    private javax.swing.JRadioButton rdo_ChuyenKhoan;
+    private javax.swing.JRadioButton rdo_TienMat;
     private javax.swing.JTable tbl_KhachHang;
     private javax.swing.JTable tbl_SanPham;
     private javax.swing.JTable tbl_hoaDon;
     private javax.swing.JTable tbl_hoaDonCT;
     private javax.swing.JTextField txt_KhachHang;
+    private javax.swing.JTextField txt_KhachHang1;
     private javax.swing.JTextField txt_MaGiamGia;
     private javax.swing.JTextField txt_NhanVien;
     private javax.swing.JTextField txt_TimKiemSP;
@@ -542,8 +599,6 @@ public class BanHangJPanel extends javax.swing.JPanel {
             });
             tongTien = hoaDonCT1.getTongTien() + tongTien;
         }
-        txt_KhachHang.setText(hd.getTenKH());
-        txt_NhanVien.setText(hd.getTenNV());
         lbl_TongTien.setText(String.valueOf(tongTien));
         lbl_maHD.setText(hd.getMaHD());
     }
@@ -603,9 +658,16 @@ public class BanHangJPanel extends javax.swing.JPanel {
 
     // Lấy ra khách hàng từ bảng lên form 
     private void getKH() {
-        index = tbl_KhachHang.getSelectedRow();
-        Model.KhachHang kh = khachHangService.Search(txt_KhachHang.getText()).get(index);
-        txt_KhachHang.setText(kh.getTenKhachHang());
+        int index_KH = tbl_KhachHang.getSelectedRow();
+        KhachHang kh = khachHangService.firdKhachHangHD(txt_KhachHang.getText()).get(index_KH);
+        txt_KhachHang1.setText(kh.getTenKhachHang());
+    }
+
+    // lấy ra id khách hàng từ bảng khách hàng 
+    private int getIDKH() {
+        int index_KH = tbl_KhachHang.getSelectedRow();
+        KhachHang kh = khachHangService.firdKhachHangHD(txt_KhachHang.getText()).get(index_KH);
+        return kh.getIdKhachHang();
     }
 
     // Lấy ra số lượng sản phẩm từ bảng sản phẩm 
@@ -668,14 +730,10 @@ public class BanHangJPanel extends javax.swing.JPanel {
         }
     }
 
-    private void fillTableKH() {
-        List<Model.KhachHang> listKH;
-        DefaultTableModel mol;
-//        listKH = khachHangRepository.getAllKhachHang();
-        listKH = khachHangRepository.getAllKhachHang();
+    private void fillTableKH(List<KhachHang> list) {
         mol = (DefaultTableModel) tbl_KhachHang.getModel();
         mol.setRowCount(0);
-        for (Model.KhachHang kh : listKH) {
+        for (Model.KhachHang kh : list) {
             mol.addRow(new Object[]{
                 kh.getIdKhachHang(),
                 kh.getTenKhachHang(),
@@ -712,13 +770,24 @@ public class BanHangJPanel extends javax.swing.JPanel {
 
     // Hủy hóa đơn 
     private void huyHD() {
-        String Options[] = {"Xác Nhận", "Trở Về"};
-        int choice = JOptionPane.showOptionDialog(this, "Xác Nhận Hủy Hóa Đơn ? ", "Quản Lý Bán Ví BolyBop", WIDTH, HEIGHT, null, Options, EXIT_ON_CLOSE);
-        if (choice == 0) {
+        try {
             index = tbl_hoaDon.getSelectedRow();
-            HoaDonCT hd = serviceHD.getAllHDChuaHT().get(index);
-            serviceHD.removeHoaDon(hd.getMaHD());
-            this.fillTableHD(serviceHD.getAllHDChuaHT());
+            if (index < 0) {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn hóa đơn hủy ! ");
+            } // Đã chọn hóa đơn 
+            else {
+                String Options[] = {"Xác Nhận", "Trở Về"};
+                int choice = JOptionPane.showOptionDialog(this, "Xác Nhận Hủy Hóa Đơn ? ", "Quản Lý Bán Ví BolyBop", WIDTH, HEIGHT, null, Options, EXIT_ON_CLOSE);
+                if (choice == 0) {
+                    index = tbl_hoaDon.getSelectedRow();
+                    HoaDonCT hd = serviceHD.getAllHDChuaHT().get(index);
+                    serviceHD.removeHoaDon(hd.getMaHD());
+                    this.fillTableHD(serviceHD.getAllHDChuaHT());
+                }
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Hủy thất bại");
         }
     }
 
@@ -772,6 +841,62 @@ public class BanHangJPanel extends javax.swing.JPanel {
                 this.fillTableSP(service.seachSP(txt_TimKiemSP.getText()));
                 JOptionPane.showMessageDialog(this, "Xóa thành công ");
             }
+        }
+    }
+
+    // thêm khách hàng mới 
+    private void addKhNew() {
+        NewKhachHangJDiaLog newKH = new NewKhachHangJDiaLog();
+        newKH.setVisible(true);
+        this.fillTableKH(khachHangService.firdKhachHangHD(txt_KhachHang.getText()));
+    }
+
+    // lấy ra phương thức thanh toán 
+    int getPTTT() {
+        if (rdo_TienMat.isSelected()) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+
+    // Thanh toán hóa đơn 
+    private void thanhToanHD() {
+        try {
+            index = tbl_hoaDon.getSelectedRow();
+            if (index < 0) {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn hóa đơn thanh toán ! ");
+            } // Đã chọn hóa đơn 
+            else {
+                try {
+                    if (txt_KhachHang1.getText().equals("")) {
+                        JOptionPane.showMessageDialog(this, "Vui lòng chọn khách hàng !");
+                    } else if (rdo_TienMat.isSelected()) {
+                        double moneyNhan = Integer.valueOf(JOptionPane.showInputDialog("Nhập số tiền nhận của khách "));
+                        if (moneyNhan == Double.valueOf(lbl_TongTien.getText())) {
+                            serviceHD.thanhToanHD(lbl_maHD.getText(), getIDKH(), Double.valueOf(lbl_TongTien.getText()), getPTTT());
+                            this.fillTableHD(serviceHD.getAllHDChuaHT());
+                            JOptionPane.showMessageDialog(this, "Thanh toán thành công !");
+                        } else if (moneyNhan < Double.valueOf(lbl_TongTien.getText())) {
+                            JOptionPane.showMessageDialog(this, "Thanh toán thât bại ! \nKhách đưa thiếu tiền !");
+                        } else {
+                            double moneyTra = moneyNhan - Double.valueOf(lbl_TongTien.getText());
+                            serviceHD.thanhToanHD(lbl_maHD.getText(), getIDKH(), Double.valueOf(lbl_TongTien.getText()), getPTTT());
+                            this.fillTableHD(serviceHD.getAllHDChuaHT());
+                            JOptionPane.showMessageDialog(this, "Thanh Toán Thành Công !" + "\nSố tiền thối khách : " + String.valueOf(moneyTra) + " VNĐ");
+                        }
+                    } else if (rdo_ChuyenKhoan.isEnabled()) {
+                        serviceHD.thanhToanHD(lbl_maHD.getText(), getIDKH(), Double.valueOf(lbl_TongTien.getText()), getPTTT());
+                        this.fillTableHD(serviceHD.getAllHDChuaHT());
+                        JOptionPane.showMessageDialog(this, "Thanh toán thành công !");
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Số tiền không hợp lệ !");
+                }
+
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Thanh toán thất bại ! ");
         }
     }
 }

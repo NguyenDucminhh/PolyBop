@@ -62,5 +62,8 @@ public interface InterfaceHoaDon {
     
     // Xóa sản phẩm trong hóa đơn chờ 
     void deleteSPHDCT(String maHDCT); 
+    
+    // Thanh toán hóa đơn 
+     void thanhToanHD(String maHD,int IDKH , double tongTien , int PTTT); 
 
 }
