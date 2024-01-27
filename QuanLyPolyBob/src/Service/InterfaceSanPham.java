@@ -22,6 +22,6 @@ public interface InterfaceSanPham {
     // sửa số lượng của sản phẩm 
     void updateSLSP(int IDCTSP , int soLuong); 
     // Lấy ra tổng số lượng của sản phẩm 
-    int sumSLSP(int IDCTSP);
+    int sumSLSP(int IDCTSP, String maHDCT);
     
 }

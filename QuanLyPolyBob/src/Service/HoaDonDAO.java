@@ -335,9 +335,8 @@ public class HoaDonDAO implements InterfaceHoaDon {
     }
 
     @Override
-    public void setSLHDCT(int IDHDCT, int soLuong) {
-        String sql = "UPDATE HoaDonChiTiet set SoLuong = " + soLuong + " \n"
-                + "where ID_ChiTietVi = " + IDHDCT + " ";
+    public void setSLHDCT(String maHDCT, int soLuong) {
+        String sql = "update HoaDonChiTiet set SoLuong = "+soLuong+" where Ma_HoaDonChiTiet = '"+maHDCT+"' ";
         try (Connection con = DBconnect.getConnection(); PreparedStatement ps = con.prepareCall(sql)) {
             ps.executeUpdate();
         } catch (Exception e) {
@@ -361,8 +360,8 @@ public class HoaDonDAO implements InterfaceHoaDon {
     }
 
     @Override
-    public void deleteSPHDCT(int IDHDCT) {
-        String sql = "delete HoaDonChiTiet where ID_ChiTietVi = " + IDHDCT + "";
+    public void deleteSPHDCT(String maHDCT) {
+        String sql = "delete HoaDonChiTiet where Ma_HoaDonChiTiet = '" + maHDCT + "'";
         try (Connection con = DBconnect.getConnection(); PreparedStatement ps = con.prepareCall(sql)) {
             ps.executeUpdate();
         } catch (Exception e) {

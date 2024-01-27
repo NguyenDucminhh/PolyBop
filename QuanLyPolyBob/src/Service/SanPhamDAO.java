@@ -92,13 +92,11 @@ public class SanPhamDAO implements InterfaceSanPham {
 
     // Lấy ra tổng số lượng sản phẩm 
     @Override
-    public int sumSLSP(int IDCTSP) {
+    public int sumSLSP(int IDCTSP, String maHDCT) {
         int sunSL = 0;
-        String sql = "Select (HoaDonChiTiet.SoLuong + ChiTietVi.SoLuong) as N'Số lượng tổng sản phẩm'\n"
-                + "from HoaDonChiTiet\n"
-                + "join ChiTietVi on HoaDonChiTiet.ID_ChiTietVi = ChiTietVi.IDChiTietVi\n"
-                + "join HoaDon on HoaDon.IDHoaDon = HoaDonChiTiet.ID_HoaDon\n"
-                + "where ChiTietVi.IDChiTietVi = " + IDCTSP + " and HoaDon.TrangThai = 0";
+        String sql = "	Select ChiTietVi.SoLuong + HoaDonChiTiet.SoLuong\n"
+                + "	from ChiTietVi join HoaDonChiTiet on ChiTietVi.IDChiTietVi = HoaDonChiTiet.ID_ChiTietVi\n"
+                + "	where ID_ChiTietVi ="+IDCTSP+"  and Ma_HoaDonChiTiet = '"+maHDCT+"'";
         try (Connection con = DBconnect.getConnection(); PreparedStatement ps = con.prepareCall(sql)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {

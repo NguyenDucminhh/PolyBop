@@ -58,9 +58,9 @@ public interface InterfaceHoaDon {
     void updateSLSPHDCT(String maHD, int soLuong);
 
     // set số lượng trong hóa đơn chờ 
-    void setSLHDCT(int IDCTHD, int soLuong);
+    void setSLHDCT(String maHDCT, int soLuong);
     
     // Xóa sản phẩm trong hóa đơn chờ 
-    void deleteSPHDCT(int IDHDCT); 
+    void deleteSPHDCT(String maHDCT); 
 
 }

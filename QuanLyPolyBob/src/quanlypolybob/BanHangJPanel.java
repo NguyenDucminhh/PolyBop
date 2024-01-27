@@ -258,7 +258,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Mã Ví", "Tên Ví", "Số Lượng", "Đơn Giá"
+                "Mã Ví", "Tên Ví", "Số Lượng", "Tổng Tiền"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -385,6 +385,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
     private void tbl_SanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_SanPhamMouseClicked
         // Click thêm sản phẩm vào hóa đơn chi tiết 
         this.checkChoiceHD();
+
     }//GEN-LAST:event_tbl_SanPhamMouseClicked
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -420,8 +421,13 @@ public class BanHangJPanel extends javax.swing.JPanel {
     private void tbl_hoaDonCTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_hoaDonCTMouseClicked
         // Click lấy ID chi tiết sản phẩm 
         this.IDCTSP_tableHDCT();
-        System.out.println(this.getMaHD());
-        System.out.println(String.valueOf(IDCTSP_tableHDCT()));
+        int index1 = tbl_hoaDonCT.getSelectedRow();
+        HoaDonCT1 hd1 = serviceHD.getAllCTHD(getMaHD()).get(index1);
+//        System.out.println(hd1.getMaVi());
+//        System.out.println(service.sumSLSP(IDCTSP_tableHDCT()));
+//        System.out.println(IDCTSP_tableHDCT());
+//        System.out.println(hd1.getMaHDCT());
+//        System.out.println(hd1.getSoLuong());
     }//GEN-LAST:event_tbl_hoaDonCTMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -474,6 +480,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txt_TimKiemSP;
     // End of variables declaration//GEN-END:variables
 
+    // Code fillTable : 
     private void fillTableSP(List<SanPham> list) {
         mol = (DefaultTableModel) tbl_SanPham.getModel();
         mol.setRowCount(0);
@@ -518,8 +525,8 @@ public class BanHangJPanel extends javax.swing.JPanel {
 
         }
     }
-    // show hóa đơn chi tiết 
 
+    // show hóa đơn chi tiết 
     private void showHDCT() {
         double tongTien = 0;
         index = tbl_hoaDon.getSelectedRow();
@@ -549,21 +556,34 @@ public class BanHangJPanel extends javax.swing.JPanel {
         SanPham sp = service.seachSP(txt_TimKiemSP.getText()).get(index);
         sl = Integer.valueOf(JOptionPane.showInputDialog("nhập số lượng sản phẩm"));
         System.out.println(sl);
-
         return sl;
     }
-    // lấy ra mã hóa đơn trong bảng hóa đơn 
 
+    // lấy ra mã hóa đơn trong bảng hóa đơn 
     String getMaHD() {
         index = tbl_hoaDon.getSelectedRow();
         HoaDonCT hd = serviceHD.getAllHDChuaHT().get(index);
         return hd.getMaHD();
     }
 
+    // Lấy ra mã hóa đơn chi tiết trong bảng hóa đơn chi tiết 
+    String getMaHDCT() {
+        int index_HDCT = tbl_hoaDonCT.getSelectedRow();
+        HoaDonCT1 hd1 = serviceHD.getAllCTHD(getMaHD()).get(index_HDCT);
+        return hd1.getMaHDCT();
+    }
+
+    // lấy ra số lượng trong hóa đơn chi tiết 
+    int getSoLuongSPHDCT() {
+        int index_HDCT = tbl_hoaDonCT.getSelectedRow();
+        HoaDonCT1 hd1 = serviceHD.getAllCTHD(getMaHD()).get(index_HDCT);
+        return hd1.getSoLuong();
+    }
+
     // Lấy ra id sản phẩm chi tiết ở bảng sản phẩm 
     int IDCTSP() {
-        index = tbl_SanPham.getSelectedRow();
-        SanPham sp = service.seachSP(txt_TimKiemSP.getText()).get(index);
+        int index_SP = tbl_SanPham.getSelectedRow();
+        SanPham sp = service.seachSP(txt_TimKiemSP.getText()).get(index_SP);
         return service.getIDCTSP(sp.getMaVi());
     }
 
@@ -581,6 +601,27 @@ public class BanHangJPanel extends javax.swing.JPanel {
         return sp.getGiaBan();
     }
 
+    // Lấy ra khách hàng từ bảng lên form 
+    private void getKH() {
+        index = tbl_KhachHang.getSelectedRow();
+        Model.KhachHang kh = khachHangService.Search(txt_KhachHang.getText()).get(index);
+        txt_KhachHang.setText(kh.getTenKhachHang());
+    }
+
+    // Lấy ra số lượng sản phẩm từ bảng sản phẩm 
+    int getSoLuongSP() {
+        int index_SP = tbl_SanPham.getSelectedRow();
+        SanPham sp = service.seachSP(txt_TimKiemSP.getText()).get(index_SP);
+        return sp.getSoLuong();
+    }
+
+    // Tạo mã ngẫu nhiên 
+    public static String randum() {
+        Random rd = new Random();
+        int numberCode = rd.nextInt(100) + 100;
+        return String.valueOf(numberCode);
+    }
+
     // Check đã chọn hóa đơn chưa
     private void checkChoiceHD() {
         index = tbl_hoaDon.getSelectedRow();
@@ -588,33 +629,40 @@ public class BanHangJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn hóa đơn ! ");
         } // Đã chọn hóa đơn 
         else {
-            // Check sản phẩm đã có trong hóa đơn chưa 
-            int checkSP = 0;
-            int soLuong = choiceSLSP();
-            // Check số lượng 
-            if (soLuong <= 0) {
-                JOptionPane.showMessageDialog(this,"Số lượng không hợp lệ");
-            }
-            else {
-                HoaDonCT hd = serviceHD.getAllHDChuaHT().get(index);
-                for (HoaDonCT1 ct : serviceHD.getAllCTHD(hd.getMaHD())) {
-                    if (ct.getIdCTVI() == IDCTSP()) {
-                        // đã tồn tại 
-                        // JOptionPane.showMessageDialog(this, "Sản phẩm đã tồn tại trong hóa đơn");
-                        serviceHD.updateSLSPHDCT(ct.getMaHDCT(), soLuong);
+            try {
+                // Check sản phẩm đã có trong hóa đơn chưa 
+                int checkSP = 0;
+                int soLuong = choiceSLSP();
+                // Check số lượng 
+                if (soLuong <= 0) {
+                    JOptionPane.showMessageDialog(this, "Số lượng không hợp lệ");
+                } else if (soLuong > getSoLuongSP()) {
+                    JOptionPane.showMessageDialog(this, "Số Lượng Ví Không Đủ !");
+                } else {
+                    int index_HD = tbl_hoaDon.getSelectedRow();
+                    HoaDonCT hd = serviceHD.getAllHDChuaHT().get(index_HD);
+                    for (HoaDonCT1 ct : serviceHD.getAllCTHD(hd.getMaHD())) {
+                        if (ct.getIdCTVI() == IDCTSP()) {
+                            // đã tồn tại 
+                            serviceHD.updateSLSPHDCT(ct.getMaHDCT(), soLuong);
+                            service.reduceSLSP(IDCTSP(), soLuong);
+                            this.fillTableHDCT();
+                            this.fillTableSP(service.seachSP(txt_TimKiemSP.getText()));
+                            checkSP = 1;
+                        }
+                    }
+                    // chưa tồn tại
+                    if (checkSP == 0) {
+                        // Thêm sản phẩm vào hóa đơn 
                         service.reduceSLSP(IDCTSP(), soLuong);
+                        serviceHD.addSPHDCT(serviceHD.getIDHD(hd.getMaHD()), IDCTSP(), "HDCT" + randum(), soLuong, moneySP() * sl);
+                        // System.out.println(serviceHD.getIDHD(hd.getMaHD()));
                         this.fillTableHDCT();
                         this.fillTableSP(service.seachSP(txt_TimKiemSP.getText()));
-                        checkSP = 1;
                     }
                 }
-                // chưa tồn tại
-                if (checkSP == 0) {
-                    // Thêm sản phẩm vào hóa đơn 
-                    serviceHD.addSPHDCT(serviceHD.getIDHD(hd.getMaHD()), IDCTSP(), "HDCT" + randum(), soLuong, moneySP() * sl);
-                    System.out.println(serviceHD.getIDHD(hd.getMaHD()));
-                    this.fillTableHDCT();
-                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Số lượng sản phẩm không hợp lệ !");
             }
 
         }
@@ -637,7 +685,6 @@ public class BanHangJPanel extends javax.swing.JPanel {
     }
 
     private void searchKH(String ma) {
-
         List<Model.KhachHang> list;
         DefaultTableModel dtm;
         list = khachHangService.Search(ma);
@@ -647,21 +694,6 @@ public class BanHangJPanel extends javax.swing.JPanel {
             dtm.addRow(new Object[]{s.getIdKhachHang(),
                 s.getTenKhachHang(), s.getSdt(),});
         }
-    }
-
-    // Lấy ra khách hàng từ bảng lên form 
-    private void getKH() {
-        index = tbl_KhachHang.getSelectedRow();
-        Model.KhachHang kh = khachHangService.Search(txt_KhachHang.getText()).get(index);
-        txt_KhachHang.setText(kh.getTenKhachHang());
-
-    }
-
-    // Tạo mã ngẫu nhiên 
-    public static String randum() {
-        Random rd = new Random();
-        int numberCode = rd.nextInt(100) + 100;
-        return String.valueOf(numberCode);
     }
 
     // tạo hóa đơn 
@@ -697,30 +729,28 @@ public class BanHangJPanel extends javax.swing.JPanel {
 
     // Sửa số lượng trong hóa đơn chi tiết 
     private void updateSLHDCT() {
-
-        int index_HDCT = tbl_hoaDonCT.getSelectedRow();
-        HoaDonCT1 hd = serviceHD.getAllCTHD(getMaHD()).get(index_HDCT);
+        index = tbl_hoaDonCT.getSelectedRow();
+        // HoaDonCT1 hd = serviceHD.getAllCTHD(getMaHD()).get(index);
         if (index < 0) {
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm muốn sửa");
-        } // Đã chọn sản phẩm trong hóa đơn chi tiết      
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm muốn sửa !");
+        } // Đã chọn sản phẩm trong hóa đơn chi tiết 
         else {
-            // System.out.println(index);
-            //System.out.println(service.sumSLSP(IDCTSP_tableHDCT()));
-            int slUpdate = Integer.valueOf(JOptionPane.showInputDialog("Chọn số lượng muốn sửa "));
-            if (slUpdate > service.sumSLSP(IDCTSP_tableHDCT())) {
-                JOptionPane.showMessageDialog(this, "Số lượng Ví không đủ !");
-            } else if (slUpdate <= 0) {
-                JOptionPane.showMessageDialog(this, "Số Lượng sản phẩm không hợp lệ !");
-            } else {
-                System.out.println(IDCTSP_tableHDCT());
-                int slSPconLai = service.sumSLSP(IDCTSP_tableHDCT()) - slUpdate;
-                // update lại số lượng trong hóa đơn chi tiết 
-                serviceHD.setSLHDCT(IDCTSP_tableHDCT(), slUpdate);
-                // update số lại số lượng trong sản phẩm chi tiết 
-                service.updateSLSP(IDCTSP_tableHDCT(), slSPconLai);
+            try {
+                int sumSL = service.sumSLSP(IDCTSP_tableHDCT(), getMaHDCT());
+                int soLuongUpdate = Integer.valueOf(JOptionPane.showInputDialog("Nhập số lượng muốn sửa "));
+                if (soLuongUpdate <= sumSL && soLuongUpdate > 0) {
+                    serviceHD.setSLHDCT(getMaHDCT(), soLuongUpdate);
+                    service.updateSLSP(IDCTSP_tableHDCT(), sumSL - soLuongUpdate);
+                    this.fillTableHDCT();
+                    this.fillTableSP(service.seachSP(txt_TimKiemSP.getText()));
+                } else if (soLuongUpdate < 0) {
+                    JOptionPane.showMessageDialog(this, "SỐ lượng sửa không hợp lệ !");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Số lượng sản phẩm không đủ !");
+                }
 
-                this.fillTableHDCT();
-                this.fillTableSP(service.seachSP(txt_TimKiemSP.getText()));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "SỐ lượng sửa không hợp lệ !");
             }
         }
     }
@@ -733,7 +763,15 @@ public class BanHangJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm muốn xóa");
         } // Đã chọn sản phẩm trong hóa đơn chi tiết 
         else {
-
+            String Options[] = {"Xác Nhận", "Trở Về"};
+            int choice = JOptionPane.showOptionDialog(this, "Xác Nhận xóa sản phẩm  ? ", "Quản Lý Bán Ví BolyBop", WIDTH, HEIGHT, null, Options, EXIT_ON_CLOSE);
+            if (choice == 0) {
+                service.addSLSP(IDCTSP_tableHDCT(), getSoLuongSPHDCT());
+                serviceHD.deleteSPHDCT(getMaHDCT());
+                this.fillTableHDCT();
+                this.fillTableSP(service.seachSP(txt_TimKiemSP.getText()));
+                JOptionPane.showMessageDialog(this, "Xóa thành công ");
+            }
         }
     }
 }
