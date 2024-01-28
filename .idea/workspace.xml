@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="102fdcc0-cac3-4572-847f-04ad1b91269e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/QuanLyPolyBob/nbproject/private/private.xml" beforeDir="false" afterPath="$PROJECT_DIR$/QuanLyPolyBob/nbproject/private/private.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuanLyPolyBob/nbproject/project.properties" beforeDir="false" afterPath="$PROJECT_DIR$/QuanLyPolyBob/nbproject/project.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuanLyPolyBob/src/Model/Vi.java" beforeDir="false" afterPath="$PROJECT_DIR$/QuanLyPolyBob/src/Model/Vi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuanLyPolyBob/src/quanlypolybob/Dao/InterfaceVi.java" beforeDir="false" afterPath="$PROJECT_DIR$/QuanLyPolyBob/src/quanlypolybob/Dao/InterfaceVi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QuanLyPolyBob/src/quanlypolybob/Dao/MauSacDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/QuanLyPolyBob/src/quanlypolybob/Dao/MauSacDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/QuanLyPolyBob/src/quanlypolybob/Dao/ViDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/QuanLyPolyBob/src/quanlypolybob/Dao/ViDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuanLyPolyBob/src/quanlypolybob/Hepper/DBconnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/QuanLyPolyBob/src/quanlypolybob/Hepper/DBconnect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuanLyPolyBob/src/quanlypolybob/Hepper/JDBCHeper.java" beforeDir="false" afterPath="$PROJECT_DIR$/QuanLyPolyBob/src/quanlypolybob/Hepper/JDBCHeper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuanLyPolyBob/src/quanlypolybob/QuanLySanPhamJPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/QuanLyPolyBob/src/quanlypolybob/QuanLySanPhamJPanel.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuanLyPolyBob/src/quanlypolybob/QuanLySanPhamJPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/QuanLyPolyBob/src/quanlypolybob/QuanLySanPhamJPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuanLyPolyBob/src/quanlypolybob/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/QuanLyPolyBob/src/quanlypolybob/main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/PoLyBop_DB (1).sql" beforeDir="false" afterPath="$PROJECT_DIR$/db/PoLyBop_DB (1).sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +33,11 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Windows/Desktop/PolyBop",
+    "last_opened_file_path": "C:/Users/Windows/Desktop/Poly/PolyBop",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
@@ -87,6 +86,7 @@
       <workItem from="1704975965691" duration="67000" />
       <workItem from="1704976079904" duration="56000" />
       <workItem from="1704976190443" duration="127000" />
+      <workItem from="1706238408593" duration="389000" />
     </task>
     <servers />
   </component>

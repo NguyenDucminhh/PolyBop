@@ -42,10 +42,10 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
     public QuanLySanPhamJPanel() {
         initComponents();
         init();
-        modelCH = (DefaultTableModel) tblSanPham4.getModel();
+        modelCH = (DefaultTableModel) tblConhang.getModel();
         filltotablech();
-//        modelHH = (DefaultTableModel) tblSanPham2.getModel();
-//        filltotablehh();
+        modelHH = (DefaultTableModel) tblHetHang.getModel();
+        filltotablehh();
     }
 
     private void init() {
@@ -85,7 +85,10 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel11 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
-        tblSanPham4 = new javax.swing.JTable();
+        tblConhang = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblHetHang = new javax.swing.JTable();
         jButton5 = new javax.swing.JButton();
         txtTenVi = new javax.swing.JTextField();
         txtMaVi = new javax.swing.JTextField();
@@ -100,7 +103,6 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
         });
 
         lblHinh.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblHinh.setText("Click To Dowload Image");
         lblHinh.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblHinhMouseClicked(evt);
@@ -111,7 +113,7 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblHinh, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+            .addComponent(lblHinh, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,7 +242,7 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
             }
         });
 
-        tblSanPham4.setModel(new javax.swing.table.DefaultTableModel(
+        tblConhang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -251,31 +253,60 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
                 "Mã Ví", "Tên Ví", "Thương Hiệu", "Kiểu Dáng", "Trạng Thái"
             }
         ));
-        tblSanPham4.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblConhang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblSanPham1MouseClicked(evt);
             }
         });
-        jScrollPane7.setViewportView(tblSanPham4);
+        jScrollPane7.setViewportView(tblConhang);
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 1038, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 1044, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("", jPanel11);
+        jTabbedPane1.addTab("Sản Phẩm Còn Hàng", jPanel11);
+
+        tblHetHang.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Mã Ví", "Tên Ví", "Thương Hiệu", "Kiểu Dáng", "Trạng Thái"
+            }
+        ));
+        tblHetHang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblHetHangMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblHetHang);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1050, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Sản Phẩm Hết Hàng", jPanel3);
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/plus.png"))); // NOI18N
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -409,7 +440,7 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
                         .addComponent(btnLammoi, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36)
                         .addComponent(btnThem1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(40, 40, 40)
+                .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -439,7 +470,7 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 657, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(16, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -480,10 +511,6 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jPanel2MouseClicked
 
-    private void lblHinhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHinhMouseClicked
-        chooseImages();
-    }//GEN-LAST:event_lblHinhMouseClicked
-
     private void txtTenViActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenViActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTenViActionPerformed
@@ -510,7 +537,7 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
     private void tblSanPham1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPham1MouseClicked
         // TODO add your handling code here:
         try {
-            row = tblSanPham4.getSelectedRow();
+            row = tblConhang.getSelectedRow();
             edit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -528,16 +555,16 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
 
     private void btnLammoiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLammoiMouseClicked
         // TODO add your handling code here:
-clearForm();
+        clearForm();
     }//GEN-LAST:event_btnLammoiMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-                row = 0;
+        row = 0;
         if (jTabbedPane1.getSelectedIndex() == 0) {
-            tblSanPham4.setRowSelectionInterval(row, row);
+            tblConhang.setRowSelectionInterval(row, row);
             edit();
-        } 
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -545,7 +572,7 @@ clearForm();
         if (jTabbedPane1.getSelectedIndex() == 0) {
             if (row > 0) {
                 row--;
-                tblSanPham4.setRowSelectionInterval(row, row);
+                tblConhang.setRowSelectionInterval(row, row);
                 edit();
             }
         }
@@ -554,9 +581,9 @@ clearForm();
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         if (jTabbedPane1.getSelectedIndex() == 0) {
-            if (row < tblSanPham4.getRowCount() - 1) {
+            if (row < tblConhang.getRowCount() - 1) {
                 row++;
-                tblSanPham4.setRowSelectionInterval(row, row);
+                tblConhang.setRowSelectionInterval(row, row);
                 edit();
             }
         }
@@ -565,12 +592,26 @@ clearForm();
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         if (jTabbedPane1.getSelectedIndex() == 0) {
-            row = tblSanPham4.getRowCount() - 1;
+            row = tblConhang.getRowCount() - 1;
 
-            tblSanPham4.setRowSelectionInterval(row, row);
+            tblConhang.setRowSelectionInterval(row, row);
             edit();
         }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void tblHetHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHetHangMouseClicked
+        // TODO add your handling code here:
+              try {
+            row = tblHetHang.getSelectedRow();
+            edithh();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_tblHetHangMouseClicked
+
+    private void lblHinhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHinhMouseClicked
+        chooseImages();
+    }//GEN-LAST:event_lblHinhMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLammoi;
@@ -592,13 +633,16 @@ clearForm();
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblHinh;
     private javax.swing.JRadioButton rdo;
     private javax.swing.JRadioButton rdo1;
-    private javax.swing.JTable tblSanPham4;
+    private javax.swing.JTable tblConhang;
+    private javax.swing.JTable tblHetHang;
     private javax.swing.JTextField txtKieuDang;
     private javax.swing.JTextField txtMaVi;
     private javax.swing.JTextField txtTenVi;
@@ -653,7 +697,7 @@ clearForm();
     }
 
     private void chooseImages() {
-        JFileChooser file = new JFileChooser("C:\\Users\\Windows\\Desktop\\PolyBop\\QuanLyPolyBob\\src\\icon");
+        JFileChooser file = new JFileChooser("C:\\Users\\Windows\\Desktop\\Poly\\PolyBop\\QuanLyPolyBob\\logos");
         if (file.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File filechoser = file.getSelectedFile();
             Ximages.save(filechoser);
@@ -684,7 +728,7 @@ clearForm();
     }
 
     private void setForm(Vi sp) {
-        String thuonghieu = tblSanPham4.getValueAt(row, 2).toString();
+        String thuonghieu = tblConhang.getValueAt(row, 2).toString();
         for (int i = 0; i < list_TH.size(); i++) {
             if (thuonghieu.equals(list_TH.get(i).getTenThuongHieu())) {
                 cbxThuongHieu.setSelectedIndex(i);
@@ -705,11 +749,32 @@ clearForm();
 //            lblHinh.setIcon(new ImageIcon("unnamed.png"));
         }
     }
-
+    private void setForm1(Vi sp) {
+        String thuonghieu = tblHetHang.getValueAt(row, 2).toString();
+        for (int i = 0; i < list_TH.size(); i++) {
+            if (thuonghieu.equals(list_TH.get(i).getTenThuongHieu())) {
+                cbxThuongHieu.setSelectedIndex(i);
+            }
+        }
+//        txtMaVi.setText(sp.getIDVi() + "");
+        txtMaVi.setText(sp.getMa_Vi());
+        txtTenVi.setText(sp.getTenVi());
+        txtKieuDang.setText(sp.getKieuDang());
+//        cboLoaidouong.setSelectedItem(tblSanPhansd.getValueAt(row, 2).toString());
+        rdo1.setSelected(sp.isTrangThai());
+        rdo.setSelected(!sp.isTrangThai());
+        System.out.println(sp.getUrl_Anh());
+        try {
+            lblHinh.setToolTipText(sp.getUrl_Anh());
+            lblHinh.setIcon((Ximages.read(sp.getUrl_Anh())));
+        } catch (Exception e) {
+//            lblHinh.setIcon(new ImageIcon("unnamed.png"));
+        }
+    }
     private void updateStatus() {
         boolean edit = (row >= 0);
         boolean fist = (row == 0);
-        boolean last = (row == tblSanPham4.getRowCount() - 1);
+        boolean last = (row == tblConhang.getRowCount() - 1);
         ////
 //        txtMaVi.setEditable(!edit);
         btnThem.setEnabled(!edit);
@@ -725,7 +790,7 @@ clearForm();
     private void updateStatus2() {
         boolean edit = (row >= 0);
         boolean fist = (row == 0);
-        boolean last = (row == tblSanPham4.getRowCount() - 1);
+        boolean last = (row == tblHetHang.getRowCount() - 1);
         ////
 //        txtMaSP.setEditable(!edit);
         btnThem.setEnabled(!edit);
@@ -745,17 +810,19 @@ clearForm();
 //    }
 
     private void edit() {
-        String masp = tblSanPham4.getValueAt(row, 0).toString();
+        String masp = tblConhang.getValueAt(row, 0).toString();
         Vi sp = dao_vi.selectID1(masp);
         setForm(sp);
         updateStatus();
     }
-//    private void edithh() {
-//        Integer masp = Integer.valueOf(tblSanPham2.getValueAt(row, 0).toString()) ;
-//        Vi sp = dao_vi.selectID(masp);
-//        setForm(sp);
-//        updateStatus();
-//    }
+
+    private void edithh() {
+        String mahh = tblHetHang.getValueAt(row, 0).toString();
+        Vi sp = dao_vi.selectID1(mahh);
+        
+        setForm1(sp);
+        updateStatus2();
+    }
 //    private void edithh() {
 //        Integer masp = Integer.valueOf(tblSanPham2.getValueAt(row, 0).toString());
 //        Vi sp = dao_vi.selectID(masp);
@@ -802,6 +869,8 @@ clearForm();
                         filltotablehh();
                         jTabbedPane1.setSelectedIndex(1);
                     }
+                    filltotablech();
+                    filltotablehh();
                     clearForm();
                     JOptionPane.showMessageDialog(this, "Đã thêm");
                 }
@@ -924,7 +993,7 @@ clearForm();
         if (jTabbedPane1.getSelectedIndex() == 0) {
             String timkiem = txtTimKiem.getText();
             TableRowSorter<DefaultTableModel> sanpham = new TableRowSorter<>(modelCH);
-            tblSanPham4.setRowSorter(sanpham);
+            tblConhang.setRowSorter(sanpham);
             sanpham.setRowFilter(javax.swing.RowFilter.regexFilter(timkiem));
             jTabbedPane1.setSelectedIndex(0);
         }

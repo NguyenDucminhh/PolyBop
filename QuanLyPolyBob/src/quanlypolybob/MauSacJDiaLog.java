@@ -4,10 +4,12 @@
  */
 package quanlypolybob;
 
+import Model.MauSac;
 import Model.ThuongHieu;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import quanlypolybob.Dao.MauSacDao;
 import quanlypolybob.Dao.ThuongHieuDao;
 import quanlypolybob.Hepper.MsgBox;
 
@@ -17,7 +19,7 @@ import quanlypolybob.Hepper.MsgBox;
  */
 public class MauSacJDiaLog extends javax.swing.JDialog {
 
-    ThuongHieuDao dao = new ThuongHieuDao();
+    MauSacDao dao = new MauSacDao();
     int row;
 
     /**
@@ -285,30 +287,30 @@ public class MauSacJDiaLog extends javax.swing.JDialog {
     private void filltotableThuongHieu() {
         DefaultTableModel model = (DefaultTableModel) tblThuongHieu.getModel();
         model.setRowCount(0);
-        List<ThuongHieu> list = dao.selectAll();
-        for (ThuongHieu x : list) {
-            model.addRow(new Object[]{x.getMa_ThuongHieu(), x.getTenThuongHieu(), x.isTrangThai() ? "Còn Hàng" : "Hết Hàng"});
+        List<MauSac> list = dao.selectAll();
+        for (MauSac x : list) {
+            model.addRow(new Object[]{x.getMa_MauSac(), x.getTenMauSac(), x.isTrangThai() ? "Còn Hàng" : "Hết Hàng"});
         }
 
     }
-        private ThuongHieu getInformation() {
-        ThuongHieu sp = new ThuongHieu();
+        private MauSac getInformation() {
+        MauSac sp = new MauSac();
 //        sp.setIDVi(Integer.parseInt(txtMaVi.getText()));
-        sp.setMa_ThuongHieu(txtMa.getText());
-        sp.setTenThuongHieu(txtTen.getText());
+        sp.setMa_MauSac(txtMa.getText());
+        sp.setTenMauSac(txtTen.getText());
         //System.out.println(sp.getId_loaiSP());
         sp.setTrangThai(jRadioButton1.isSelected());
 
-        System.out.println(sp.getMa_ThuongHieu());
-        System.out.println(sp.getTenThuongHieu());
+        System.out.println(sp.getMa_MauSac());
+        System.out.println(sp.getTenMauSac());
             System.out.println(sp.isTrangThai());
         return sp;
     }
 
-    private void setForm(ThuongHieu sp) {
+    private void setForm(MauSac sp) {
 //        txtMaVi.setText(sp.getIDVi() + "");
-        txtMa.setText(sp.getMa_ThuongHieu());
-        txtTen.setText(sp.getTenThuongHieu());
+        txtMa.setText(sp.getMa_MauSac());
+        txtTen.setText(sp.getTenMauSac());
 
         jRadioButton1.setSelected(sp.isTrangThai());
         jRadioButton2.setSelected(!sp.isTrangThai());
@@ -317,16 +319,16 @@ public class MauSacJDiaLog extends javax.swing.JDialog {
     
         private void edit() {
         String idloaisp = tblThuongHieu.getValueAt(row, 0).toString();
-            ThuongHieu lsp = dao.selectID1(idloaisp);
+            MauSac lsp = dao.selectID1(idloaisp);
         setForm(lsp);
     }
 
     // tự điền mã đồ uống
     private void selectMaxIDLSP() {
         if (dao.selectAll().isEmpty()) {
-            txtMa.setText("TH001");
+            txtMa.setText("MS001");
         } else {
-            txtMa.setText("TH0" + (dao.selectMaLOAISP() + 1));
+            txtMa.setText("MS0" + (dao.select_Max_id_java()+ 1));
         }
     }
 
@@ -343,7 +345,7 @@ public class MauSacJDiaLog extends javax.swing.JDialog {
             return;
         }  else {
             try {
-                ThuongHieu lsp = getInformation();
+                MauSac lsp = getInformation();
                 dao.insert(lsp);
                 filltotableThuongHieu();
                 lammoi();
@@ -361,7 +363,7 @@ public class MauSacJDiaLog extends javax.swing.JDialog {
             return;
         } else {
             try {
-                ThuongHieu lsp = getInformation();
+                MauSac lsp = getInformation();
                 dao.update(lsp);
                 filltotableThuongHieu();
                 lammoi();
@@ -385,15 +387,15 @@ public class MauSacJDiaLog extends javax.swing.JDialog {
             return true;
         }
       
-        List<ThuongHieu> list = dao.selectAll();
+        List<MauSac> list = dao.selectAll();
         String id = txtMa.getText();
         String tensp = txtTen.getText();
         for (int i = 0; i < list.size(); i++) {
-            if (id.equalsIgnoreCase(list.get(i).getMa_ThuongHieu())) {
+            if (id.equalsIgnoreCase(list.get(i).getMa_MauSac())) {
                 JOptionPane.showMessageDialog(this, "Trùng khóa chính");
                 txtMa.requestFocus();
                 return true;
-            } else if (tensp.equalsIgnoreCase(list.get(i).getTenThuongHieu())) {
+            } else if (tensp.equalsIgnoreCase(list.get(i).getTenMauSac())) {
                 JOptionPane.showMessageDialog(this, "Tên sản phẩm đã tồn tại");
                 txtTen.requestFocus();
                 return true;
