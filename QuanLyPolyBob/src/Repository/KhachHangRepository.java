@@ -5,6 +5,7 @@
 package Repository;
 
 import Model.KhachHang;
+import Model.KhachHang1;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import quanlypolybob.Hepper.JDBCHeper;
  * @author ADMIN
  */
 public class KhachHangRepository implements KhachHangRepositoryImpl {
-
+    String selectById = "select * from KhachHang where IDKhangHang = ?";
     String INSERT_SQL = "INSERT KHACHHANG VALUES(?,?,?,?,?,?)";
     String UPDATE_SQL = "UPDATE KhachHang set TenKhachHang = ?,SDT = ?,Ngaysinh = ?, Email = ?, Diachi = ?, TRANGTHAI=? where IDKHANGHANG = ?";
     String DELETE_SQL = "UPDATE KhachHang set TRANGTHAI = 0 WHERE IDKhangHang = ?";
@@ -141,7 +142,27 @@ public class KhachHangRepository implements KhachHangRepositoryImpl {
         }
          return 0;
     }
+    
+    public List<KhachHang1> selectBySQL(String sql, Object... args) {
+        List<KhachHang1> list_th = new ArrayList<>();
+        
+        try {
+            ResultSet rs = JDBCHeper.query(sql, args);
+            while (rs.next()) {                
+                KhachHang1 th = new KhachHang1();
+                th.setIdKhangHang(rs.getInt("IdKhangHang"));
+                th.setMa_KhachHang(rs.getString("Ma_KhachHang"));
+                th.setTenKhachHang(rs.getString("TenKhachHang"));
 
-  
+                list_th.add(th);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list_th;
+    }
+      public String selectNameByID(int id) {
+        return selectBySQL(selectById, id).get(0).getTenKhachHang();
+    }
     
 }

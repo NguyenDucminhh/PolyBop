@@ -5,6 +5,7 @@
 package Repository;
 
 import Model.NhanVien;
+import Model.NhanVien1;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import quanlypolybob.Hepper.JDBCHeper;
  * @author ADMIN
  */
 public class NhanVienRepository implements NhanVienRepositoryImpl{
-
+String selectById = "select * from NhanVien where IDNhanVien = ?";
     String INSERT_SQL = "INSERT dbo.NhanVien VALUES(?,?,?,?,?,?,?,?,?)";
     String UPDATE_SQL = "UPDATE NhanVien set HOTEN = ?,SDT = ?,Ngaysinh = ?, Email = ?, Diachi = ?, MATKHAU = ?, CHUCVU = ?, GIOITINH = ?, TRANGTHAI=? where IDNHANVIEN = ?";
     String DELETE_SQL = "UPDATE NHANVIEN set TRANGTHAI = 0 WHERE IDNHANVIEN = ?";
@@ -192,7 +193,27 @@ public class NhanVienRepository implements NhanVienRepositoryImpl{
          return 0;
     }
 
-  
+      public List<NhanVien1> selectBySQL(String sql, Object... args) {
+        List<NhanVien1> list_th = new ArrayList<>();
+        
+        try {
+            ResultSet rs = JDBCHeper.query(sql, args);
+            while (rs.next()) {                
+                NhanVien1 th = new NhanVien1();
+                th.setIDNhanVien(rs.getInt("IDNhanVien"));
+                th.setMa_NhanVien(rs.getString("Ma_NhanVien"));
+                th.setHoTen(rs.getString("HoTen"));
+
+                list_th.add(th);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list_th;
+    }
+      public String selectNameByID(int id) {
+        return selectBySQL(selectById, id).get(0).getHoTen();
+    }
 
     
   

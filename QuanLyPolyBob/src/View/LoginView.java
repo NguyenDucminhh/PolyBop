@@ -29,8 +29,8 @@ public class LoginView extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        txt_Email.setText("dh2k4k@gmail.com");
-        txt_Pass.setText("1234567");
+        txt_Email.setText("duongdvph1419@gmail.com");
+        txt_Pass.setText("123");
     }
 
 
