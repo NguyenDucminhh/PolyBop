@@ -339,7 +339,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tbl_SanPham);
 
-        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 700, 190));
+        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 700, 190));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Tìm Kiếm Sản Phẩm ");

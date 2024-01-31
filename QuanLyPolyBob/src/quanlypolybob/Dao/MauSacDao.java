@@ -17,16 +17,18 @@ import quanlypolybob.Hepper.JDBCHeper;
 public class MauSacDao implements InterfaceMauSac {
 
     String selectAll = "select * from MauSac";
+    String selectID = "select * from MauSac where Ma_MauSac= ?";
     String selectById = "select * from MauSac where IDMauSac =?";
-
+    String update = "update MauSac set  TenMauSac =?, TrangThai=? where Ma_MauSac=?";
+    String insert = "INSERT INTO MauSac (Ma_MauSac, TenMauSac, TrangThai) VALUES (?, ?, ?)";
     @Override
     public void insert(MauSac sp) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        JDBCHeper.update(insert, sp.getMa_MauSac(),sp.getTenMauSac(),sp.isTrangThai());
     }
 
     @Override
     public void update(MauSac sp) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        JDBCHeper.update(update, sp.getTenMauSac(),sp.isTrangThai(),sp.getMa_MauSac());
     }
 
     @Override
@@ -70,5 +72,24 @@ public class MauSacDao implements InterfaceMauSac {
         public int selectIdByName(String name){
         String sql = "select * from MauSac where TenMauSac =?";
         return selectBySQL(sql, name).get(0).getIdMauSac();
+    }
+    public MauSac selectID1(String id) {
+        List<MauSac> list = selectBySQL(selectID, id);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
+    }
+    public int select_Max_id_java() {
+        try {
+            String sql = "select max(cast(substring(Ma_MauSac,4,LEN(IDMauSac))as int)) from MauSac ";
+            ResultSet rs = JDBCHeper.query(sql);
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 }

@@ -25,7 +25,7 @@ public class ViDao implements InterfaceVi {
     String update = "Update Vi set TenVi=?, KieuDang =?, ID_ThuongHieu=?, Url_Anh =?, TrangThai=? where Ma_Vi =?";
     String delete = "delete from SanPham where ID_Sanpham = ?";
     String selectById = "select * from Vi where IDVi =?";
-
+String select_Trangthai1 = "SELECT * FROM Vi WHERE Trangthai = 1";
     @Override
     public void insert(Vi sp) {
         JDBCHeper.update(insert, sp.getMa_Vi(), sp.getTenVi(), sp.getKieuDang(), sp.getID_ThuongHieu(), sp.getUrl_Anh(), sp.isTrangThai());
@@ -43,7 +43,7 @@ public class ViDao implements InterfaceVi {
 
     @Override
     public List<Vi> selectAll() {
-        return selectBySQL(selectAll);
+        return selectBySQL(select_Trangthai1);
     }
 
     @Override
@@ -73,6 +73,7 @@ public class ViDao implements InterfaceVi {
                 sp.setTenVi(rs.getString("tenVi"));
                 sp.setKieuDang(rs.getString("kieuDang"));
                 sp.setTrangThai(rs.getBoolean("trangThai"));
+                sp.setUrl_Anh(rs.getString("Url_anh"));
                 list_vi.add(sp);
             }
         } catch (Exception e) {
