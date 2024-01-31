@@ -48,7 +48,7 @@ public class KhachHangService {
         List<KhachHang> listKH = new ArrayList<>();
         String sql = "Select IDKhangHang,TenKhachHang,SDT\n"
                 + "from KhachHang where \n"
-                + "TenKhachHang like N'%"+key+"%' or SDT like N'%"+key+"%' "; 
+                + "TenKhachHang like N'%"+key+"%' or SDT like N'%"+key+"%' and trangthai = 1 "; 
                 
         try (Connection con = DBconnect.getConnection(); PreparedStatement ps = con.prepareCall(sql)) {
             ResultSet rs = ps.executeQuery();

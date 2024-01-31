@@ -270,7 +270,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Mã Ví", "Tên Ví", "Số Lượng", "Tổng Tiền"
+                "Mã Sản Phẩm", "Tên Sản phẩm", "Số Lượng", "Tổng Tiền"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -291,7 +291,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
         jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 580, 130));
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setText("Xóa Ví");
+        jButton1.setText("Xóa SP");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -321,7 +321,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã Ví ", "Tên Ví ", "Kiểu Dáng", "Thương Hiệu", "Màu Sắc", "Số Lượng", "Giá Bán"
+                "Mã Sản Phẩm", "Tên Sản Phẩm", "Kiểu Dáng", "Thương Hiệu", "Màu Sắc", "Số Lượng", "Giá Bán"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -352,7 +352,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
         });
         jPanel4.add(txt_TimKiemSP, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 200, 30));
 
-        add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 720, 280));
+        add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 720, 290));
 
         jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -603,6 +603,25 @@ public class BanHangJPanel extends javax.swing.JPanel {
         lbl_maHD.setText(hd.getMaHD());
     }
 
+    // Show tổng tiền 
+    private void showTongTien() {
+        double tongTien = 0;
+        index = tbl_hoaDon.getSelectedRow();
+        HoaDonCT hd = serviceHD.getAllHDChuaHT().get(index);
+        mol = (DefaultTableModel) tbl_hoaDonCT.getModel();
+        mol.setRowCount(0);
+        for (HoaDonCT1 hoaDonCT1 : serviceHD.getAllCTHD(hd.getMaHD())) {
+            mol.addRow(new Object[]{
+                hoaDonCT1.getMaVi(),
+                hoaDonCT1.getTenVi(),
+                hoaDonCT1.getSoLuong(),
+                hoaDonCT1.getTongTien()
+            });
+            tongTien = hoaDonCT1.getTongTien() + tongTien;
+        }
+        lbl_TongTien.setText(String.valueOf(tongTien));
+    }
+
     // Chọn số lượng sản phẩm 
     int sl = 0;
 
@@ -699,7 +718,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
                 if (soLuong <= 0) {
                     JOptionPane.showMessageDialog(this, "Số lượng không hợp lệ");
                 } else if (soLuong > getSoLuongSP()) {
-                    JOptionPane.showMessageDialog(this, "Số Lượng Ví Không Đủ !");
+                    JOptionPane.showMessageDialog(this, "Số Lượng Sản Phẩm Không Đủ !");
                 } else {
                     int index_HD = tbl_hoaDon.getSelectedRow();
                     HoaDonCT hd = serviceHD.getAllHDChuaHT().get(index_HD);
@@ -710,6 +729,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
                             service.reduceSLSP(IDCTSP(), soLuong);
                             this.fillTableHDCT();
                             this.fillTableSP(service.seachSP(txt_TimKiemSP.getText()));
+                            this.showTongTien();
                             checkSP = 1;
                         }
                     }
@@ -721,6 +741,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
                         // System.out.println(serviceHD.getIDHD(hd.getMaHD()));
                         this.fillTableHDCT();
                         this.fillTableSP(service.seachSP(txt_TimKiemSP.getText()));
+                        this.showTongTien();
                     }
                 }
             } catch (Exception e) {
@@ -777,7 +798,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
             } // Đã chọn hóa đơn 
             else {
                 String Options[] = {"Xác Nhận", "Trở Về"};
-                int choice = JOptionPane.showOptionDialog(this, "Xác Nhận Hủy Hóa Đơn ? ", "Quản Lý Bán Ví BolyBop", WIDTH, HEIGHT, null, Options, EXIT_ON_CLOSE);
+                int choice = JOptionPane.showOptionDialog(this, "Xác Nhận Hủy Hóa Đơn ? ", "Quản Lý Bán Sản Phẩm BolyBop", WIDTH, HEIGHT, null, Options, EXIT_ON_CLOSE);
                 if (choice == 0) {
                     index = tbl_hoaDon.getSelectedRow();
                     HoaDonCT hd = serviceHD.getAllHDChuaHT().get(index);
@@ -812,6 +833,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
                     service.updateSLSP(IDCTSP_tableHDCT(), sumSL - soLuongUpdate);
                     this.fillTableHDCT();
                     this.fillTableSP(service.seachSP(txt_TimKiemSP.getText()));
+                    this.showTongTien();
                 } else if (soLuongUpdate < 0) {
                     JOptionPane.showMessageDialog(this, "SỐ lượng sửa không hợp lệ !");
                 } else {
@@ -833,13 +855,14 @@ public class BanHangJPanel extends javax.swing.JPanel {
         } // Đã chọn sản phẩm trong hóa đơn chi tiết 
         else {
             String Options[] = {"Xác Nhận", "Trở Về"};
-            int choice = JOptionPane.showOptionDialog(this, "Xác Nhận xóa sản phẩm  ? ", "Quản Lý Bán Ví BolyBop", WIDTH, HEIGHT, null, Options, EXIT_ON_CLOSE);
+            int choice = JOptionPane.showOptionDialog(this, "Xác Nhận xóa sản phẩm  ? ", "Quản Lý Bán Sản Phẩm BolyBop", WIDTH, HEIGHT, null, Options, EXIT_ON_CLOSE);
             if (choice == 0) {
                 service.addSLSP(IDCTSP_tableHDCT(), getSoLuongSPHDCT());
                 serviceHD.deleteSPHDCT(getMaHDCT());
                 this.fillTableHDCT();
                 this.fillTableSP(service.seachSP(txt_TimKiemSP.getText()));
                 JOptionPane.showMessageDialog(this, "Xóa thành công ");
+                this.showTongTien();
             }
         }
     }
@@ -849,6 +872,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
         NewKhachHangJDiaLog newKH = new NewKhachHangJDiaLog();
         newKH.setVisible(true);
         this.fillTableKH(khachHangService.firdKhachHangHD(txt_KhachHang.getText()));
+
     }
 
     // lấy ra phương thức thanh toán 
@@ -884,7 +908,8 @@ public class BanHangJPanel extends javax.swing.JPanel {
                             serviceHD.thanhToanHD(lbl_maHD.getText(), getIDKH(), Double.valueOf(lbl_TongTien.getText()), getPTTT());
                             this.fillTableHD(serviceHD.getAllHDChuaHT());
                             JOptionPane.showMessageDialog(this, "Thanh Toán Thành Công !" + "\nSố tiền thối khách : " + String.valueOf(moneyTra) + " VNĐ");
-                        }
+                          
+                            }
                     } else if (rdo_ChuyenKhoan.isEnabled()) {
                         serviceHD.thanhToanHD(lbl_maHD.getText(), getIDKH(), Double.valueOf(lbl_TongTien.getText()), getPTTT());
                         this.fillTableHD(serviceHD.getAllHDChuaHT());
@@ -895,6 +920,8 @@ public class BanHangJPanel extends javax.swing.JPanel {
                 }
 
             }
+            mol =(DefaultTableModel) tbl_hoaDonCT.getModel();
+            mol.setRowCount(0);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Thanh toán thất bại ! ");
         }

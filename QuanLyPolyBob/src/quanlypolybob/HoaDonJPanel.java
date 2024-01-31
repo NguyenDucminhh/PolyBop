@@ -32,11 +32,12 @@ public class HoaDonJPanel extends javax.swing.JPanel {
 
     public HoaDonJPanel() {
         initComponents();
-        this.fillTablectt();
-        mol = (DefaultTableModel) tblTt.getModel();
-        this.fillTablett1();
-         mol1 = (DefaultTableModel) tblctt.getModel();
-         this.fillTablectt();
+        this.fillTablett(service.timKiem(txt_timKiem.getText()));
+//        this.fillTablectt();
+//        mol = (DefaultTableModel) tblTt.getModel();
+//        this.fillTablett1();
+//         mol1 = (DefaultTableModel) tblctt.getModel();
+//         this.fillTablectt();
 //         this.fillTable(service.getAll());
 
     }
@@ -64,13 +65,8 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        pnlal = new javax.swing.JTabbedPane();
-        jPanel5 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tblTt = new javax.swing.JTable();
-        jPanel6 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblctt = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tbl_HoaDon = new javax.swing.JTable();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -163,13 +159,13 @@ public class HoaDonJPanel extends javax.swing.JPanel {
 
         jButton4.setText(">|");
 
-        jScrollPane2.addMouseListener(new java.awt.event.MouseAdapter() {
+        jScrollPane3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jScrollPane2MouseClicked(evt);
+                jScrollPane3MouseClicked(evt);
             }
         });
 
-        tblTt.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_HoaDon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -177,69 +173,15 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Mã Hoá Đơn", "Tên Khách Hàng", "Tổng Tiền", "Phương Thức Thanh Toán", "Ngày Thanh Toán", "Trạng Thái"
+                "Mã Hoá Đơn", "Tên Khách Hàng", "Tên Nhân Vien", "Tổng Tiền", "Phương Thức Thanh Toán", "Ngày Thanh Toán"
             }
         ));
-        tblTt.addMouseListener(new java.awt.event.MouseAdapter() {
+        tbl_HoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblTtMouseClicked(evt);
+                tbl_HoaDonMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(tblTt);
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 787, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        pnlal.addTab("Đã Thanh Toán", jPanel5);
-
-        tblctt.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Mã Hoá Đơn", "Tên Khách Hàng", "Tổng Tiền", "Phương Thức Thanh Toán", "Ngày Thanh Toán", "Trạng Thái"
-            }
-        ));
-        tblctt.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblcttMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tblctt);
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 787, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        pnlal.addTab("Chưa Thanh Toán", jPanel6);
+        jScrollPane3.setViewportView(tbl_HoaDon);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -252,7 +194,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(52, 52, 52)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(41, 41, 41)
@@ -263,7 +205,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txt_timKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(pnlal, javax.swing.GroupLayout.PREFERRED_SIZE, 799, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane3)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(178, 178, 178)
                         .addComponent(jButton1)
@@ -273,7 +215,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton4)))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,9 +231,9 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(pnlal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
@@ -309,7 +251,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
 
     private void txt_timKiemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_timKiemKeyReleased
         // Tìm kiếm 
-        
+                this.fillTablett(service.timKiem(txt_timKiem.getText()));
     }//GEN-LAST:event_txt_timKiemKeyReleased
 
     private void cbo_HinhThucThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_HinhThucThanhToanActionPerformed
@@ -317,19 +259,15 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         this.locHinhThucThanhToan();
     }//GEN-LAST:event_cbo_HinhThucThanhToanActionPerformed
 
-    private void jScrollPane2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jScrollPane2MouseClicked
-
-    private void tblTtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTtMouseClicked
+    private void jScrollPane3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane3MouseClicked
         // TODO add your handling code here:
         showHDCT();
-    }//GEN-LAST:event_tblTtMouseClicked
+    }//GEN-LAST:event_jScrollPane3MouseClicked
 
-    private void tblcttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblcttMouseClicked
+    private void tbl_HoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_HoaDonMouseClicked
         // TODO add your handling code here:
-        showHDCT1();
-    }//GEN-LAST:event_tblcttMouseClicked
+        showHDCT();
+    }//GEN-LAST:event_tbl_HoaDonMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -345,43 +283,38 @@ public class HoaDonJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTabbedPane pnlal;
-    private javax.swing.JTable tblTt;
-    private javax.swing.JTable tblctt;
+    private javax.swing.JTable tbl_HoaDon;
     private javax.swing.JTextField txt_timKiem;
     // End of variables declaration//GEN-END:variables
 
-//    private void fillTablett(List<HoaDonCT> list) {
-//        mol = (DefaultTableModel) tbl_HoaDon.getModel();
-//        mol.setRowCount(0);
-//        for (HoaDonCT x : list) {
-//            mol.addRow(new Object[]{
-//                x.getMaHD(),
-//                x.getTenKH(),
-//                x.getTenNV(),
-//                x.getThanhTien(),
-//                x.getPTTT(),
-//                x.getNgayTT(),});
-//        }
-//    }
-//    private void fillTableCTT(List<HoaDonCT> list) {
-//        mol = (DefaultTableModel) tbl_HoaDon.getModel();
-//        mol.setRowCount(0);
-//        for (HoaDonCT x : list) {
-//            mol.addRow(new Object[]{
-//                x.getMaHD(),
-//                x.getTenKH(),
-//                x.getTenNV(),
-//                x.getThanhTien(),
-//                x.getPTTT(),
-//                x.getNgayTT(),});
-//        }
-//    }
+    private void fillTablett(List<HoaDonCT> list) {
+        mol = (DefaultTableModel) tbl_HoaDon.getModel();
+        mol.setRowCount(0);
+        for (HoaDonCT x : list) {
+            mol.addRow(new Object[]{
+                x.getMaHD(),
+                x.getTenKH(),
+                x.getTenNV(),
+                x.getThanhTien(),
+                x.getPTTT(),
+                x.getNgayTT(),});
+        }
+    }
+    private void fillTableCTT(List<HoaDonCT> list) {
+        mol = (DefaultTableModel) tbl_HoaDon.getModel();
+        mol.setRowCount(0);
+        for (HoaDonCT x : list) {
+            mol.addRow(new Object[]{
+                x.getMaHD(),
+                x.getTenKH(),
+                x.getTenNV(),
+                x.getThanhTien(),
+                x.getPTTT(),
+                x.getNgayTT(),});
+        }
+    }
         
               
 
@@ -425,19 +358,19 @@ public class HoaDonJPanel extends javax.swing.JPanel {
     }
 
     private void showHDCT() {
-        index = tblTt.getSelectedRow();
+        index = tbl_HoaDon.getSelectedRow();
         HoaDonCT hd = service.timKiem(txt_timKiem.getText()).get(index);
         maHD = hd.getMaHD();
         HoaDonChiTietView viewHDCT = new HoaDonChiTietView(maHD);
         viewHDCT.setVisible(true);
     }
-    private void showHDCT1() {
-        index = tblctt.getSelectedRow();
-        HoaDonCT hd = service.timKiem(txt_timKiem.getText()).get(index);
-        maHD = hd.getMaHD();
-        HoaDonChiTietView viewHDCT = new HoaDonChiTietView(maHD);
-        viewHDCT.setVisible(true);
-    }
+//    private void showHDCT1() {
+//        index = tblctt.getSelectedRow();
+//        HoaDonCT hd = service.timKiem1(txt_timKiem.getText()).get(index);
+//        maHD = hd.getMaHD();
+//        HoaDonChiTietView viewHDCT = new HoaDonChiTietView(maHD);
+//        viewHDCT.setVisible(true);
+//    }
     private void locHinhThucThanhToan() {
         if (cbo_HinhThucThanhToan.getSelectedIndex() == 1) {
             System.out.println("Tiền mặt");

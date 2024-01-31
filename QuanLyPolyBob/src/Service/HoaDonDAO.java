@@ -106,7 +106,35 @@ public class HoaDonDAO implements InterfaceHoaDon {
 
         return listSeach;
     }
+  public List<HoaDonCT> timKiem1(String seach) {
+        List<HoaDonCT> listSeach = new ArrayList<>();
+        String sql = "SELECT [IDHoaDon]\n"
+                + "	 ,[Ma_HoaDon]\n"
+                + "      ,KhachHang.TenKhachHang\n"
+                + "      ,NhanVien.HoTen "
+                + "      ,[ID_KhuyenMai]  \n"
+                + "      ,[TienSauGiamGia]\n"
+                + "      ,[ThanhTien]\n"
+                + "      ,[PhuongThucThanhToan]\n"
+                + "      ,[NgayThanhToan]\n"
+                + "      ,HoaDon.TrangThai\n"
+                + "  FROM [PoLyBop].[dbo].[HoaDon]\n"
+                + "  join KhachHang on KhachHang.IDKhangHang = HoaDon.ID_KhachHang\n"
+                + "  join NhanVien on NhanVien.IDNhanVien = HoaDon.ID_NhanVien\n"
+                + "  where Ma_HoaDon like '%" + seach + "%' or TenKhachHang like N'%" + seach + "%' or NhanVien.HoTen like N'%" + seach + "%' and HoaDon.TrangThai = 0";
+        try (Connection con = DBconnect.getConnection(); PreparedStatement ps = con.prepareCall(sql)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                HoaDonCT hd11 = new HoaDonCT(rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getDouble(6), rs.getDouble(7), rs.getInt(8), rs.getString(9), rs.getInt(10));
+                listSeach.add(hd11);
 
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listSeach;
+    }
     @Override
     public void insert(HoaDon Entity) {
         quanlypolybob.Hepper.JDBCHeper.update(INSERT_SQL, Entity.getIdHoaDon(), Entity.getIdKhachHang(), Entity.getIdNhanVien(),
