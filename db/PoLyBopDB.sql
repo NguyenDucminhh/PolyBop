@@ -1,7 +1,7 @@
-﻿CREATE DATABASE PoLyBop
+﻿CREATE DATABASE PoLyBop1
 GO 
 
-USE PoLyBop 
+USE PoLyBop1
 GO 
 
 CREATE TABLE [LoaiVi] (
@@ -151,7 +151,7 @@ CREATE TABLE [HoaDon] (
     FOREIGN KEY ([ID_KhuyenMai])
       REFERENCES [KhuyenMai]([IDKhuyenMai])
 );
-
+select * from NhanVien where IDNhanVien = 1
 CREATE TABLE [HoaDonChiTiet] (
   [IDHoaDonChiTiet] INT IDENTITY,
   [ID_HoaDon] INT,
@@ -159,7 +159,6 @@ CREATE TABLE [HoaDonChiTiet] (
   [Ma_HoaDonChiTiet] Varchar(50),
   [SoLuong] INT,
   [DonGia] Decimal,
-  [TrangThai] BIT,
   PRIMARY KEY ([IDHoaDonChiTiet]),
   CONSTRAINT [FK_HoaDonChiTiet.ID_ChiTietVi]
     FOREIGN KEY ([ID_ChiTietVi])
@@ -438,27 +437,14 @@ INSERT INTO HoaDon (ID_KhachHang, ID_NhanVien, ID_KhuyenMai, Ma_HoaDon, TienSauG
 (9, 9, 9, 'HD009', 285000, 250000, 1, '2023-09-20', 1),
 (10, 10, 10, 'HD010', 390000, 350000, 0, '2023-10-25', 1);
 -- Hóa ??n chi ti?t 
-INSERT INTO HoaDonChiTiet (ID_HoaDon, ID_ChiTietVi, Ma_HoaDonChiTiet, SoLuong, DonGia, TrangThai) VALUES 
-(1, 1, 'HDCT001', 2, 80000, 1),
-(1, 2, 'HDCT002', 1, 80000, 1),
-(2, 3, 'HDCT003', 3, 40000, 1),
-(2, 4, 'HDCT004', 1, 40000, 1),
-(3, 5, 'HDCT005', 2, 110000, 1),
-(3, 6, 'HDCT006', 1, 110000, 1),
-(4, 7, 'HDCT007', 3, 112500, 1),
-(4, 8, 'HDCT008', 1, 112500, 1),
-(5, 9, 'HDCT009', 2, 90000, 1),
-(5, 10, 'HDCT010', 1, 90000, 1),
-(6, 11, 'HDCT011', 2, 100000, 1),
-(6, 12, 'HDCT012', 1, 100000, 1),
-(7, 13, 'HDCT013', 5, 105000, 1),
-(7, 14, 'HDCT014', 1, 105000, 1),
-(8, 15, 'HDCT015', 4, 112500, 1),
-(8, 16, 'HDCT016', 1, 112500, 1),
-(9, 17, 'HDCT017', 3, 75000, 1),
-(9, 18, 'HDCT018', 1, 75000, 1),
-(10, 19, 'HDCT019', 2, 175000, 1),
-(10, 20, 'HDCT020', 1, 175000, 1);
+INSERT INTO HoaDonChiTiet (ID_HoaDon, ID_ChiTietVi, Ma_HoaDonChiTiet, SoLuong, DonGia) VALUES 
+(1, 1, 'HDCT001', 2, 80000),
+(1, 2, 'HDCT002', 1, 80000),
+(2, 3, 'HDCT003', 3, 40000),
+(2, 4, 'HDCT004', 1, 40000),
+(3, 5, 'HDCT005', 2, 110000),
+(3, 6, 'HDCT006', 1, 110000);
+
 -- Gi? hàng 
 INSERT INTO GioHang (ID_KhachHang, Ma_GioHang, NgayTao, TrangThai) VALUES 
 (1, 'GH001', '2023-01-01', 1),
@@ -495,6 +481,38 @@ INSERT INTO ChiTietGioHang (ID_GioHang, ID_ChiTietVi, Ma_ChiTietGioHang, SoLuong
 (10, 20, 'CTGH020', 1, 1);
 -- 
 
+-- hôm nay
+	SELECT (
+	SELECT count(HoaDon.Ma_HoaDon) 
+	FROM HoaDon
+	WHERE CONVERT(DATE, HoaDon.NgayThanhToan)  <= CONVERT(DATE, GETDATE()) AND HoaDon.TrangThai != 2) AS 'Đơn hàng'
 
+	select
+    sum(HoaDonChiTiet.SoLuong) as 'Sản phẩm' from HoaDonChiTiet 
+	SUM(HoaDon.ThanhTien) as 'Doanh thu' 
+	FROM HoaDon
+   left JOIN HoaDonChiTiet on HoaDon.IDHoaDon = HoaDonChiTiet.IDHoaDonChiTiet
+    WHERE CONVERT(DATE, HoaDon.NgayThanhToan)  <= CONVERT(DATE, GETDATE()) AND HoaDon.TrangThai != 2
+	-- theo ngày
+	select
+	    sum(HoaDonChiTiet.SoLuong) as 'Sản phẩm' 
+	FROM HoaDonChiTiet
 
+	--
+	SELECT (SELECT count(HoaDon.Ma_HoaDon) FROM HoaDon 
+	WHERE CONVERT(DATE, HoaDon.NgayThanhToan) BETWEEN ? and ?   AND HoaDon.TrangThai != 2)  AS DONHANG, 
+                 sum(HoaDonChiTiet.SoLuong), 
+				 SUM(HoaDon.ThanhTien) FROM HoaDon
+                left JOIN HoaDonChiTiet on HoaDon.Ma_HoaDon = HoaDonChiTiet.Ma_HoaDonChiTiet
+                WHERE CONVERT(DATE, HoaDon.NgayThanhToan) BETWEEN ? and ?  
+                AND HoaDon.TrangThai != 2
+	--ho
+
+	--
+	SELECT (SELECT count(donhang.MaDonHang) FROM donhang WHERE CONVERT(DATE, donhang.NgayTao)  <= getDate() AND donhang.TrangThai != 2) AS DONHANG, 
+                sum(ctdonhang.SL), 
+				SUM(ctdonhang.DonGiaSauGiam) 
+				FROM donhang
+                JOIN ctdonhang on donhang.MaDonHang = ctdonhang.MaDonHang
+                WHERE CONVERT(DATE, donhang.NgayTao)  <= getDate() AND donhang.TrangThai != 2
 
