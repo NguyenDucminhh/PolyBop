@@ -228,7 +228,7 @@ public class KhachHang extends javax.swing.JPanel {
                                         .addComponent(txtmaNV3, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(btnThem1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 156, Short.MAX_VALUE)))
+                        .addGap(0, 51, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -280,7 +280,7 @@ public class KhachHang extends javax.swing.JPanel {
                     .addComponent(btnSua)
                     .addComponent(btnXoa)
                     .addComponent(jButton4))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         add(jPanel1, java.awt.BorderLayout.CENTER);
