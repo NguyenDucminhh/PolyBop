@@ -19,6 +19,14 @@ public interface InterfaceHoaDon {
 
     List<HoaDonCT> getAll();
 
+    List<HoaDonCT> getAllByPage(int page, int recordsPerPage);
+
+    int getTotalHoaDon();
+    
+    int getTotalFilteredHoaDon(String startDate, String endDate, String keySearch, Integer payMethod);
+
+    List<HoaDonCT> filterHoaDon(String startDate, String endDate, String keySearch, Integer payMethod, int page, int recordsPerPage);
+
     List<HoaDonCT> getAllHDChuaHT();
 
     List<HoaDonCT1> getAllCTHD(String ma);
@@ -42,8 +50,9 @@ public interface InterfaceHoaDon {
 
     // get id hóa đơn thông qua mã hóa đơn 
     int getIDHD(String maHD);
+
     // Lấy ID hóa đơn chi tiết thông qua mã hóa đơn chi tiết 
-    int getID_CTSP(String maHDCT); 
+    int getID_CTSP(String maHDCT);
 
     // Tạo hóa đơn chờ 
     void addHoaDon(int IDKH, int IDNhanVien, int IDKhuyenMai, String maHD, double tongTien, int PTTT);
@@ -59,11 +68,11 @@ public interface InterfaceHoaDon {
 
     // set số lượng trong hóa đơn chờ 
     void setSLHDCT(String maHDCT, int soLuong);
-    
+
     // Xóa sản phẩm trong hóa đơn chờ 
-    void deleteSPHDCT(String maHDCT); 
-    
+    void deleteSPHDCT(String maHDCT);
+
     // Thanh toán hóa đơn 
-     void thanhToanHD(String maHD,int IDKH , double tongTien , int PTTT); 
+    void thanhToanHD(String maHD, int IDKH, double tongTien, int PTTT);
 
 }
