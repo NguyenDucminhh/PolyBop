@@ -861,6 +861,24 @@ public class main extends javax.swing.JFrame {
         pnscrene.add(panel);
         pnscrene.validate();
     }
+        public void SetAlignCenter() {
+        lblBanHang.setHorizontalAlignment(JLabel.CENTER);
+        lblHoaDon.setHorizontalAlignment(JLabel.CENTER);
+        lblNhanVien.setHorizontalAlignment(JLabel.CENTER);
+        lblSanPham.setHorizontalAlignment(JLabel.CENTER);
+        lblKhuyenMai.setHorizontalAlignment(JLabel.CENTER);
+        lblTrangChu.setHorizontalAlignment(JLabel.CENTER);
+        lblKhachHang.setHorizontalAlignment(JLabel.CENTER);
+//        lblDoiMK.setHorizontalAlignment(JLabel.CENTER);
+    }
+private JPanel childPanel;
+    public void fillPanel(JPanel pnl) {
+        childPanel = pnl;
+        pnscrene.removeAll();
+        pnscrene.add(childPanel);
+        pnscrene.validate();
+        SetAlignCenter();
+    }
     
     public void setColorJpanel(JPanel pane) {
         pane.setBackground(new java.awt.Color(55, 148, 254));

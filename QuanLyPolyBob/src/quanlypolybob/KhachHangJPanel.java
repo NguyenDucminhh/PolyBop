@@ -160,6 +160,11 @@ public class KhachHangJPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Họ Tên");
 
+        txtSearchKH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchKHActionPerformed(evt);
+            }
+        });
         txtSearchKH.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtSearchKHKeyReleased(evt);
@@ -415,6 +420,10 @@ public class KhachHangJPanel extends javax.swing.JPanel {
     private void btnExportExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportExcelActionPerformed
         showSaveDialogAndExport();
     }//GEN-LAST:event_btnExportExcelActionPerformed
+
+    private void txtSearchKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchKHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchKHActionPerformed
     
     public void searchKH(String ma) {
         list = khachHangService.Search(ma);

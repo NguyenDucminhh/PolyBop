@@ -915,6 +915,7 @@ public class QuanLySanPhamJPanel extends javax.swing.JPanel {
                 dao_vi.update(sp);
 //                filltotablehh();
                 filltotablech();
+                filltotablehh();
                 clearForm();
                 jTabbedPane1.setSelectedIndex(0);
                 JOptionPane.showMessageDialog(this, "Đã sửa");

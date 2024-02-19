@@ -260,6 +260,7 @@ public class NewKhachHangJDiaLog extends javax.swing.JFrame {
         kh.setEmail(txt_Email.getText());
         kh.setSdt(txt_SDT.getText());
         kh.setDiaChi(txt_diaChi.getText());
+        kh.setTrangThai(true);
         return kh;
     }
 
@@ -337,4 +338,6 @@ public class NewKhachHangJDiaLog extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Thêm Khách hàng thất bại !");
         }
     }
+    
+    
 }

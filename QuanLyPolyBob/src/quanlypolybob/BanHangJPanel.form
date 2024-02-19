@@ -459,8 +459,8 @@
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="4" rowCount="4">
-                    <Column editable="false" title="M&#xe3; V&#xed;" type="java.lang.Object"/>
-                    <Column editable="false" title="T&#xea;n V&#xed;" type="java.lang.Object"/>
+                    <Column editable="false" title="M&#xe3; S&#x1ea3;n Ph&#x1ea9;m" type="java.lang.Object"/>
+                    <Column editable="false" title="T&#xea;n S&#x1ea3;n ph&#x1ea9;m" type="java.lang.Object"/>
                     <Column editable="false" title="S&#x1ed1; L&#x1b0;&#x1ee3;ng" type="java.lang.Object"/>
                     <Column editable="false" title="T&#x1ed5;ng Ti&#x1ec1;n" type="java.lang.Object"/>
                   </Table>
@@ -504,7 +504,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="X&#xf3;a V&#xed;"/>
+            <Property name="text" type="java.lang.String" value="X&#xf3;a SP"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
@@ -548,7 +548,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="350" width="720" height="280"/>
+          <AbsoluteConstraints x="0" y="340" width="720" height="290"/>
         </Constraint>
       </Constraints>
 
@@ -572,8 +572,8 @@
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="7" rowCount="4">
-                    <Column editable="false" title="M&#xe3; V&#xed; " type="java.lang.Object"/>
-                    <Column editable="false" title="T&#xea;n V&#xed; " type="java.lang.Object"/>
+                    <Column editable="false" title="M&#xe3; S&#x1ea3;n Ph&#x1ea9;m" type="java.lang.Object"/>
+                    <Column editable="false" title="T&#xea;n S&#x1ea3;n Ph&#x1ea9;m" type="java.lang.Object"/>
                     <Column editable="false" title="Ki&#x1ec3;u D&#xe1;ng" type="java.lang.Object"/>
                     <Column editable="false" title="Th&#x1b0;&#x1a1;ng Hi&#x1ec7;u" type="java.lang.Object"/>
                     <Column editable="false" title="M&#xe0;u S&#x1eaf;c" type="java.lang.Object"/>

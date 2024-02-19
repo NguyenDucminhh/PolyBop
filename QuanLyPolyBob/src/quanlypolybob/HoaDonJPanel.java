@@ -4,6 +4,8 @@
  */
 package quanlypolybob;
 
+import Model.HoaDon;
+import Model.HoaDon1;
 import Model.HoaDonCT;
 import Model.HoaDonCT1;
 import Service.HoaDonDAO;
@@ -29,6 +31,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import quanlypolybob.Dao.HoaDonDao;
 
 /**
  *
@@ -36,10 +39,15 @@ import javax.swing.table.DefaultTableModel;
  */
 public class HoaDonJPanel extends javax.swing.JPanel {
 
-    DefaultTableModel mol = new DefaultTableModel();
+       DefaultTableModel mol = new DefaultTableModel();
+    DefaultTableModel mol1 = new DefaultTableModel();
     HoaDonDAO service = new HoaDonDAO();
+    HoaDonDao dao_vi = new HoaDonDao();
+    NhanVienRepository dao_NV = new NhanVienRepository();
+    KhachHangRepository dao_kh = new KhachHangRepository();
     int index = -1;
     String maHD;
+
 
     public HoaDonJPanel() {
         initComponents();
@@ -163,7 +171,25 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        tbl_HoaDon.setAutoCreateRowSorter(true);
+        jButton1.setText("|<");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("<<");
+
+        jButton3.setText(">>");
+
+        jButton4.setText(">|");
+
+        jScrollPane3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jScrollPane3MouseClicked(evt);
+            }
+        });
+
         tbl_HoaDon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -172,17 +198,9 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Mã Hóa Đơn", "Tên Khách Hàng", "Tên Nhân Viên", "Tổng Tiền", "Phương Thức Thanh Toán", "Ngày Thanh Toán"
+                "Mã Hoá Đơn", "Tên Khách Hàng", "Tên Nhân Vien", "Tổng Tiền", "Phương Thức Thanh Toán", "Ngày Thanh Toán"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         tbl_HoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_HoaDonMouseClicked(evt);
@@ -345,11 +363,6 @@ public class HoaDonJPanel extends javax.swing.JPanel {
 
         add(jPanel1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tbl_HoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_HoaDonMouseClicked
-        // Hiện hóa đơn chi tiết 
-        this.showHDCT();
-    }//GEN-LAST:event_tbl_HoaDonMouseClicked
 
     private void txt_timKiemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_timKiemKeyPressed
 
@@ -609,6 +622,60 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                 x.getThanhTien(),
                 x.getPTTT(),
                 x.getNgayTT(),});
+        }
+    }
+    private void fillTableCTT(List<HoaDonCT> list) {
+        mol = (DefaultTableModel) tbl_HoaDon.getModel();
+        mol.setRowCount(0);
+        for (HoaDonCT x : list) {
+            mol.addRow(new Object[]{
+                x.getMaHD(),
+                x.getTenKH(),
+                x.getTenNV(),
+                x.getThanhTien(),
+                x.getPTTT(),
+                x.getNgayTT(),});
+        }
+    }
+        
+              
+
+    private void fillTablett1() {
+        mol.setRowCount(0);
+        try {
+         List<HoaDon1>  list = dao_vi.selectAll();
+            for(HoaDon1 x : list){
+                mol.addRow(new Object[]{
+                  x.getMa_HoaDon(),
+                dao_kh.selectNameByID(x.getID_KhachHang()),
+//                dao_NV.selectNameByID(x.getID_NhanVien()),
+                x.getThanhTien(),
+                x.isPhuongThucThanhToan()?"Tiền mặt" : "Chuyển Khoản",
+                x.getNgayThanhToan(),
+                x.isTrangThai()?"Đã Thanh Toán" : "Chưa Thanh Toán",
+                });
+                
+            }
+        } catch (Exception e) {
+        }
+    }
+    private void fillTablectt() {
+        mol1.setRowCount(0);
+        try {
+          List<HoaDon1>  list = dao_vi.select_TrangThai();
+            for(HoaDon1 x : list){
+                mol1.addRow(new Object[]{
+                   x.getMa_HoaDon(),
+                dao_kh.selectNameByID(x.getID_KhachHang()),
+//                dao_NV.selectNameByID(x.getID_NhanVien()),
+                x.getThanhTien(),
+                x.isPhuongThucThanhToan()?"Tiền mặt" : "Chuyển Khoản",
+                x.getNgayThanhToan(),
+                x.isTrangThai()?"Đã Thanh Toán" : "Chưa Thanh Toán",
+                });
+                
+            }
+        } catch (Exception e) {
         }
     }
 
