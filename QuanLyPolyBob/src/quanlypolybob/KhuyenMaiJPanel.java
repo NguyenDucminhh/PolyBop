@@ -51,7 +51,7 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
                 km.getMa(),
                 km.getNgayBatDau(),
                 km.getNgayKetThuc(),
-                km.getKieuGiamGia(),
+                km.getGiaTri(),
                 km.isTrangThai() ? "Còn hoạt động" : "Ngừng hoạt động"
             });
         }
@@ -61,7 +61,7 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
 
     public void show(KhuyenMai km) {
         txtMa.setText(km.getMa());
-        txtKieuGiamGia.setText(km.getKieuGiamGia() + "");
+        txtGiaTri.setText(km.getGiaTri()+ "");
         dateBatDau.setDate(km.getNgayBatDau());
         dateKetThuc.setDate(km.getNgayKetThuc());
         if (km.isTrangThai() == true) {
@@ -74,7 +74,7 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
     private KhuyenMai getInformation() {
         KhuyenMai km = new KhuyenMai();
         km.setMa(txtMa.getText());
-        km.setKieuGiamGia(Integer.parseInt(txtKieuGiamGia.getText()));
+        km.setGiaTri(Integer.parseInt(txtGiaTri.getText()));
         km.setNgayBatDau(Xdate.toDate(Xdate.toString(dateBatDau.getDate(), "yyyy-MM-dd"), "yyyy-MM-dd"));
         km.setNgayKetThuc(Xdate.toDate(Xdate.toString(dateKetThuc.getDate(), "yyyy-MM-dd"), "yyyy-MM-dd"));
         km.setTrangThai(hd.isSelected());
@@ -84,7 +84,7 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
     private KhuyenMai setForm() {
         KhuyenMai km = new KhuyenMai();
         km.setMa(txtMa.getText());
-        km.setKieuGiamGia(Integer.parseInt(txtKieuGiamGia.getText()));
+        km.setGiaTri(Integer.parseInt(txtGiaTri.getText()));
         km.setNgayBatDau(Xdate.toDate(Xdate.toString(dateBatDau.getDate(), "yyyy-MM-dd"), "yyyy-MM-dd"));
         km.setNgayKetThuc(Xdate.toDate(Xdate.toString(dateKetThuc.getDate(), "yyyy-MM-dd"), "yyyy-MM-dd"));
         km.setTrangThai(hd.isSelected());
@@ -155,10 +155,10 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
             return false;
         }
 
-        if (txtKieuGiamGia.getText().isEmpty()) {
+        if (txtGiaTri.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập mức giảm giá");
             return false;
-        } else if (!isValidNumber(txtKieuGiamGia.getText())) {
+        } else if (!isValidNumber(txtGiaTri.getText())) {
             JOptionPane.showMessageDialog(this, "Mức giảm giá không hợp lệ");
             return false;
         }
@@ -232,7 +232,7 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         txtMa = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txtKieuGiamGia = new javax.swing.JTextField();
+        txtGiaTri = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         dateBatDau = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
@@ -256,7 +256,7 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Mã KM", "Ngày bắt đầu", "Ngày kết thúc", "Kiểm giảm giá", "Trạng thái"
+                "Mã KM", "Ngày bắt đầu", "Ngày kết thúc", "Giá trị", "Trạng thái"
             }
         ));
         tableKM.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -413,7 +413,7 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtKieuGiamGia))
+                                .addComponent(txtGiaTri))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -469,7 +469,7 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(txtKieuGiamGia, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtGiaTri, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -583,7 +583,7 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
     private javax.swing.JRadioButton nhd;
     private javax.swing.JLabel pageLabel;
     private javax.swing.JTable tableKM;
-    private javax.swing.JTextField txtKieuGiamGia;
+    private javax.swing.JTextField txtGiaTri;
     private javax.swing.JTextField txtMa;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables

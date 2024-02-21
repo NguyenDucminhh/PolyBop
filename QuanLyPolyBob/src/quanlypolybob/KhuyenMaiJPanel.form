@@ -39,7 +39,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="txtKieuGiamGia" max="32767" attributes="0"/>
+                                  <Component id="txtGiaTri" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
@@ -114,7 +114,7 @@
                           </Group>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtKieuGiamGia" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                              <Component id="txtGiaTri" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -234,7 +234,7 @@
                         <Column editable="true" title="M&#xe3; KM" type="java.lang.Object"/>
                         <Column editable="true" title="Ng&#xe0;y b&#x1eaf;t &#x111;&#x1ea7;u" type="java.lang.Object"/>
                         <Column editable="true" title="Ng&#xe0;y k&#x1ebf;t th&#xfa;c" type="java.lang.Object"/>
-                        <Column editable="true" title="Ki&#x1ec3;m gi&#x1ea3;m gi&#xe1;" type="java.lang.Object"/>
+                        <Column editable="true" title="Gi&#xe1; tr&#x1ecb;" type="java.lang.Object"/>
                         <Column editable="true" title="Tr&#x1ea1;ng th&#xe1;i" type="java.lang.Object"/>
                       </Table>
                     </Property>
@@ -348,7 +348,7 @@
             <Property name="text" type="java.lang.String" value="M&#x1ee9;c gi&#x1ea3;m gi&#xe1; :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtKieuGiamGia">
+        <Component class="javax.swing.JTextField" name="txtGiaTri">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
