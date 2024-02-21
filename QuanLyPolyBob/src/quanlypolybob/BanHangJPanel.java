@@ -15,9 +15,11 @@ import Model.SanPham;
 import Model.HoaDonCT;
 import Model.HoaDonCT1;
 import Model.KhachHang;
+import Model.KhuyenMai;
 import View.LoginView;
 import Repository.KhachHangRepository;
 import Service.KhachHangService;
+import Service.KhuyenMaiDAO;
 import static java.awt.image.ImageObserver.HEIGHT;
 import static java.awt.image.ImageObserver.WIDTH;
 import java.util.Random;
@@ -33,10 +35,11 @@ public class BanHangJPanel extends javax.swing.JPanel {
     /**
      * Creates new form BanHangJPanel
      */
-    SanPhamDAO service = new SanPhamDAO();
+   SanPhamDAO service = new SanPhamDAO();
     HoaDonDAO serviceHD = new HoaDonDAO();
     KhachHangRepository khachHangRepository = new KhachHangRepository();
     KhachHangService khachHangService = new KhachHangService();
+    KhuyenMaiDAO khuyenMaiservice = new KhuyenMaiDAO();
     DefaultTableModel mol = new DefaultTableModel();
     String tenNV, email;
 
@@ -86,6 +89,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         txt_KhachHang1 = new javax.swing.JTextField();
+        jButton7 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_hoaDon = new javax.swing.JTable();
@@ -184,7 +188,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
 
         txt_MaGiamGia.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txt_MaGiamGia.setForeground(java.awt.Color.red);
-        jPanel2.add(txt_MaGiamGia, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 276, 32));
+        jPanel2.add(txt_MaGiamGia, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 180, 32));
 
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton4.setText("Hủy Hóa Đơn");
@@ -223,6 +227,14 @@ public class BanHangJPanel extends javax.swing.JPanel {
             }
         });
         jPanel2.add(txt_KhachHang1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 144, -1));
+
+        jButton7.setText("Áp Dụng");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, -1, 30));
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 0, 300, 440));
 
@@ -491,6 +503,12 @@ public class BanHangJPanel extends javax.swing.JPanel {
         this.thanhToanHD();
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        // Mã giảm giá
+        this.addMaGiamGia();
+    }//GEN-LAST:event_jButton7ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -500,6 +518,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -925,5 +944,46 @@ public class BanHangJPanel extends javax.swing.JPanel {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Thanh toán thất bại ! ");
         }
+    }
+     private void addMaGiamGia() {
+        try {
+            index = tbl_hoaDon.getSelectedRow();
+            if (index < 0) {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn hóa đơn thanh toán ! ");
+            } // Đã chọn hóa đơn 
+            else {
+                String maKM = txt_MaGiamGia.getText().trim();
+                int check_KM = 0;
+                if (!maKM.isBlank()) {
+                    for (KhuyenMai x : khuyenMaiservice.getKhuyenMai()) {
+                        if (maKM.equalsIgnoreCase(x.getMa())) {
+                            check_KM = 1;
+                            // mã hóa đơn đúng
+                            int giaTriKM = khuyenMaiservice.getGiaTriKM(maKM); 
+                            JOptionPane.showMessageDialog(this,"Bạn đã áp dụng thành công mã "+maKM+"\nBạn được giảm giá "+giaTriKM+"% vào tổng tiền hóa đơn");
+                            float tien =(float) giaTriKM/100; 
+                            double tienGiamGia = Double.valueOf(lbl_TongTien.getText()) * tien ; 
+                            double tongTien = Double.valueOf(lbl_TongTien.getText()) - tienGiamGia; 
+                            double tongTien_roundedUp = Math.ceil(tongTien); // Làm tròn lên
+                            lbl_TongTien.setText(String.valueOf(tongTien_roundedUp));
+                            txt_MaGiamGia.setText("");
+                            System.out.println("Tổng Tiền : "+lbl_TongTien.getText());
+                            System.out.println("Tiền giảm giá : "+tienGiamGia);
+                            System.out.println("giảm giá : "+tien); 
+                            System.out.println("Thành tiền : "+tongTien_roundedUp);
+                        }
+                    }
+                    // mã không đúng , không tồn tại
+                    if (check_KM == 0) {
+                        JOptionPane.showMessageDialog(this, "Mã khuyến mãi không đúng !");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Vui lòng nhập mã khuyến mãi");
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Áp dụng thất bại !");
+        }
+
     }
 }
