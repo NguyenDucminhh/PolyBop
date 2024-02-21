@@ -480,4 +480,5 @@ public class ThongKeJpanel extends javax.swing.JPanel {
         lbdonhang.setText(donHang + "");
         lblsanpham.setText(sanPham + "");
     }
+    
 }
