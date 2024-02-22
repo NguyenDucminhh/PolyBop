@@ -35,7 +35,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
     /**
      * Creates new form BanHangJPanel
      */
-   SanPhamDAO service = new SanPhamDAO();
+    SanPhamDAO service = new SanPhamDAO();
     HoaDonDAO serviceHD = new HoaDonDAO();
     KhachHangRepository khachHangRepository = new KhachHangRepository();
     KhachHangService khachHangService = new KhachHangService();
@@ -282,7 +282,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Mã Sản Phẩm", "Tên Sản phẩm", "Số Lượng", "Tổng Tiền"
+                "Mã Sản Phẩm", "Tên Sản phẩm", "Số Lượng", "Giá Tiền"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -774,11 +774,13 @@ public class BanHangJPanel extends javax.swing.JPanel {
         mol = (DefaultTableModel) tbl_KhachHang.getModel();
         mol.setRowCount(0);
         for (Model.KhachHang kh : list) {
-            mol.addRow(new Object[]{
-                kh.getIdKhachHang(),
-                kh.getTenKhachHang(),
-                kh.getSdt()
-            });
+            if (kh.isTrangThai() != false) {
+                mol.addRow(new Object[]{
+                    kh.getIdKhachHang(),
+                    kh.getTenKhachHang(),
+                    kh.getSdt()
+                });
+            }
         }
     }
 
@@ -927,8 +929,8 @@ public class BanHangJPanel extends javax.swing.JPanel {
                             serviceHD.thanhToanHD(lbl_maHD.getText(), getIDKH(), Double.valueOf(lbl_TongTien.getText()), getPTTT());
                             this.fillTableHD(serviceHD.getAllHDChuaHT());
                             JOptionPane.showMessageDialog(this, "Thanh Toán Thành Công !" + "\nSố tiền thối khách : " + String.valueOf(moneyTra) + " VNĐ");
-                          
-                            }
+
+                        }
                     } else if (rdo_ChuyenKhoan.isEnabled()) {
                         serviceHD.thanhToanHD(lbl_maHD.getText(), getIDKH(), Double.valueOf(lbl_TongTien.getText()), getPTTT());
                         this.fillTableHD(serviceHD.getAllHDChuaHT());
@@ -939,13 +941,14 @@ public class BanHangJPanel extends javax.swing.JPanel {
                 }
 
             }
-            mol =(DefaultTableModel) tbl_hoaDonCT.getModel();
+            mol = (DefaultTableModel) tbl_hoaDonCT.getModel();
             mol.setRowCount(0);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Thanh toán thất bại ! ");
         }
     }
-     private void addMaGiamGia() {
+
+    private void addMaGiamGia() {
         try {
             index = tbl_hoaDon.getSelectedRow();
             if (index < 0) {
@@ -959,18 +962,18 @@ public class BanHangJPanel extends javax.swing.JPanel {
                         if (maKM.equalsIgnoreCase(x.getMa())) {
                             check_KM = 1;
                             // mã hóa đơn đúng
-                            int giaTriKM = khuyenMaiservice.getGiaTriKM(maKM); 
-                            JOptionPane.showMessageDialog(this,"Bạn đã áp dụng thành công mã "+maKM+"\nBạn được giảm giá "+giaTriKM+"% vào tổng tiền hóa đơn");
-                            float tien =(float) giaTriKM/100; 
-                            double tienGiamGia = Double.valueOf(lbl_TongTien.getText()) * tien ; 
-                            double tongTien = Double.valueOf(lbl_TongTien.getText()) - tienGiamGia; 
+                            int giaTriKM = khuyenMaiservice.getGiaTriKM(maKM);
+                            JOptionPane.showMessageDialog(this, "Bạn đã áp dụng thành công mã " + maKM + "\nBạn được giảm giá " + giaTriKM + "% vào tổng tiền hóa đơn");
+                            float tien = (float) giaTriKM / 100;
+                            double tienGiamGia = Double.valueOf(lbl_TongTien.getText()) * tien;
+                            double tongTien = Double.valueOf(lbl_TongTien.getText()) - tienGiamGia;
                             double tongTien_roundedUp = Math.ceil(tongTien); // Làm tròn lên
                             lbl_TongTien.setText(String.valueOf(tongTien_roundedUp));
                             txt_MaGiamGia.setText("");
-                            System.out.println("Tổng Tiền : "+lbl_TongTien.getText());
-                            System.out.println("Tiền giảm giá : "+tienGiamGia);
-                            System.out.println("giảm giá : "+tien); 
-                            System.out.println("Thành tiền : "+tongTien_roundedUp);
+                            System.out.println("Tổng Tiền : " + lbl_TongTien.getText());
+                            System.out.println("Tiền giảm giá : " + tienGiamGia);
+                            System.out.println("giảm giá : " + tien);
+                            System.out.println("Thành tiền : " + tongTien_roundedUp);
                         }
                     }
                     // mã không đúng , không tồn tại

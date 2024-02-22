@@ -46,14 +46,14 @@ public class KhachHangService {
     // Tìm kiếm SQL 
     public List<KhachHang> firdKhachHangHD(String key) {
         List<KhachHang> listKH = new ArrayList<>();
-        String sql = "Select IDKhangHang,TenKhachHang,SDT\n"
+        String sql = "Select *"
                 + "from KhachHang where \n"
                 + "TenKhachHang like N'%"+key+"%' or SDT like N'%"+key+"%' and trangthai = 1 "; 
                 
         try (Connection con = DBconnect.getConnection(); PreparedStatement ps = con.prepareCall(sql)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                KhachHang kh = new KhachHang(rs.getInt(1),rs.getString(2),rs.getString(3),null,"","", true); 
+                KhachHang kh = new KhachHang(rs.getInt(1),rs.getString(2),rs.getString(3),null,"","",rs.getBoolean(7)); 
                 listKH.add(kh); 
             }
         } catch (Exception e) {
