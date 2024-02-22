@@ -75,6 +75,12 @@ public interface InterfaceHoaDon {
     // Thanh toán hóa đơn 
     void thanhToanHD(String maHD, int IDKH, double tongTien, int PTTT);
     
-    // lấy ra id hóa đơn trong bảng hóa đơn 
-
+    // Lấy ra số lượng trong hóa dơn chi tiết 
+    int getSLSP(int IDCTSP , int IDHD);
+    // lấy ra giá bán 
+    double getGiaBan(int IDCTSP); 
+    
+    // update lại giá tiền trong bảng hóa đơn chi tiết 
+    void updateGiaSPHDCT(double giaUpdate , int IDCTSP , int IDHD); 
+    void updateGiaSPHDCT_btnSua(double giaUpdate ,String maHDCT);
 }

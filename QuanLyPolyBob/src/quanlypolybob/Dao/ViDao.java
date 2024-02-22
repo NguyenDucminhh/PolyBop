@@ -5,6 +5,9 @@
 package quanlypolybob.Dao;
 
 import Model.Vi;
+import Repository.DBconnect;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.ResultSet;
@@ -117,6 +120,7 @@ String select_Trangthai1 = "SELECT * FROM Vi WHERE Trangthai = 1";
         return 0;
     }
 
+    
 
     @Override
     public List<Vi> getViByPage(int page, int recordInPage) {
@@ -166,5 +170,20 @@ String select_Trangthai1 = "SELECT * FROM Vi WHERE Trangthai = 1";
     public int selectIdByName(String name) {
         String sql = "select * from Vi where TenVi =?";
         return selectBySQL(sql, name).get(0).getIDVi();
+    }
+        // lấy ra giá bán của ví thông qua mã ví 
+    public double getGiaBan(String maSP) {
+        double gia = 0;
+        String sql = "Select ChiTietVi.GiaBan from ChiTietVi\n"
+                + "join Vi on vi.IDVi = ChiTietVi.IDChiTietVi where Ma_Vi like '" + maSP + "'";
+        try (Connection con = DBconnect.getConnection(); PreparedStatement ps = con.prepareCall(sql)) {
+           ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                gia = rs.getDouble(1); 
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return gia;
     }
 }

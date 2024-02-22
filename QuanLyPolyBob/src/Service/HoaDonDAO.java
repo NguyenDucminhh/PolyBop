@@ -305,8 +305,8 @@ public class HoaDonDAO implements InterfaceHoaDon {
 
     @Override
     public void removeHoaDon(int IDHoaDon) {
-        String sql = "Delete HoaDonChiTiet where ID_HoaDon = "+IDHoaDon+" \n"
-                + "Delete HoaDon where IDHoaDon = "+IDHoaDon+"";
+        String sql = "Delete HoaDonChiTiet where ID_HoaDon = " + IDHoaDon + " \n"
+                + "Delete HoaDon where IDHoaDon = " + IDHoaDon + "";
         try (Connection con = DBconnect.getConnection(); PreparedStatement ps = con.prepareCall(sql)) {
             ps.executeUpdate();
         } catch (Exception e) {
@@ -587,6 +587,57 @@ public class HoaDonDAO implements InterfaceHoaDon {
             e.printStackTrace();
         }
         return 0; // Trả về 0 nếu có lỗi
+    }
+
+    // Lấy ra số lượng sản phẩm ở chi tiết hóa đơn 
+    @Override
+    public int getSLSP(int IDCTSP, int IDHD) {
+        int sl = 0;
+        String sql = "select SoLuong from HoaDonChiTiet where ID_ChiTietVi = " + IDCTSP + " and ID_HoaDon = " + IDHD + " ";
+        try (Connection con = DBconnect.getConnection(); PreparedStatement ps = con.prepareCall(sql)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                sl = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return sl;
+    }
+
+    @Override
+    public void updateGiaSPHDCT(double giaUpdate, int IDCTSP, int IDHD) {
+        String sql = "update HoaDonChiTiet set DonGia = " + giaUpdate + " where ID_ChiTietVi = " + IDCTSP + " and ID_HoaDon= " + IDHD + " ";
+        try (Connection con = DBconnect.getConnection(); PreparedStatement ps = con.prepareCall(sql)) {
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public double getGiaBan(int IDCTSP) {
+        double gia = 0;
+        String sql = "Select GiaBan from ChiTietVi where IDChiTietVi = " + IDCTSP + " ";
+        try (Connection con = DBconnect.getConnection(); PreparedStatement ps = con.prepareCall(sql)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                gia = rs.getDouble(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return gia;
+    }
+
+    @Override
+    public void updateGiaSPHDCT_btnSua(double giaUpdate, String maHDCT) {
+        String sql = "update HoaDonChiTiet set DonGia = "+giaUpdate+" where Ma_HoaDonChiTiet like '"+maHDCT+"' "; 
+        try (Connection con = DBconnect.getConnection(); PreparedStatement ps = con.prepareCall(sql)) {
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

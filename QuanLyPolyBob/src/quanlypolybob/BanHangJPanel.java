@@ -468,7 +468,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
 //        System.out.println(hd1.getMaVi());
 //        System.out.println(service.sumSLSP(IDCTSP_tableHDCT()));
 //        System.out.println(IDCTSP_tableHDCT());
-//        System.out.println(hd1.getMaHDCT());
+//       System.out.println(hd1.getMaHDCT());
 //        System.out.println(hd1.getSoLuong());
     }//GEN-LAST:event_tbl_hoaDonCTMouseClicked
 
@@ -741,10 +741,13 @@ public class BanHangJPanel extends javax.swing.JPanel {
                 } else {
                     int index_HD = tbl_hoaDon.getSelectedRow();
                     HoaDonCT hd = serviceHD.getAllHDChuaHT().get(index_HD);
+                    
                     for (HoaDonCT1 ct : serviceHD.getAllCTHD(hd.getMaHD())) {
                         if (ct.getIdCTVI() == IDCTSP()) {
                             // đã tồn tại 
                             serviceHD.updateSLSPHDCT(ct.getMaHDCT(), soLuong);
+                            double giaUpdate = serviceHD.getSLSP(IDCTSP(), serviceHD.getIDHD(hd.getMaHD())) * moneySP() ; 
+                            serviceHD.updateGiaSPHDCT(giaUpdate,IDCTSP(),serviceHD.getIDHD(hd.getMaHD()));
                             service.reduceSLSP(IDCTSP(), soLuong);
                             this.fillTableHDCT();
                             this.fillTableSP(service.seachSP(txt_TimKiemSP.getText()));
@@ -856,6 +859,8 @@ public class BanHangJPanel extends javax.swing.JPanel {
                 if (soLuongUpdate <= sumSL && soLuongUpdate > 0) {
                     serviceHD.setSLHDCT(getMaHDCT(), soLuongUpdate);
                     service.updateSLSP(IDCTSP_tableHDCT(), sumSL - soLuongUpdate);
+                    double giaUpdate = soLuongUpdate * serviceHD.getGiaBan(IDCTSP_tableHDCT()) ;
+                    serviceHD.updateGiaSPHDCT_btnSua(giaUpdate,getMaHDCT());
                     this.fillTableHDCT();
                     this.fillTableSP(service.seachSP(txt_TimKiemSP.getText()));
                     this.showTongTien();

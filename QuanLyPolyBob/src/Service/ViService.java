@@ -5,14 +5,19 @@
 package Service;
 
 import Model.Vi;
+import Repository.DBconnect;
 import quanlypolybob.Dao.ViDao;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 /**
  *
  * @author Windows
  */
 public class ViService {
-        ViDao dao = new ViDao();
+
+    ViDao dao = new ViDao();
 
     public void insert(Vi sp) {
         dao.insert(sp);
@@ -25,4 +30,6 @@ public class ViService {
     public void delete(Vi sp) {
         dao.delete(sp.getIDVi());
     }
+
+
 }
