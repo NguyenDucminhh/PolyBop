@@ -823,8 +823,12 @@ public class BanHangJPanel extends javax.swing.JPanel {
                 if (choice == 0) {
                     index = tbl_hoaDon.getSelectedRow();
                     HoaDonCT hd = serviceHD.getAllHDChuaHT().get(index);
-                    serviceHD.removeHoaDon(hd.getMaHD());
+                    serviceHD.removeHoaDon(serviceHD.getIDHD(hd.getMaHD()));
                     this.fillTableHD(serviceHD.getAllHDChuaHT());
+                    lbl_TongTien.setText("");
+                    lbl_maHD.setText("");
+                    mol = (DefaultTableModel) tbl_hoaDonCT.getModel();
+                    mol.setRowCount(0);
                 }
             }
 

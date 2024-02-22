@@ -58,7 +58,7 @@ public interface InterfaceHoaDon {
     void addHoaDon(int IDKH, int IDNhanVien, int IDKhuyenMai, String maHD, double tongTien, int PTTT);
 
     // Hủy hóa đơn 
-    void removeHoaDon(String ma);
+    void removeHoaDon(int IDHoaDon);
 
     // Tạo ra hóa đơn chi tiết
     void addSPHDCT(int IDHD, int IDCTSP, String maHDCT, int soLuong, double donGia);
@@ -74,5 +74,7 @@ public interface InterfaceHoaDon {
 
     // Thanh toán hóa đơn 
     void thanhToanHD(String maHD, int IDKH, double tongTien, int PTTT);
+    
+    // lấy ra id hóa đơn trong bảng hóa đơn 
 
 }
