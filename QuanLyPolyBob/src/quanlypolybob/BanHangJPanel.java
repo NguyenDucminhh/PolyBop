@@ -282,7 +282,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Mã Sản Phẩm", "Tên Sản phẩm", "Số Lượng", "Giá Tiền"
+                "Mã Sản Phẩm", "Tên Sản phẩm", "Số Lượng", "Thành Tiền"
             }
         ) {
             boolean[] canEdit = new boolean [] {
