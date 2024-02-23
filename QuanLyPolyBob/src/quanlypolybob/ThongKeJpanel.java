@@ -101,23 +101,28 @@ public class ThongKeJpanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_TKSP = new javax.swing.JTable();
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel1MouseClicked(evt);
             }
         });
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setBackground(new java.awt.Color(255, 102, 102));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.red));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.setAlignmentX(1.0F);
         jPanel2.setAlignmentY(1.0F);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Đơn Hàng");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Đơn hàng :");
 
+        lbdonhang.setForeground(new java.awt.Color(255, 255, 255));
         lbdonhang.setText("0");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -148,17 +153,21 @@ public class ThongKeJpanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel3.setBackground(new java.awt.Color(0, 153, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.red));
         jPanel3.setForeground(new java.awt.Color(255, 255, 255));
         jPanel3.setAlignmentX(1.0F);
         jPanel3.setAlignmentY(1.0F);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Sản Phẩm");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel5.setText("Sản Phẩm");
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Sản Phẩm :");
 
+        lblsanpham.setForeground(new java.awt.Color(255, 255, 255));
         lblsanpham.setText("10");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -166,53 +175,54 @@ public class ThongKeJpanel extends javax.swing.JPanel {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblsanpham))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(jLabel4)))
-                .addContainerGap(122, Short.MAX_VALUE))
+                    .addComponent(jLabel4)
+                    .addComponent(lblsanpham))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(21, 21, 21)
                 .addComponent(jLabel4)
-                .addGap(30, 30, 30)
+                .addGap(32, 32, 32)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(lblsanpham))
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel4.setBackground(new java.awt.Color(51, 204, 0));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.red));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Doanh Thu");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Doanh thu :");
 
+        lbldoanhthu.setForeground(new java.awt.Color(255, 255, 255));
         lbldoanhthu.setText("0 VND");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel7)
-                .addGap(42, 42, 42))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel8)
                 .addGap(18, 18, 18)
                 .addComponent(lbldoanhthu)
                 .addContainerGap(135, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addGap(90, 90, 90))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,9 +233,10 @@ public class ThongKeJpanel extends javax.swing.JPanel {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(lbldoanhthu))
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
 
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel13.setText("Thời Gian :");
 
         cboLoaiTG.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hôm nay", "Theo Ngay" }));
@@ -240,10 +251,14 @@ public class ThongKeJpanel extends javax.swing.JPanel {
             }
         });
 
+        pnlLoaiThoiGian.setBackground(new java.awt.Color(255, 255, 255));
+        pnlLoaiThoiGian.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.red));
+
         jLabel3.setText("Ngày bắt đầu");
 
         jLabel6.setText("Ngày Kết Thúc");
 
+        btnTK.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnTK.setText("Tìm Kiếm");
         btnTK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -282,14 +297,18 @@ public class ThongKeJpanel extends javax.swing.JPanel {
                 .addGap(11, 11, 11))
         );
 
+        jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
         jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTabbedPane1MouseClicked(evt);
             }
         });
 
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+
         jPanel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        tabDoanhThu.setBackground(new java.awt.Color(255, 255, 255));
         tabDoanhThu.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
         tabDoanhThu.setTabPlacement(javax.swing.JTabbedPane.LEFT);
         tabDoanhThu.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -298,7 +317,8 @@ public class ThongKeJpanel extends javax.swing.JPanel {
             }
         });
 
-        pnlBieuDo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        pnlBieuDo.setBackground(new java.awt.Color(255, 255, 255));
+        pnlBieuDo.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.red));
         pnlBieuDo.setLayout(new java.awt.BorderLayout());
         tabDoanhThu.addTab("Biểu Đồ", pnlBieuDo);
 
@@ -312,7 +332,7 @@ public class ThongKeJpanel extends javax.swing.JPanel {
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabDoanhThu, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(tabDoanhThu)
         );
 
         cboNam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2023", "2024" }));
@@ -343,16 +363,20 @@ public class ThongKeJpanel extends javax.swing.JPanel {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(95, 95, 95)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cboNam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addContainerGap(140, Short.MAX_VALUE))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Doanh Thu", jPanel5);
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
         tbl_TKSP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -375,7 +399,9 @@ public class ThongKeJpanel extends javax.swing.JPanel {
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 76, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Sản Phẩm", jPanel6);
@@ -424,8 +450,7 @@ public class ThongKeJpanel extends javax.swing.JPanel {
                             .addComponent(cboLoaiTG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel13))))
                 .addGap(18, 18, 18)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
