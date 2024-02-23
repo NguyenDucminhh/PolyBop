@@ -4,28 +4,14 @@
  */
 package quanlypolybob;
 
-import Model.HoaDonCT;
-import Model.HoaDonCT1;
-import Model.TKDoanhThu_View;
-import Model.TKSanPham_View;
 import Model.TKTongQuan_View;
-import Service.ITKDoanhThu_service;
-import Service.ITKSanPham_Service;
 import Service.ITKTongQuan_Service;
-import Service.TKDoanhThu_Service;
-import Service.TKSanPham_Service;
 import Service.TKTongQuan_service;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.JPanel;
 import java.text.NumberFormat;
 import java.util.Locale;
-import javax.swing.table.DefaultTableModel;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
 /**
  *
  * @author Windows
@@ -33,14 +19,13 @@ import org.jfree.data.category.DefaultCategoryDataset;
 public class ThongKeJpanel extends javax.swing.JPanel {
     SimpleDateFormat dateFM = new SimpleDateFormat("yyyy-MM-dd");
     private JPanel panel;
-    DefaultTableModel mol;
-    ITKSanPham_Service tkSP_sv = new TKSanPham_Service();
+//    ITKSanPham_Service tkSP_sv = new TKSanPham_Service();
     ITKTongQuan_Service tkTQ_Service = new TKTongQuan_service();
-    ITKDoanhThu_service tKDoanhThu_service = new TKDoanhThu_Service();
+//    ITKDoanhThu_service tKDoanhThu_service = new TKDoanhThu_Service();
 //    ITKThuocTinh_Service tk_TTSP = new TKThuocTinh_Sevice();
 //    ISanPham_Service sp_sv = new SanPham_service();
-    List<TKDoanhThu_View> listDoanhThuThang;
-    List<TKSanPham_View> listTkSP;
+//    List<TKDoanhThu_View> listDoanhThuThang;
+//    List<TKSanPham_View> listTkSP;
      NumberFormat numberFM = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
      public String ketthuc = "", batDau = "";
     /**
@@ -48,9 +33,7 @@ public class ThongKeJpanel extends javax.swing.JPanel {
      */
     public ThongKeJpanel() {
         initComponents();
-        filltblTKSP();
-        testbarchar(2023);
-        txtBatDau.setEnabled(false);
+                txtBatDau.setEnabled(false);
         txtKetThuc.setEnabled(false);
         btnTK.setEnabled(false);
         TKTongQuan_View tk = tkTQ_Service.tkHomNay();
@@ -90,19 +73,13 @@ public class ThongKeJpanel extends javax.swing.JPanel {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel5 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
-        tabDoanhThu = new javax.swing.JTabbedPane();
-        pnlBieuDo = new javax.swing.JPanel();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jPanel8 = new javax.swing.JPanel();
         cboNam = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbl_TKSP = new javax.swing.JTable();
-
-        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel1MouseClicked(evt);
-            }
-        });
+        jTable1 = new javax.swing.JTable();
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -225,7 +202,7 @@ public class ThongKeJpanel extends javax.swing.JPanel {
 
         jLabel13.setText("Thời Gian :");
 
-        cboLoaiTG.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hôm nay", "Theo Ngay" }));
+        cboLoaiTG.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hôm nay", "Theo Ngay", " " }));
         cboLoaiTG.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cboLoaiTGItemStateChanged(evt);
@@ -236,6 +213,8 @@ public class ThongKeJpanel extends javax.swing.JPanel {
                 cboLoaiTGActionPerformed(evt);
             }
         });
+
+        pnlLoaiThoiGian.setBackground(new java.awt.Color(0, 204, 0));
 
         jLabel3.setText("Ngày bắt đầu");
 
@@ -279,52 +258,40 @@ public class ThongKeJpanel extends javax.swing.JPanel {
                 .addGap(11, 11, 11))
         );
 
-        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTabbedPane1MouseClicked(evt);
-            }
-        });
-
         jPanel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        tabDoanhThu.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
-        tabDoanhThu.setTabPlacement(javax.swing.JTabbedPane.LEFT);
-        tabDoanhThu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabDoanhThuMouseClicked(evt);
-            }
-        });
+        jTabbedPane2.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
+        jTabbedPane2.setTabPlacement(javax.swing.JTabbedPane.LEFT);
 
-        pnlBieuDo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        pnlBieuDo.setLayout(new java.awt.BorderLayout());
-        tabDoanhThu.addTab("Biểu Đồ", pnlBieuDo);
+        jPanel8.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 636, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 282, Short.MAX_VALUE)
+        );
+
+        jTabbedPane2.addTab("Biểu Đồ", jPanel8);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addComponent(tabDoanhThu, javax.swing.GroupLayout.DEFAULT_SIZE, 775, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addGap(0, 31, Short.MAX_VALUE)
-                .addComponent(tabDoanhThu, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         cboNam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2023", "2024" }));
-        cboNam.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cboNamMouseClicked(evt);
-            }
-        });
-        cboNam.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboNamActionPerformed(evt);
-            }
-        });
 
         jLabel9.setText("Năm");
 
@@ -337,9 +304,8 @@ public class ThongKeJpanel extends javax.swing.JPanel {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cboNam, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -354,24 +320,24 @@ public class ThongKeJpanel extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Doanh Thu", jPanel5);
 
-        tbl_TKSP.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã Sản Phẩm", "Mã Hoá Đơn Chi Tiết", "Tên Sản Phẩm", "Thương Hiệu", "Nhà Sản Xuất", "Chất Liệu", "Loại Ví", "Số Lượng Bán"
+                "Mã Sản Phẩm", "Tên Sản Phẩm", "Thương Hiệu", "Nhà Sản Xuất", "Chất Liệu", "Loại Ví", "Số Lượng Bán"
             }
         ));
-        jScrollPane1.setViewportView(tbl_TKSP);
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 970, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 940, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -396,7 +362,7 @@ public class ThongKeJpanel extends javax.swing.JPanel {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 970, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 940, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel13)
@@ -474,41 +440,6 @@ public class ThongKeJpanel extends javax.swing.JPanel {
         fillTKTongQuan(tkTQ.getDonHang(), tkTQ.getSanPham(), tkTQ.getDoanhthu());
     }//GEN-LAST:event_btnTKActionPerformed
 
-    private void tabDoanhThuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabDoanhThuMouseClicked
-        // TODO add your handling code here:
-                if (tabDoanhThu.getSelectedIndex() == 1) {
-            testbarchar(Integer.parseInt(cboNam.getSelectedItem().toString()));
-            
-        }
-    }//GEN-LAST:event_tabDoanhThuMouseClicked
-
-    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
-        // TODO add your handling code here:
-                if (jTabbedPane1.getSelectedIndex() == 0) {
-//            filltblDoanhThuThang(Integer.parseInt(cboNam.getSelectedItem().toString()));
-filltblTKSP();
- testbarchar(Integer.parseInt(cboNam.getSelectedItem().toString()));
-        } 
-    }//GEN-LAST:event_jTabbedPane1MouseClicked
-
-    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
-        // TODO add your handling code here:
-        filltblTKSP();
- testbarchar(Integer.parseInt(cboNam.getSelectedItem().toString()));
-    }//GEN-LAST:event_jPanel1MouseClicked
-
-    private void cboNamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboNamMouseClicked
-        // TODO add your handling code here:
-        filltblTKSP();
- testbarchar(Integer.parseInt(cboNam.getSelectedItem().toString()));
-    }//GEN-LAST:event_cboNamMouseClicked
-
-    private void cboNamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboNamActionPerformed
-        // TODO add your handling code here:
-         filltblTKSP();
- testbarchar(Integer.parseInt(cboNam.getSelectedItem().toString()));
-    }//GEN-LAST:event_cboNamActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnTK;
@@ -531,15 +462,15 @@ filltblTKSP();
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lbdonhang;
     private javax.swing.JLabel lbldoanhthu;
     private javax.swing.JLabel lblsanpham;
-    private javax.swing.JPanel pnlBieuDo;
     private javax.swing.JPanel pnlLoaiThoiGian;
-    private javax.swing.JTabbedPane tabDoanhThu;
-    private javax.swing.JTable tbl_TKSP;
     private com.toedter.calendar.JDateChooser txtBatDau;
     private com.toedter.calendar.JDateChooser txtKetThuc;
     // End of variables declaration//GEN-END:variables
@@ -549,32 +480,5 @@ filltblTKSP();
         lbdonhang.setText(donHang + "");
         lblsanpham.setText(sanPham + "");
     }
-    public void filltblTKSP() {
-        listTkSP = tkSP_sv.getTKSanPham();
-        mol = (DefaultTableModel) tbl_TKSP.getModel();
-        mol.setRowCount(0);
-        for (TKSanPham_View t : listTkSP) {
-            mol.addRow(new Object[]{t.getMaSP(),t.getMachitiet(), t.getTen(),t.getThuonghieu(), t.getNhasanxuat(),t.getChatlieu(),t.getLoaivi(),t.getSlBan()});
-        }
-    }
-    public void testbarchar(int nam) {
-        listDoanhThuThang = tKDoanhThu_service.getTKDoanhThu(nam);
-        DefaultCategoryDataset dbSet = new DefaultCategoryDataset();
-        for (TKDoanhThu_View t : listDoanhThuThang) {
-            dbSet.setValue(t.getTongDoanhThu(), "Doanh Thu", t.getThang() + "");
-        }
-        JFreeChart Barchar = ChartFactory.createBarChart("Doanh Thu Theo Năm", "Thang", "Doanh Thu", dbSet, PlotOrientation.VERTICAL, false, false, false);
-        ChartPanel chartPanel = new ChartPanel(Barchar);
-        chartPanel.setPreferredSize(new java.awt.Dimension(100, 100));
-        pnlBieuDo.removeAll();
-        pnlBieuDo.add(chartPanel);
-    }
-//      public void filltblDoanhThuThang(int nam) {
-//        listDoanhThuThang = tKDoanhThu_service.getTKDoanhThu(nam);
-//        mol = (DefaultTableModel) tblTK_Thang.getModel();
-//        mol.setRowCount(0);
-//        for (TKDoanhThu_View t : listDoanhThuThang) {
-//            mol.addRow(new Object[]{t.getThang(), t.getSlSanPham(), numberFM.format(t.getTongGiaBan()), numberFM.format(t.getTongGiaGia()), numberFM.format(t.getTongDoanhThu())});
-//        }
-//    }
+    
 }
