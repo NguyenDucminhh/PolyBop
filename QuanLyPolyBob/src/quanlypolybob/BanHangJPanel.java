@@ -32,6 +32,8 @@ import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
  */
 public class BanHangJPanel extends javax.swing.JPanel {
 
+    // 12h43 làm code
+    
     /**
      * Creates new form BanHangJPanel
      */
