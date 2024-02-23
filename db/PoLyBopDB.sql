@@ -485,12 +485,14 @@ INSERT INTO ChiTietGioHang (ID_GioHang, ID_ChiTietVi, Ma_ChiTietGioHang, SoLuong
 	SELECT (
 	SELECT count(HoaDon.Ma_HoaDon) 
 	FROM HoaDon
-	WHERE CONVERT(DATE, HoaDon.NgayThanhToan)  = GETDATE() AND HoaDon.TrangThai != 0) AS 'Đơn hàng',
-    sum(HoaDonChiTiet.SoLuong) as 'Sản phẩm',
+	WHERE CONVERT(DATE, HoaDon.NgayThanhToan)  <= CONVERT(DATE, GETDATE()) AND HoaDon.TrangThai != 2) AS 'Đơn hàng'
+
+	select
+    sum(HoaDonChiTiet.SoLuong) as 'Sản phẩm' from HoaDonChiTiet 
 	SUM(HoaDon.ThanhTien) as 'Doanh thu' 
 	FROM HoaDon
-   left JOIN HoaDonChiTiet on HoaDon.IDHoaDon = HoaDonChiTiet.ID_HoaDon
-    WHERE CONVERT(DATE, HoaDon.NgayThanhToan)  = CONVERT(DATE, GETDATE()) AND HoaDon.TrangThai != 0
+   left JOIN HoaDonChiTiet on HoaDon.IDHoaDon = HoaDonChiTiet.IDHoaDonChiTiet
+    WHERE CONVERT(DATE, HoaDon.NgayThanhToan)  <= CONVERT(DATE, GETDATE()) AND HoaDon.TrangThai != 2
 	-- theo ngày
 	select
 	    sum(HoaDonChiTiet.SoLuong) as 'Sản phẩm' 
@@ -504,51 +506,9 @@ INSERT INTO ChiTietGioHang (ID_GioHang, ID_ChiTietVi, Ma_ChiTietGioHang, SoLuong
                 left JOIN HoaDonChiTiet on HoaDon.Ma_HoaDon = HoaDonChiTiet.Ma_HoaDonChiTiet
                 WHERE CONVERT(DATE, HoaDon.NgayThanhToan) BETWEEN ? and ?  
                 AND HoaDon.TrangThai != 2
+	--ho
 
-
-	--Thống kê sản phẩm
-	SELECT HoaDon.Ma_HoaDon,HoaDonChiTiet.Ma_HoaDonChiTiet, Vi.TenVi,ThuongHieu.TenThuongHieu,XuatXu.TenXuatXu,ChatLieu.TenChatLieu,LoaiVi.TenLoaiVi, SUM(HoaDonChiTiet.SoLuong) as soluong FROM ChiTietVi
-               join Vi on ChiTietVi.IDChiTietVi = Vi.IDVi
-                join ThuongHieu on ThuongHieu.IDThuongHieu = Vi.ID_ThuongHieu
-                join XuatXu on ChiTietVi.ID_XuatXu = XuatXu.IDXuatXu
-                join ChatLieu on ChiTietVi.ID_ChatLieu = ChatLieu.IDChatLieu
-                join LoaiVi on ChiTietVi.ID_LoaiVi = LoaiVi.IDLoaiVi
-				left join HoaDon on  ChiTietVi.IDChiTietVi = HoaDon.IDHoaDon
-				left join HoaDonChiTiet on HoaDon.IDHoaDon = HoaDonChiTiet.ID_HoaDon 
-                WHERE HoaDon.TrangThai =1
-               group by Ma_HoaDon, Ma_HoaDonChiTiet, Vi.TenVi,ThuongHieu.TenThuongHieu,XuatXu.TenXuatXu,ChatLieu.TenChatLieu,LoaiVi.TenLoaiVi
 	--
-
-		--Thống kê sản phẩm demo
-	SELECT HoaDon.Ma_HoaDon, Vi.TenVi,ThuongHieu.TenThuongHieu,XuatXu.TenXuatXu,ChatLieu.TenChatLieu,LoaiVi.TenLoaiVi, SUM(HoaDonChiTiet.SoLuong) as soluong FROM HoaDonChiTiet
-			  
-			  join ChiTietVi on ChiTietVi.IDChiTietVi = HoaDonChiTiet.ID_ChiTietVi
-			  join Vi on  ChiTietVi.ID_Vi = Vi.IDVi
-                join ThuongHieu on ThuongHieu.IDThuongHieu = Vi.ID_ThuongHieu
-                join XuatXu on HoaDonChiTiet.ID_HoaDon = XuatXu.IDXuatXu
-                join ChatLieu on HoaDonChiTiet.ID_HoaDon= ChatLieu.IDChatLieu
-                join LoaiVi on HoaDonChiTiet.ID_HoaDon = LoaiVi.IDLoaiVi
-			 join HoaDon on  HoaDon.IDHoaDon=HoaDonChiTiet.ID_HoaDon
-			 
-                WHERE HoaDon.TrangThai = 1
-               group by  Ma_HoaDon, Ma_HoaDonChiTiet, Vi.TenVi,ThuongHieu.TenThuongHieu,XuatXu.TenXuatXu,ChatLieu.TenChatLieu,LoaiVi.TenLoaiVi
-	--
-
-
-		SELECT HoaDon.Ma_HoaDon, HoaDonChiTiet.Ma_HoaDonChiTiet, Vi.TenVi,ThuongHieu.TenThuongHieu,XuatXu.TenXuatXu,ChatLieu.TenChatLieu,LoaiVi.TenLoaiVi, SUM(HoaDonChiTiet.SoLuong) as soluong FROM HoaDon
-			  
-			  join ChiTietVi on ChiTietVi.IDChiTietVi = HoaDon.IDHoaDon
-			  join Vi on  ChiTietVi.ID_Vi = Vi.IDVi
-                join ThuongHieu on ThuongHieu.IDThuongHieu = Vi.ID_ThuongHieu
-                join XuatXu on HoaDon.IDHoaDon = XuatXu.IDXuatXu
-                join ChatLieu on HoaDon.IDHoaDon= ChatLieu.IDChatLieu
-                join LoaiVi on HoaDon.IDHoaDon = LoaiVi.IDLoaiVi
-			 join HoaDonChiTiet on  HoaDonChiTiet.ID_HoaDon = HoaDon.IDHoaDon
-                WHERE HoaDon.TrangThai = 1
-               group by  Ma_HoaDon, Ma_HoaDonChiTiet, Vi.TenVi,ThuongHieu.TenThuongHieu,XuatXu.TenXuatXu,ChatLieu.TenChatLieu,LoaiVi.TenLoaiVi
-			   -- 
-
-
 	SELECT (SELECT count(donhang.MaDonHang) FROM donhang WHERE CONVERT(DATE, donhang.NgayTao)  <= getDate() AND donhang.TrangThai != 2) AS DONHANG, 
                 sum(ctdonhang.SL), 
 				SUM(ctdonhang.DonGiaSauGiam) 
@@ -556,25 +516,3 @@ INSERT INTO ChiTietGioHang (ID_GioHang, ID_ChiTietVi, Ma_ChiTietGioHang, SoLuong
                 JOIN ctdonhang on donhang.MaDonHang = ctdonhang.MaDonHang
                 WHERE CONVERT(DATE, donhang.NgayTao)  <= getDate() AND donhang.TrangThai != 2
 
---Thống kê sản phẩm bán
-Select Ma_HoaDon,Ma_HoaDonChiTiet,TenVi,TenThuongHieu,TenXuatXu,TenChatLieu,TenLoaiVi,HoaDonChiTiet.SoLuong as N'Số lượng bán'
-from HoaDon 
-	join HoaDonChiTiet on HoaDonChiTiet.ID_HoaDon = HoaDon.IDHoaDon
-	join ChiTietVi on (HoaDonChiTiet.ID_ChiTietVi = ChiTietVi.IDChiTietVi)
-	join Vi on (ChiTietVi.ID_Vi = Vi.IDVi)
-	join ThuongHieu on (Vi.ID_ThuongHieu = ThuongHieu.IDThuongHieu)
-	join XuatXu on (ChiTietVi.ID_XuatXu = XuatXu.IDXuatXu)
-	join ChatLieu on (ChiTietVi.ID_ChatLieu = ChatLieu.IDChatLieu)
-	join LoaiVi on (ChiTietVi.ID_LoaiVi = LoaiVi.IDLoaiVi)
-	where HoaDon.TrangThai = 1
-
---Thống kê theo biểu đò
-
-SELECT  ? AS Tháng, SUM(HoaDonChiTiet.SoLuong), Sum(HoaDon.ThanhTien),Sum(HoaDon.ThanhTien) - Sum(HoaDonChiTiet.DonGia) AS GiamGia,
-               HoaDon.ThanhTien  AS GiaSauGiam
-               FROM HoaDon 
-               join HoaDonChiTiet on HoaDon.IDHoaDon = HoaDonChiTiet.ID_HoaDon
-               WHERE  Month(HoaDon.NgayThanhToan) = ? AND YEAR(HoaDon.NgayThanhToan) = ? and HoaDon.TrangThai = 1
-               GROUP BY HoaDon.ThanhTien,HoaDonChiTiet.SoLuong
-
-			   
