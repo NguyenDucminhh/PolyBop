@@ -50,9 +50,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         initComponents();
 //        this.fillTable(service.getAll());
         fillTableWithPagination();
-//         this.fillTable(service.getAll());
-        cbNgayBatDau.setEnabled(false);
-        cbNgayKetThuc.setEnabled(false);
+
         dateSelect();
 
     }
