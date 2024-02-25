@@ -12,19 +12,24 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JDayChooser;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileOutputStream;
+import java.text.Normalizer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -46,6 +51,9 @@ public class HoaDonJPanel extends javax.swing.JPanel {
 //        this.fillTable(service.getAll());
         fillTableWithPagination();
 //         this.fillTable(service.getAll());
+        cbNgayBatDau.setEnabled(false);
+        cbNgayKetThuc.setEnabled(false);
+        dateSelect();
 
     }
 
@@ -81,6 +89,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         btnExport = new javax.swing.JButton();
+        cb_dateType = new javax.swing.JComboBox<>();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -263,6 +272,8 @@ public class HoaDonJPanel extends javax.swing.JPanel {
             }
         });
 
+        cb_dateType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tùy chỉnh", "Hôm nay", "Tháng này", "Năm nay" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -287,7 +298,9 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(txt_timKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(179, 179, 179)
-                                    .addComponent(btnTimKiem))))
+                                    .addComponent(btnTimKiem)
+                                    .addGap(44, 44, 44)
+                                    .addComponent(cb_dateType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(455, 455, 455)
                             .addComponent(btnExport)
@@ -318,7 +331,8 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txt_timKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTimKiem))
+                    .addComponent(btnTimKiem)
+                    .addComponent(cb_dateType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -413,6 +427,11 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         printToPDF();
     }//GEN-LAST:event_btnExportActionPerformed
 
+    private String removeDiacritics(String input) {
+        String normalized = Normalizer.normalize(input, Normalizer.Form.NFD);
+        return normalized.replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+    }
+
     private void printToPDF() {
         int selectedRow = tbl_HoaDon.getSelectedRow();
         if (selectedRow == -1) {
@@ -437,16 +456,18 @@ public class HoaDonJPanel extends javax.swing.JPanel {
 
                 Document document = new Document();
                 PdfWriter.getInstance(document, new FileOutputStream(filePath));
+                Font font = new Font(Font.FontFamily.TIMES_ROMAN, 12);
                 document.open();
 
-                // Thêm thông tin hóa đơn vào PDF
                 for (int j = 0; j < tbl_HoaDon.getColumnCount(); j++) {
                     String label = tbl_HoaDon.getColumnName(j) + ": ";
                     String value = tbl_HoaDon.getValueAt(selectedRow, j).toString();
+                    // Xóa dấu của label và value
+                    String labelWithoutDiacritics = removeDiacritics(label);
+                    String valueWithoutDiacritics = removeDiacritics(value);
 
-                    Font font = FontFactory.getFont(FontFactory.TIMES, 12); // Set font chữ là "Times New Roman" với kích thước 12
-                    Paragraph paragraph = new Paragraph(label + value, font);
-
+                    Paragraph paragraph = new Paragraph(labelWithoutDiacritics + valueWithoutDiacritics, font);
+                    paragraph.setFont(font);
                     document.add(paragraph);
                 }
 
@@ -454,11 +475,17 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                 // Thêm bảng hóa đơn chi tiết vào PDF
                 PdfPTable detailTable = new PdfPTable(tbl_hoaDonCT.getColumnCount());
                 for (int i = 0; i < tbl_hoaDonCT.getColumnCount(); i++) {
-                    detailTable.addCell(new PdfPCell(new Phrase(tbl_hoaDonCT.getColumnName(i))));
+                    String columnName = tbl_hoaDonCT.getColumnName(i);
+                    // Xóa dấu của tên cột
+                    String columnNameWithoutDiacritics = removeDiacritics(columnName);
+                    detailTable.addCell(new PdfPCell(new Phrase(columnNameWithoutDiacritics)));
                 }
                 for (int i = 0; i < tbl_hoaDonCT.getRowCount(); i++) {
                     for (int j = 0; j < tbl_hoaDonCT.getColumnCount(); j++) {
-                        detailTable.addCell(tbl_hoaDonCT.getValueAt(i, j).toString());
+                        String value = tbl_hoaDonCT.getValueAt(i, j).toString();
+                        // Xóa dấu của giá trị
+                        String valueWithoutDiacritics = removeDiacritics(value);
+                        detailTable.addCell(valueWithoutDiacritics);
                     }
                 }
                 document.add(detailTable);
@@ -482,6 +509,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnTimKiem;
     private com.toedter.calendar.JDateChooser cbNgayBatDau;
     private com.toedter.calendar.JDateChooser cbNgayKetThuc;
+    private javax.swing.JComboBox<String> cb_dateType;
     private javax.swing.JComboBox<String> cbo_HinhThucThanhToan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -521,7 +549,35 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         // Lấy giá trị từ JDateChooser
         Date startDate = cbNgayBatDau.getDate();
         Date endDate = cbNgayKetThuc.getDate();
+        String selectedOption = (String) cb_dateType.getSelectedItem();
+        Calendar calendar = Calendar.getInstance();
 
+        switch (selectedOption) {
+            case "Hôm nay":
+                startDate = calendar.getTime();
+                endDate = calendar.getTime();
+                break;
+            case "Tháng này":
+                calendar.set(Calendar.DAY_OF_MONTH, 1);
+                startDate = calendar.getTime();
+                calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+                endDate = calendar.getTime();
+                break;
+            case "Năm nay":
+                calendar.set(Calendar.MONTH, Calendar.JANUARY);
+                calendar.set(Calendar.DAY_OF_MONTH, 1);
+                startDate = calendar.getTime();
+                calendar.set(Calendar.MONTH, Calendar.DECEMBER);
+                calendar.set(Calendar.DAY_OF_MONTH, 31);
+                endDate = calendar.getTime();
+                break;
+            case "Tùy chỉnh":
+                // Xử lý tùy chọn tùy chỉnh nếu cần
+                break;
+            default:
+                // Xử lý trường hợp khác nếu cần
+                break;
+        }
         // Kiểm tra xem cả cbNgayBatDau và cbNgayKetThuc có giá trị null không
         if (startDate != null || endDate != null) {
             String startDateStr = (startDate != null) ? simpleDateFormat.format(startDate) : null;
@@ -633,6 +689,22 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                 });
             }
         }
+    }
+
+    private void dateSelect() {
+        cb_dateType.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JComboBox cb = (JComboBox) e.getSource();
+                String selectedOption = (String) cb.getSelectedItem();
+                if (selectedOption.equals("Tùy chỉnh")) {
+                    cbNgayBatDau.setEnabled(true);
+                    cbNgayKetThuc.setEnabled(true);
+                } else {
+                    cbNgayBatDau.setEnabled(false);
+                    cbNgayKetThuc.setEnabled(false);
+                }
+            }
+        });
     }
 
 }
