@@ -52,6 +52,7 @@ public class NhanVienJpanel extends javax.swing.JPanel {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         rdoTT1 = new javax.swing.JRadioButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -62,11 +63,6 @@ public class NhanVienJpanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         btnXoa = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel3 = new javax.swing.JPanel();
-        txtsearchNVKHD = new javax.swing.JTextField();
-        jButton7 = new javax.swing.JButton();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        tblNV1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         txtSearch = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
@@ -77,6 +73,11 @@ public class NhanVienJpanel extends javax.swing.JPanel {
         pageLabel = new javax.swing.JLabel();
         btnFirstPage = new javax.swing.JButton();
         btnLastPage = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        txtsearchNVKHD = new javax.swing.JTextField();
+        jButton7 = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tblNV1 = new javax.swing.JTable();
         btnSua = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         btnClear = new javax.swing.JButton();
@@ -98,104 +99,61 @@ public class NhanVienJpanel extends javax.swing.JPanel {
         txtMatKhau = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        buttonGroup2.add(rdoTT1);
+        rdoTT1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         rdoTT1.setSelected(true);
         rdoTT1.setText("Làm việc");
         add(rdoTT1, new org.netbeans.lib.awtextra.AbsoluteConstraints(552, 574, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Giới Tính");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 471, -1, -1));
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setText("Trạng thái");
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(454, 573, -1, -1));
 
+        buttonGroup1.add(rdoCV1);
+        rdoCV1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         rdoCV1.setSelected(true);
         rdoCV1.setText("Quản lý");
         add(rdoCV1, new org.netbeans.lib.awtextra.AbsoluteConstraints(552, 534, -1, -1));
 
+        buttonGroup2.add(rdoTT2);
+        rdoTT2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         rdoTT2.setText("Nghỉ việc");
+        rdoTT2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdoTT2ActionPerformed(evt);
+            }
+        });
         add(rdoTT2, new org.netbeans.lib.awtextra.AbsoluteConstraints(639, 574, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setText("Ngày Sinh");
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 499, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("Chức Vụ");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(454, 533, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Mã Nhân Viên");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 391, -1, -1));
 
+        btnXoa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnXoa.setText("Xóa");
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnXoaActionPerformed(evt);
             }
         });
-        add(btnXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(428, 621, 114, -1));
+        add(btnXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 470, 114, -1));
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        txtsearchNVKHD.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtsearchNVKHDKeyReleased(evt);
-            }
-        });
-
-        jButton7.setText("Tìm kiếm");
-
-        tblNV1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Mã nhân viên", "Họ tên", "Sđt", "Ngày sinh", "Email", "Địa chỉ", "Mật khẩu", "Giới tính", "Chức vụ", "Trạng thái"
-            }
-        ));
-        tblNV1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblNV1MouseClicked(evt);
-            }
-        });
-        jScrollPane5.setViewportView(tblNV1);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(txtsearchNVKHD, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 522, Short.MAX_VALUE))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 847, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(8, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtsearchNVKHD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8))
-        );
-
-        jTabbedPane1.addTab("Nhân viên không hoạt động", jPanel3);
-
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -204,6 +162,7 @@ public class NhanVienJpanel extends javax.swing.JPanel {
             }
         });
 
+        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton6.setText("Tìm kiếm");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -266,7 +225,7 @@ public class NhanVienJpanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 845, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -289,55 +248,117 @@ public class NhanVienJpanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6)
-                    .addComponent(btnPrev)
-                    .addComponent(btnNext)
+                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnPrev, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnNext, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pageLabel)
-                    .addComponent(btnLastPage)
-                    .addComponent(btnFirstPage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLastPage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnFirstPage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtSearch))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(221, 221, 221))
         );
 
         jTabbedPane1.addTab("Nhân viên hoạt động", jPanel1);
 
-        add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 81, -1, 292));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.red));
 
+        txtsearchNVKHD.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtsearchNVKHDKeyReleased(evt);
+            }
+        });
+
+        jButton7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton7.setText("Tìm kiếm");
+
+        tblNV1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Mã nhân viên", "Họ tên", "Sđt", "Ngày sinh", "Email", "Địa chỉ", "Mật khẩu", "Giới tính", "Chức vụ", "Trạng thái"
+            }
+        ));
+        tblNV1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblNV1MouseClicked(evt);
+            }
+        });
+        jScrollPane5.setViewportView(tblNV1);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(txtsearchNVKHD, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 651, Short.MAX_VALUE))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 976, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(10, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtsearchNVKHD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8))
+        );
+
+        jTabbedPane1.addTab("Nhân viên không hoạt động", jPanel3);
+
+        add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 81, 990, 292));
+
+        btnSua.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSua.setText("Sửa");
         btnSua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSuaActionPerformed(evt);
             }
         });
-        add(btnSua, new org.netbeans.lib.awtextra.AbsoluteConstraints(259, 621, 114, -1));
+        add(btnSua, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 430, 114, -1));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Địa Chỉ");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(454, 391, -1, -1));
 
+        btnClear.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnClear.setText("Làm Mới");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClearActionPerformed(evt);
             }
         });
-        add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(584, 621, 114, -1));
+        add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 510, 114, -1));
 
         rdoNam.setSelected(true);
         rdoNam.setText("Nam");
         add(rdoNam, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 472, -1, -1));
 
+        btnThem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemActionPerformed(evt);
             }
         });
-        add(btnThem, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 621, 114, -1));
+        add(btnThem, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 390, 114, -1));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("Số Điện Thoại");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 533, -1, -1));
         add(txtMaNV, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 391, 169, -1));
@@ -346,11 +367,13 @@ public class NhanVienJpanel extends javax.swing.JPanel {
         add(rdoNu, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 472, -1, -1));
         add(txtHoTen, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 431, 169, -1));
 
+        buttonGroup1.add(rdoCV2);
+        rdoCV2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         rdoCV2.setText("Nhân viên");
         add(rdoCV2, new org.netbeans.lib.awtextra.AbsoluteConstraints(639, 534, -1, -1));
         add(txtSdt, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 533, 169, -1));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Họ Tên");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 431, -1, -1));
 
@@ -361,19 +384,18 @@ public class NhanVienJpanel extends javax.swing.JPanel {
         add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(552, 391, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 51, 102));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("QUẢN LÝ NHÂN VIÊN");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 560, 57));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 560, 57));
         add(txtNgaySinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 499, 169, -1));
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setText("Email");
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(454, 499, -1, -1));
         add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(555, 499, 237, -1));
         add(txtMatKhau, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 573, 169, -1));
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel11.setText("Mật Khẩu");
         add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 573, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
@@ -433,6 +455,10 @@ public class NhanVienJpanel extends javax.swing.JPanel {
     private void btnFirstPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstPageActionPerformed
         this.goToFirstPage();
     }//GEN-LAST:event_btnFirstPageActionPerformed
+
+    private void rdoTT2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoTT2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdoTT2ActionPerformed
     
     public void searchNhanVien(String ma) {
         list = nhanVienService.Search(ma);
@@ -796,6 +822,7 @@ public class NhanVienJpanel extends javax.swing.JPanel {
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;

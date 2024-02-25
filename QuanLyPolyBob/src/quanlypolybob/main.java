@@ -24,7 +24,7 @@ public class main extends javax.swing.JFrame {
      */
     String email, name;
     int chucVu;
-    
+
     public main(String email, String name, int chucVu) {
         initComponents();
         setLocationRelativeTo(null);
@@ -46,16 +46,16 @@ public class main extends javax.swing.JFrame {
 //       showPanel(new TrangChuJPanel());
 //mm
     }
-    
+
     public main() {
         initComponents();
         setLocationRelativeTo(null);
         setExtendedState(this.MAXIMIZED_BOTH);
         System.out.println(this.email);
     }
-    
+
     String getTenNhanVien() {
-        return lblTenNV.getText();        
+        return lblTenNV.getText();
     }
 
     /**
@@ -115,13 +115,13 @@ public class main extends javax.swing.JFrame {
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
-        jPanel2.setBackground(new java.awt.Color(51, 102, 255));
+        jPanel2.setBackground(new java.awt.Color(62, 74, 88));
 
-        jPanel3.setBackground(new java.awt.Color(51, 102, 255));
+        jPanel3.setBackground(new java.awt.Color(62, 74, 88));
         jPanel3.setForeground(new java.awt.Color(102, 153, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnTrangChu.setBackground(new java.awt.Color(51, 102, 255));
+        pnTrangChu.setBackground(new java.awt.Color(62, 74, 88));
         pnTrangChu.setPreferredSize(new java.awt.Dimension(228, 60));
         pnTrangChu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -146,19 +146,19 @@ public class main extends javax.swing.JFrame {
             .addGroup(pnTrangChuLayout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(lblTrangChu)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
         pnTrangChuLayout.setVerticalGroup(
             pnTrangChuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnTrangChuLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(17, 17, 17)
                 .addComponent(lblTrangChu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(15, 15, 15))
         );
 
-        jPanel3.add(pnTrangChu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 132, 245, -1));
+        jPanel3.add(pnTrangChu, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 132, 270, -1));
 
-        pnSanPham.setBackground(new java.awt.Color(51, 102, 255));
+        pnSanPham.setBackground(new java.awt.Color(62, 74, 88));
         pnSanPham.setPreferredSize(new java.awt.Dimension(248, 60));
         pnSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -180,19 +180,19 @@ public class main extends javax.swing.JFrame {
         pnSanPham.setLayout(pnSanPhamLayout);
         pnSanPhamLayout.setHorizontalGroup(
             pnSanPhamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnSanPhamLayout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
+            .addGroup(pnSanPhamLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
                 .addComponent(lblSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         pnSanPhamLayout.setVerticalGroup(
             pnSanPhamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblSanPham, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
         );
 
-        jPanel3.add(pnSanPham, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 198, 245, -1));
+        jPanel3.add(pnSanPham, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 198, 270, -1));
 
-        pnNhanVien.setBackground(new java.awt.Color(51, 102, 255));
+        pnNhanVien.setBackground(new java.awt.Color(62, 74, 88));
         pnNhanVien.setPreferredSize(new java.awt.Dimension(225, 60));
         pnNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -226,7 +226,7 @@ public class main extends javax.swing.JFrame {
 
         jPanel3.add(pnNhanVien, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 396, 245, -1));
 
-        pnKhachHang.setBackground(new java.awt.Color(51, 102, 255));
+        pnKhachHang.setBackground(new java.awt.Color(62, 74, 88));
         pnKhachHang.setPreferredSize(new java.awt.Dimension(259, 60));
         pnKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -260,13 +260,14 @@ public class main extends javax.swing.JFrame {
 
         jPanel3.add(pnKhachHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 462, 245, -1));
 
-        pnKhuyenMai.setBackground(new java.awt.Color(51, 102, 255));
+        pnKhuyenMai.setBackground(new java.awt.Color(62, 74, 88));
         pnKhuyenMai.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pnKhuyenMaiMouseClicked(evt);
             }
         });
 
+        lblKhuyenMai.setBackground(new java.awt.Color(62, 74, 88));
         lblKhuyenMai.setFont(new java.awt.Font("Arial", 1, 25)); // NOI18N
         lblKhuyenMai.setForeground(new java.awt.Color(255, 255, 255));
         lblKhuyenMai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/voucher.png"))); // NOI18N
@@ -292,7 +293,7 @@ public class main extends javax.swing.JFrame {
 
         jPanel3.add(pnKhuyenMai, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 528, 245, -1));
 
-        pnThongKe.setBackground(new java.awt.Color(51, 102, 255));
+        pnThongKe.setBackground(new java.awt.Color(62, 74, 88));
         pnThongKe.setForeground(new java.awt.Color(51, 51, 255));
         pnThongKe.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -329,7 +330,7 @@ public class main extends javax.swing.JFrame {
 
         jPanel3.add(pnThongKe, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 594, -1, -1));
 
-        pnHoaDon.setBackground(new java.awt.Color(51, 102, 255));
+        pnHoaDon.setBackground(new java.awt.Color(62, 74, 88));
         pnHoaDon.setPreferredSize(new java.awt.Dimension(226, 60));
         pnHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -349,7 +350,7 @@ public class main extends javax.swing.JFrame {
             .addGroup(pnHoaDonLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(lblHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         pnHoaDonLayout.setVerticalGroup(
             pnHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -359,9 +360,9 @@ public class main extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel3.add(pnHoaDon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 245, -1));
+        jPanel3.add(pnHoaDon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 250, -1));
 
-        pnBanHang.setBackground(new java.awt.Color(51, 102, 255));
+        pnBanHang.setBackground(new java.awt.Color(62, 74, 88));
         pnBanHang.setPreferredSize(new java.awt.Dimension(294, 60));
         pnBanHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -390,7 +391,7 @@ public class main extends javax.swing.JFrame {
 
         jPanel3.add(pnBanHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 264, 245, -1));
 
-        jPanel4.setBackground(new java.awt.Color(51, 102, 255));
+        jPanel4.setBackground(new java.awt.Color(62, 74, 88));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/use.png"))); // NOI18N
@@ -419,7 +420,7 @@ public class main extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -468,7 +469,7 @@ public class main extends javax.swing.JFrame {
         resetColorJpane(pnTrangChu);
         resetColorJpane(pnThongKe);
         resetColorJpane(pnKhachHang);
-        
+
         setColor(lblSanPham);
         resetColor(lblHoaDon);
         resetColor(lblBanHang);
@@ -491,7 +492,7 @@ public class main extends javax.swing.JFrame {
         resetColorJpane(pnSanPham);
         resetColorJpane(pnThongKe);
         resetColorJpane(pnKhachHang);
-        
+
         setColor(lblTrangChu);
         resetColor(lblHoaDon);
         resetColor(lblBanHang);
@@ -513,7 +514,7 @@ public class main extends javax.swing.JFrame {
         resetColorJpane(pnSanPham);
         resetColorJpane(pnThongKe);
         resetColorJpane(pnKhachHang);
-        
+
         setColor(lblTrangChu);
         resetColor(lblHoaDon);
         resetColor(lblBanHang);
@@ -535,7 +536,7 @@ public class main extends javax.swing.JFrame {
         resetColorJpane(pnTrangChu);
         resetColorJpane(pnThongKe);
         resetColorJpane(pnKhachHang);
-        
+
         setColor(lblSanPham);
         resetColor(lblHoaDon);
         resetColor(lblBanHang);
@@ -558,7 +559,7 @@ public class main extends javax.swing.JFrame {
         resetColorJpane(pnTrangChu);
         resetColorJpane(pnThongKe);
         resetColorJpane(pnSanPham);
-        
+
         setColor(lblKhachHang);
         resetColor(lblHoaDon);
         resetColor(lblBanHang);
@@ -580,7 +581,7 @@ public class main extends javax.swing.JFrame {
         resetColorJpane(pnTrangChu);
         resetColorJpane(pnThongKe);
         resetColorJpane(pnSanPham);
-        
+
         setColor(lblKhachHang);
         resetColor(lblHoaDon);
         resetColor(lblBanHang);
@@ -602,7 +603,7 @@ public class main extends javax.swing.JFrame {
         resetColorJpane(pnTrangChu);
         resetColorJpane(pnThongKe);
         resetColorJpane(pnSanPham);
-        
+
         setColor(lblNhanVien);
         resetColor(lblHoaDon);
         resetColor(lblBanHang);
@@ -624,7 +625,7 @@ public class main extends javax.swing.JFrame {
         resetColorJpane(pnTrangChu);
         resetColorJpane(pnThongKe);
         resetColorJpane(pnSanPham);
-        
+
         setColor(lblKhuyenMai);
         resetColor(lblHoaDon);
         resetColor(lblBanHang);
@@ -646,7 +647,7 @@ public class main extends javax.swing.JFrame {
         resetColorJpane(pnTrangChu);
         resetColorJpane(pnKhuyenMai);
         resetColorJpane(pnSanPham);
-        
+
         setColor(lblThongke);
         resetColor(lblHoaDon);
         resetColor(lblBanHang);
@@ -668,7 +669,7 @@ public class main extends javax.swing.JFrame {
         resetColorJpane(pnTrangChu);
         resetColorJpane(pnKhuyenMai);
         resetColorJpane(pnSanPham);
-        
+
         setColor(lblBanHang);
         resetColor(lblHoaDon);
         resetColor(lblThongke);
@@ -677,7 +678,7 @@ public class main extends javax.swing.JFrame {
         resetColor(lblKhuyenMai);
         resetColor(lblNhanVien);
         resetColor(lblSanPham);
-        showPanel(new BanHangJPanel(lblTenNV.getText(),email));
+        showPanel(new BanHangJPanel(lblTenNV.getText(), email));
     }//GEN-LAST:event_pnBanHangMouseClicked
 
     private void pnHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnHoaDonMouseClicked
@@ -690,7 +691,7 @@ public class main extends javax.swing.JFrame {
         resetColorJpane(pnTrangChu);
         resetColorJpane(pnKhuyenMai);
         resetColorJpane(pnSanPham);
-        
+
         setColor(lblHoaDon);
         resetColor(lblBanHang);
         resetColor(lblThongke);
@@ -732,7 +733,7 @@ public class main extends javax.swing.JFrame {
         resetColorJpane(pnTrangChu);
         resetColorJpane(pnKhuyenMai);
         resetColorJpane(pnSanPham);
-        
+
         setColor(lblThongke);
         resetColor(lblHoaDon);
         resetColor(lblBanHang);
@@ -754,7 +755,7 @@ public class main extends javax.swing.JFrame {
         resetColorJpane(pnTrangChu);
         resetColorJpane(pnThongKe);
         resetColorJpane(pnSanPham);
-        
+
         setColor(lblKhuyenMai);
         resetColor(lblHoaDon);
         resetColor(lblBanHang);
@@ -776,7 +777,7 @@ public class main extends javax.swing.JFrame {
         resetColorJpane(pnTrangChu);
         resetColorJpane(pnThongKe);
         resetColorJpane(pnSanPham);
-        
+
         setColor(lblNhanVien);
         resetColor(lblHoaDon);
         resetColor(lblBanHang);
@@ -854,14 +855,15 @@ public class main extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private JPanel chidrenpanel;
-    
+
     public void showPanel(JPanel panel) {
 //        chidrenpanel = panel;
         pnscrene.removeAll();
         pnscrene.add(panel);
         pnscrene.validate();
     }
-        public void SetAlignCenter() {
+
+    public void SetAlignCenter() {
         lblBanHang.setHorizontalAlignment(JLabel.CENTER);
         lblHoaDon.setHorizontalAlignment(JLabel.CENTER);
         lblNhanVien.setHorizontalAlignment(JLabel.CENTER);
@@ -871,7 +873,8 @@ public class main extends javax.swing.JFrame {
         lblKhachHang.setHorizontalAlignment(JLabel.CENTER);
 //        lblDoiMK.setHorizontalAlignment(JLabel.CENTER);
     }
-private JPanel childPanel;
+    private JPanel childPanel;
+
     public void fillPanel(JPanel pnl) {
         childPanel = pnl;
         pnscrene.removeAll();
@@ -879,19 +882,19 @@ private JPanel childPanel;
         pnscrene.validate();
         SetAlignCenter();
     }
-    
+
     public void setColorJpanel(JPanel pane) {
-        pane.setBackground(new java.awt.Color(55, 148, 254));
+        pane.setBackground(new java.awt.Color(46, 183, 169));
     }
-    
+
     public void resetColorJpane(JPanel pane) {
-        pane.setBackground(new java.awt.Color(41, 93, 157));
+        pane.setBackground(new java.awt.Color(62, 74, 88));
     }
-    
+
     public void setColor(JLabel label) {
         label.setForeground(Color.black);
     }
-    
+
     public void resetColor(JLabel label) {
         label.setForeground(Color.white);
     }

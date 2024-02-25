@@ -93,12 +93,23 @@ public class HoaDonJPanel extends javax.swing.JPanel {
 
         setLayout(new java.awt.BorderLayout());
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setText("Hóa Đơn");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(396, 6, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jLabel2.setText("Tìm kiếm hóa đơn");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 91, 151, -1));
 
+        txt_timKiem.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        txt_timKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_timKiemActionPerformed(evt);
+            }
+        });
         txt_timKiem.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txt_timKiemKeyPressed(evt);
@@ -107,8 +118,10 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                 txt_timKiemKeyReleased(evt);
             }
         });
+        jPanel1.add(txt_timKiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(209, 83, 275, 29));
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Hình thức thanh toán", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 15))); // NOI18N
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.red), "Hình thức thanh toán", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 15))); // NOI18N
 
         cbo_HinhThucThanhToan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chọn Hình Thức Thanh Toán", "Tiền Mặt", "Chuyển Khoản" }));
         cbo_HinhThucThanhToan.addActionListener(new java.awt.event.ActionListener() {
@@ -134,7 +147,10 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ngày bắt đầu", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 15))); // NOI18N
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 145, -1, -1));
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.red), "Ngày bắt đầu", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 15))); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -142,7 +158,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cbNgayBatDau, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                .addComponent(cbNgayBatDau, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -153,7 +169,10 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ngày kết thúc", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 15))); // NOI18N
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(333, 145, -1, -1));
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.red), "Ngày kết thúc", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 15))); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -161,7 +180,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGap(5, 5, 5)
-                .addComponent(cbNgayKetThuc, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                .addComponent(cbNgayKetThuc, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -171,6 +190,8 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                 .addComponent(cbNgayKetThuc, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(656, 145, -1, -1));
 
         tbl_HoaDon.setAutoCreateRowSorter(true);
         tbl_HoaDon.setModel(new javax.swing.table.DefaultTableModel(
@@ -199,12 +220,16 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tbl_HoaDon);
 
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 287, 862, 143));
+
+        btnTimKiem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnTimKiem.setText("Tìm kiếm");
         btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTimKiemActionPerformed(evt);
             }
         });
+        jPanel1.add(btnTimKiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(515, 83, -1, -1));
 
         tbl_hoaDonCT.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -227,12 +252,15 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tbl_hoaDonCT);
 
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 468, 862, 144));
+
         btnFirstPage.setText("|<");
         btnFirstPage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFirstPageActionPerformed(evt);
             }
         });
+        jPanel1.add(btnFirstPage, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 250, -1, -1));
 
         btnPrev.setText("<");
         btnPrev.addActionListener(new java.awt.event.ActionListener() {
@@ -240,8 +268,10 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                 btnPrevActionPerformed(evt);
             }
         });
+        jPanel1.add(btnPrev, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 250, -1, -1));
 
         pageLabel.setText("jLabel12");
+        jPanel1.add(pageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 260, -1, -1));
 
         btnNext.setText(">");
         btnNext.addActionListener(new java.awt.event.ActionListener() {
@@ -249,6 +279,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                 btnNextActionPerformed(evt);
             }
         });
+        jPanel1.add(btnNext, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 250, -1, -1));
 
         btnLastPage.setText(">|");
         btnLastPage.addActionListener(new java.awt.event.ActionListener() {
@@ -256,15 +287,19 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                 btnLastPageActionPerformed(evt);
             }
         });
+        jPanel1.add(btnLastPage, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 250, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 0, 0));
         jLabel3.setText("Hóa Đơn");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 261, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(204, 0, 0));
         jLabel5.setText("Hóa Đơn Chi Tiết");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 442, -1, -1));
 
+        btnExport.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnExport.setText("Export PDF");
         btnExport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -356,6 +391,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(97, Short.MAX_VALUE))
         );
+        jPanel1.add(btnExport, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 250, -1, -1));
 
         add(jPanel1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -431,6 +467,9 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         String normalized = Normalizer.normalize(input, Normalizer.Form.NFD);
         return normalized.replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
     }
+    private void txt_timKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_timKiemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_timKiemActionPerformed
 
     private void printToPDF() {
         int selectedRow = tbl_HoaDon.getSelectedRow();
