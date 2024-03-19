@@ -4,24 +4,37 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/PolyBop/QuanLyPolyBob/src/Repository/KhuyenMaiRepository.java</file>
+            <file>file:/D:/PolyBop/QuanLyPolyBob/src/quanlypolybob/BanHangJPanel.java</file>
+            <file>file:/D:/PolyBop/QuanLyPolyBob/src/Service/InterfaceHoaDon.java</file>
+            <file>file:/D:/PolyBop/QuanLyPolyBob/src/quanlypolybob/ChiTietViJDiaLog.java</file>
+            <file>file:/D:/PolyBop/QuanLyPolyBob/src/Model/HoaDonCT1.java</file>
+            <file>file:/D:/PolyBop/QuanLyPolyBob/src/Repository/KhuyenMaiRepositoryImpl.java</file>
+            <file>file:/D:/PolyBop/QuanLyPolyBob/src/quanlypolybob/ThongKeJpanel.java</file>
+            <file>file:/D:/PolyBop/QuanLyPolyBob/src/quanlypolybob/HoaDonChiTietView.java</file>
+            <file>file:/D:/PolyBop/QuanLyPolyBob/src/quanlypolybob/QuanLySanPhamJPanel.java</file>
+            <file>file:/D:/PolyBop/QuanLyPolyBob/src/quanlypolybob/Hepper/Xdate.java</file>
+            <file>file:/D:/PolyBop/QuanLyPolyBob/src/quanlypolybob/Hepper/JDBCHeper.java</file>
+            <file>file:/D:/PolyBop/QuanLyPolyBob/src/quanlypolybob/MauSacJDiaLog.java</file>
+            <file>file:/D:/PolyBop/QuanLyPolyBob/src/quanlypolybob/LoaiViJDiaLog.java</file>
+            <file>file:/D:/PolyBop/QuanLyPolyBob/src/quanlypolybob/Hepper/MsgBox.java</file>
+            <file>file:/D:/PolyBop/QuanLyPolyBob/src/quanlypolybob/NhanVien.java</file>
+            <file>file:/D:/PolyBop/QuanLyPolyBob/src/quanlypolybob/ThuongHieuJDiaLog.java</file>
+            <file>file:/D:/PolyBop/QuanLyPolyBob/src/View/QuenMK_View.java</file>
+            <file>file:/D:/PolyBop/QuanLyPolyBob/src/View/LoginView.java</file>
             <file>file:/D:/PolyBop/QuanLyPolyBob/src/Model/HoaDon1.java</file>
             <file>file:/D:/PolyBop/QuanLyPolyBob/src/Repository/DBconnect.java</file>
             <file>file:/D:/PolyBop/QuanLyPolyBob/src/quanlypolybob/KhuyenMaiJPanel.java</file>
             <file>file:/D:/PolyBop/QuanLyPolyBob/src/Model/KhuyenMai.java</file>
-            <file>file:/D:/PolyBop/QuanLyPolyBob/src/Model/HoaDonCT1.java</file>
             <file>file:/D:/PolyBop/QuanLyPolyBob/src/Service/KhuyenMaiService.java</file>
-            <file>file:/D:/PolyBop/QuanLyPolyBob/src/Repository/KhuyenMaiRepositoryImpl.java</file>
-            <file>file:/D:/PolyBop/QuanLyPolyBob/src/quanlypolybob/ThongKeJpanel.java</file>
-            <file>file:/D:/PolyBop/QuanLyPolyBob/src/quanlypolybob/Hepper/Xdate.java</file>
+            <file>file:/D:/PolyBop/QuanLyPolyBob/src/quanlypolybob/XuatXuJDiaLog.java</file>
             <file>file:/D:/PolyBop/QuanLyPolyBob/src/quanlypolybob/main.java</file>
-            <file>file:/D:/PolyBop/QuanLyPolyBob/src/quanlypolybob/Hepper/JDBCHeper.java</file>
             <file>file:/D:/PolyBop/QuanLyPolyBob/src/quanlypolybob/Hepper/Ximages.java</file>
+            <file>file:/D:/PolyBop/QuanLyPolyBob/src/quanlypolybob/TrangChuJPanel.java</file>
             <file>file:/D:/PolyBop/QuanLyPolyBob/src/quanlypolybob/KhachHangJPanel.java</file>
             <file>file:/D:/PolyBop/QuanLyPolyBob/src/Model/KhachHang1.java</file>
             <file>file:/D:/PolyBop/QuanLyPolyBob/src/quanlypolybob/Hepper/Auth.java</file>
             <file>file:/D:/PolyBop/QuanLyPolyBob/src/quanlypolybob/HoaDonJPanel.java</file>
             <file>file:/D:/PolyBop/QuanLyPolyBob/src/quanlypolybob/KhachHang.java</file>
-            <file>file:/D:/PolyBop/QuanLyPolyBob/src/quanlypolybob/Hepper/MsgBox.java</file>
         </group>
     </open-files>
 </project-private>
