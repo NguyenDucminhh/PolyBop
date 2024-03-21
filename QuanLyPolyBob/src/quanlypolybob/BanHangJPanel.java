@@ -120,11 +120,9 @@ public class BanHangJPanel extends javax.swing.JPanel {
         jMenuItem3.setText("jMenuItem3");
         mnBanHang.add(jMenuItem3);
 
-        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.red), "Thanh Toán", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Thanh Toán", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -135,17 +133,14 @@ public class BanHangJPanel extends javax.swing.JPanel {
         jLabel2.setText("Nhân Viên");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
-        txt_NhanVien.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         txt_NhanVien.setForeground(java.awt.Color.red);
-        txt_NhanVien.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         txt_NhanVien.setEnabled(false);
-        jPanel2.add(txt_NhanVien, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 57, 144, 30));
+        jPanel2.add(txt_NhanVien, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 144, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Khách Hàng");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
 
-        jButton3.setBackground(new java.awt.Color(51, 255, 51));
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton3.setText("+");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -194,8 +189,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
 
         txt_MaGiamGia.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txt_MaGiamGia.setForeground(java.awt.Color.red);
-        txt_MaGiamGia.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        jPanel2.add(txt_MaGiamGia, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 170, 32));
+        jPanel2.add(txt_MaGiamGia, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 180, 32));
 
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton4.setText("Hủy Hóa Đơn");
@@ -225,7 +219,6 @@ public class BanHangJPanel extends javax.swing.JPanel {
         jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 276, 50));
 
         txt_KhachHang1.setForeground(java.awt.Color.red);
-        txt_KhachHang1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         txt_KhachHang1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_KhachHang1KeyReleased(evt);
@@ -236,7 +229,6 @@ public class BanHangJPanel extends javax.swing.JPanel {
         });
         jPanel2.add(txt_KhachHang1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 144, -1));
 
-        jButton7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton7.setText("Áp Dụng");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -247,8 +239,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 0, 300, 440));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.red), "Hóa Đơn Chờ ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Hóa Đơn", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tbl_hoaDon.setModel(new javax.swing.table.DefaultTableModel(
@@ -270,7 +261,6 @@ public class BanHangJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tbl_hoaDon.setGridColor(new java.awt.Color(255, 255, 255));
         tbl_hoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_hoaDonMouseClicked(evt);
@@ -282,8 +272,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 160));
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.red), "Hóa Đơn Chi Tiết", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Hóa Đơn Chi Tiết", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tbl_hoaDonCT.setModel(new javax.swing.table.DefaultTableModel(
@@ -305,7 +294,6 @@ public class BanHangJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tbl_hoaDonCT.setToolTipText("");
         tbl_hoaDonCT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_hoaDonCTMouseClicked(evt);
@@ -335,8 +323,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
 
         add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 720, 160));
 
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.red), "Danh Sách Sản Phẩm", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Danh Sách Sản Phẩm", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tbl_SanPham.setModel(new javax.swing.table.DefaultTableModel(
@@ -358,8 +345,6 @@ public class BanHangJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tbl_SanPham.setGridColor(new java.awt.Color(255, 255, 255));
-        tbl_SanPham.setShowGrid(true);
         tbl_SanPham.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_SanPhamMouseClicked(evt);
@@ -380,10 +365,9 @@ public class BanHangJPanel extends javax.swing.JPanel {
         });
         jPanel4.add(txt_TimKiemSP, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 200, 30));
 
-        add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 720, 300));
+        add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 720, 290));
 
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.red));
+        jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tbl_KhachHang.setModel(new javax.swing.table.DefaultTableModel(

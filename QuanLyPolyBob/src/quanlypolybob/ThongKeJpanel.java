@@ -168,7 +168,7 @@ public class ThongKeJpanel extends javax.swing.JPanel {
         jLabel5.setText("Sản Phẩm :");
 
         lblsanpham.setForeground(new java.awt.Color(255, 255, 255));
-        lblsanpham.setText("10");
+        lblsanpham.setText("0");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -467,6 +467,11 @@ public class ThongKeJpanel extends javax.swing.JPanel {
 
     private void cboLoaiTGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboLoaiTGActionPerformed
         // TODO add your handling code here:
+        if(cboLoaiTG.getSelectedItem().equals("Hôm nay")){
+            SimpleDateFormat date1 = new SimpleDateFormat("yyyy-MM-dd");
+            String ngay = date1.format(new java.util.Date());
+            
+        }
     }//GEN-LAST:event_cboLoaiTGActionPerformed
 
     private void cboLoaiTGItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboLoaiTGItemStateChanged
